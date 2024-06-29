@@ -137,7 +137,6 @@ add_action('wp_ajax_nopriv_get_availability', 'get_availability');
 
 require_once MY_PLUGIN_DIR_PATH . '/includes/unlimitedv2-class-get-avail.php'; // διαθεσιμότητα ημερολογίου
 
-
 add_action('wp_ajax_get_latest_pricing', 'get_latest_pricing');
 add_action('wp_ajax_nopriv_get_latest_pricing', 'get_latest_pricing');
 
