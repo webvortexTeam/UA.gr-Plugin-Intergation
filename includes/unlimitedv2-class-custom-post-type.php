@@ -2,10 +2,10 @@
 function unlimited_andrenaline_v2_custom_post_type()
 {
     $labels = array(
-        'name' => _x('Activities', 'Post Type General Name', 'unlimited-andrenaline-v2'),
-        'singular_name' => _x('Activity', 'Post Type Singular Name', 'unlimited-andrenaline-v2'),
-        'menu_name' => __('Activities', 'unlimited-andrenaline-v2'),
-        'name_admin_bar' => __('Activity', 'unlimited-andrenaline-v2'),
+        'name' => _x('Δραστηριότητες', 'Post Type General Name', 'unlimited-andrenaline-v2'),
+        'singular_name' => _x('Δραστηριότητα', 'Post Type Singular Name', 'unlimited-andrenaline-v2'),
+        'menu_name' => __('Δραστηριότητες', 'unlimited-andrenaline-v2'),
+        'name_admin_bar' => __('Δραστηριότητα', 'unlimited-andrenaline-v2'),
         'archives' => __('Item Archives', 'unlimited-andrenaline-v2'),
         'attributes' => __('Item Attributes', 'unlimited-andrenaline-v2'),
         'parent_item_colon' => __('Parent Item:', 'unlimited-andrenaline-v2'),
@@ -31,8 +31,8 @@ function unlimited_andrenaline_v2_custom_post_type()
         'filter_items_list' => __('Filter items list', 'unlimited-andrenaline-v2'),
     );
     $args = array(
-        'label' => __('Activity', 'unlimited-andrenaline-v2'),
-        'description' => __('Activity Description', 'unlimited-andrenaline-v2'),
+        'label' => __('Δραστηριότητα', 'unlimited-andrenaline-v2'),
+        'description' => __('Δραστηριότητα Description', 'unlimited-andrenaline-v2'),
         'labels' => $labels,
         'supports' => array('title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'revisions', 'custom-fields', ),
         'taxonomies' => array('category', 'post_tag'),
@@ -49,6 +49,6 @@ function unlimited_andrenaline_v2_custom_post_type()
         'publicly_queryable' => true,
         'capability_type' => 'post',
     );
-    register_post_type('activity', $args);
+    register_post_type('Δραστηριότητα', $args);
 }
 add_action('init', 'unlimited_andrenaline_v2_custom_post_type', 0);

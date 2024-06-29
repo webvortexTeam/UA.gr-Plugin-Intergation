@@ -9,7 +9,7 @@
                 "name": "activity_id",
                 "type": "number",
                 "instructions": "Enter the ID of the activity",
-                "required": 1,
+                "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
                     "width": "",
@@ -30,7 +30,7 @@
                 "name": "title",
                 "type": "text",
                 "instructions": "Enter the title of the activity",
-                "required": 1,
+                "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
                     "width": "",
@@ -49,7 +49,7 @@
                 "name": "provider_id",
                 "type": "number",
                 "instructions": "Enter the provider ID",
-                "required": 1,
+                "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
                     "width": "",
@@ -67,7 +67,7 @@
                 "name": "rating",
                 "type": "number",
                 "instructions": "Enter the rating of the activity",
-                "required": 1,
+                "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
                     "width": "",
@@ -88,7 +88,7 @@
                 "name": "active_months",
                 "type": "text",
                 "instructions": "Enter the active months of the activity",
-                "required": 1,
+                "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
                     "width": "",
@@ -107,7 +107,7 @@
                 "name": "category_ids",
                 "type": "text",
                 "instructions": "Enter the category IDs of the activity",
-                "required": 1,
+                "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
                     "width": "",
@@ -126,7 +126,7 @@
                 "name": "description",
                 "type": "textarea",
                 "instructions": "Enter the description of the activity",
-                "required": 1,
+                "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
                     "width": "",
@@ -145,7 +145,7 @@
                 "name": "photos",
                 "type": "repeater",
                 "instructions": "Upload photos for the activity",
-                "required": 1,
+                "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
                     "width": "",
@@ -164,7 +164,7 @@
                         "name": "photo_id",
                         "type": "number",
                         "instructions": "Enter the ID of the photo",
-                        "required": 1,
+                        "required": 0,
                         "conditional_logic": 0,
                         "wrapper": {
                             "width": "",
@@ -185,7 +185,7 @@
                         "name": "full_url",
                         "type": "url",
                         "instructions": "Enter the full URL of the photo",
-                        "required": 1,
+                        "required": 0,
                         "conditional_logic": 0,
                         "wrapper": {
                             "width": "",
@@ -203,7 +203,7 @@
                         "name": "thumb_url",
                         "type": "url",
                         "instructions": "Enter the thumb URL of the photo",
-                        "required": 1,
+                        "required": 0,
                         "conditional_logic": 0,
                         "wrapper": {
                             "width": "",
@@ -242,7 +242,7 @@
                 "name": "itineraries",
                 "type": "repeater",
                 "instructions": "Add itineraries for the activity",
-                "required": 1,
+                "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
                     "width": "",
@@ -261,7 +261,7 @@
                         "name": "itinerary_id",
                         "type": "number",
                         "instructions": "Enter the ID of the itinerary",
-                        "required": 1,
+                        "required": 0,
                         "conditional_logic": 0,
                         "wrapper": {
                             "width": "",
@@ -282,7 +282,7 @@
                         "name": "title",
                         "type": "text",
                         "instructions": "Enter the title of the itinerary",
-                        "required": 1,
+                        "required": 0,
                         "conditional_logic": 0,
                         "wrapper": {
                             "width": "",
@@ -301,7 +301,7 @@
                         "name": "description",
                         "type": "textarea",
                         "instructions": "Enter the description of the itinerary",
-                        "required": 1,
+                        "required": 0,
                         "conditional_logic": 0,
                         "wrapper": {
                             "width": "",
@@ -320,7 +320,7 @@
                         "name": "level",
                         "type": "number",
                         "instructions": "Enter the difficulty level of the itinerary",
-                        "required": 1,
+                        "required": 0,
                         "conditional_logic": 0,
                         "wrapper": {
                             "width": "",
@@ -375,7 +375,7 @@
                                         "name": "id",
                                         "type": "number",
                                         "instructions": "Enter the ID of the included item",
-                                        "required": 1,
+                                        "required": 0,
                                         "conditional_logic": 0,
                                         "wrapper": {
                                             "width": "",
@@ -396,7 +396,7 @@
                                         "name": "title",
                                         "type": "text",
                                         "instructions": "Enter the title of the included item",
-                                        "required": 1,
+                                        "required": 0,
                                         "conditional_logic": 0,
                                         "wrapper": {
                                             "width": "",
@@ -436,7 +436,7 @@
                                         "name": "id",
                                         "type": "number",
                                         "instructions": "Enter the ID of the item",
-                                        "required": 1,
+                                        "required": 0,
                                         "conditional_logic": 0,
                                         "wrapper": {
                                             "width": "",
@@ -457,7 +457,7 @@
                                         "name": "title",
                                         "type": "text",
                                         "instructions": "Enter the title of the item",
-                                        "required": 1,
+                                        "required": 0,
                                         "conditional_logic": 0,
                                         "wrapper": {
                                             "width": "",
@@ -499,7 +499,7 @@
                                 "name": "score",
                                 "type": "number",
                                 "instructions": "Enter the score of the rating",
-                                "required": 1,
+                                "required": 0,
                                 "conditional_logic": 0,
                                 "wrapper": {
                                     "width": "",
@@ -520,7 +520,7 @@
                                 "name": "text",
                                 "type": "textarea",
                                 "instructions": "Enter the review text",
-                                "required": 1,
+                                "required": 0,
                                 "conditional_logic": 0,
                                 "wrapper": {
                                     "width": "",
@@ -539,7 +539,7 @@
                                 "name": "fullname",
                                 "type": "text",
                                 "instructions": "Enter the full name of the reviewer",
-                                "required": 1,
+                                "required": 0,
                                 "conditional_logic": 0,
                                 "wrapper": {
                                     "width": "",
@@ -560,7 +560,7 @@
                         "name": "min_age",
                         "type": "number",
                         "instructions": "Enter the minimum age for participation",
-                        "required": 1,
+                        "required": 0,
                         "conditional_logic": 0,
                         "wrapper": {
                             "width": "",
@@ -600,7 +600,7 @@
                                 "name": "id",
                                 "type": "number",
                                 "instructions": "Enter the ID of the language",
-                                "required": 1,
+                                "required": 0,
                                 "conditional_logic": 0,
                                 "wrapper": {
                                     "width": "",
@@ -621,7 +621,7 @@
                                 "name": "acrn",
                                 "type": "text",
                                 "instructions": "Enter the acronym of the language",
-                                "required": 1,
+                                "required": 0,
                                 "conditional_logic": 0,
                                 "wrapper": {
                                     "width": "",
@@ -640,7 +640,7 @@
                                 "name": "title",
                                 "type": "text",
                                 "instructions": "Enter the title of the language",
-                                "required": 1,
+                                "required": 0,
                                 "conditional_logic": 0,
                                 "wrapper": {
                                     "width": "",
@@ -661,7 +661,7 @@
                         "name": "booking_type",
                         "type": "text",
                         "instructions": "Enter the booking type",
-                        "required": 1,
+                        "required": 0,
                         "conditional_logic": 0,
                         "wrapper": {
                             "width": "",
@@ -680,7 +680,7 @@
                         "name": "transport",
                         "type": "true_false",
                         "instructions": "Is transport included?",
-                        "required": 1,
+                        "required": 0,
                         "conditional_logic": 0,
                         "wrapper": {
                             "width": "",
@@ -699,7 +699,7 @@
                         "name": "allow_selection_of_multiple_facilities",
                         "type": "true_false",
                         "instructions": "Does it allow selection of multiple facilities?",
-                        "required": 1,
+                        "required": 0,
                         "conditional_logic": 0,
                         "wrapper": {
                             "width": "",
@@ -718,7 +718,7 @@
                         "name": "accommodation",
                         "type": "true_false",
                         "instructions": "Is accommodation provided?",
-                        "required": 1,
+                        "required": 0,
                         "conditional_logic": 0,
                         "wrapper": {
                             "width": "",
@@ -737,7 +737,7 @@
                         "name": "min_persons",
                         "type": "number",
                         "instructions": "Enter the minimum number of participants",
-                        "required": 1,
+                        "required": 0,
                         "conditional_logic": 0,
                         "wrapper": {
                             "width": "",
@@ -758,7 +758,7 @@
                         "name": "min_price",
                         "type": "number",
                         "instructions": "Enter the minimum price",
-                        "required": 1,
+                        "required": 0,
                         "conditional_logic": 0,
                         "wrapper": {
                             "width": "",
@@ -794,7 +794,7 @@
                                 "name": "id",
                                 "type": "number",
                                 "instructions": "Enter the ID of the policy",
-                                "required": 1,
+                                "required": 0,
                                 "conditional_logic": 0,
                                 "wrapper": {
                                     "width": "",
@@ -815,7 +815,7 @@
                                 "name": "charge",
                                 "type": "number",
                                 "instructions": "Enter the charge of the policy",
-                                "required": 1,
+                                "required": 0,
                                 "conditional_logic": 0,
                                 "wrapper": {
                                     "width": "",
@@ -836,7 +836,7 @@
                                 "name": "days_before_1",
                                 "type": "number",
                                 "instructions": "Enter the days before for a full refund",
-                                "required": 1,
+                                "required": 0,
                                 "conditional_logic": 0,
                                 "wrapper": {
                                     "width": "",
@@ -857,7 +857,7 @@
                                 "name": "days_before_2",
                                 "type": "number",
                                 "instructions": "Enter the days before for a partial refund",
-                                "required": 1,
+                                "required": 0,
                                 "conditional_logic": 0,
                                 "wrapper": {
                                     "width": "",
@@ -878,7 +878,7 @@
                                 "name": "title",
                                 "type": "text",
                                 "instructions": "Enter the title of the policy",
-                                "required": 1,
+                                "required": 0,
                                 "conditional_logic": 0,
                                 "wrapper": {
                                     "width": "",
@@ -897,7 +897,7 @@
                                 "name": "description",
                                 "type": "textarea",
                                 "instructions": "Enter the description of the policy",
-                                "required": 1,
+                                "required": 0,
                                 "conditional_logic": 0,
                                 "wrapper": {
                                     "width": "",
@@ -919,7 +919,7 @@
                         "name": "activity_id",
                         "type": "number",
                         "instructions": "Enter the activity ID",
-                        "required": 1,
+                        "required": 0,
                         "conditional_logic": 0,
                         "wrapper": {
                             "width": "",
@@ -940,7 +940,7 @@
                         "name": "is_event",
                         "type": "true_false",
                         "instructions": "Is this an event?",
-                        "required": 1,
+                        "required": 0,
                         "conditional_logic": 0,
                         "wrapper": {
                             "width": "",
@@ -959,7 +959,7 @@
                         "name": "difficulty",
                         "type": "text",
                         "instructions": "Enter the difficulty level",
-                        "required": 1,
+                        "required": 0,
                         "conditional_logic": 0,
                         "wrapper": {
                             "width": "",
@@ -978,7 +978,7 @@
                         "name": "latitude",
                         "type": "text",
                         "instructions": "Enter the latitude",
-                        "required": 1,
+                        "required": 0,
                         "conditional_logic": 0,
                         "wrapper": {
                             "width": "",
@@ -997,7 +997,7 @@
                         "name": "longitude",
                         "type": "text",
                         "instructions": "Enter the longitude",
-                        "required": 1,
+                        "required": 0,
                         "conditional_logic": 0,
                         "wrapper": {
                             "width": "",
@@ -1016,7 +1016,7 @@
                         "name": "duration",
                         "type": "text",
                         "instructions": "Enter the duration of the itinerary",
-                        "required": 1,
+                        "required": 0,
                         "conditional_logic": 0,
                         "wrapper": {
                             "width": "",
@@ -1037,7 +1037,7 @@
                 "name": "duration",
                 "type": "text",
                 "instructions": "Enter the duration of the activity",
-                "required": 1,
+                "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
                     "width": "",
