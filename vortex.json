@@ -1,0 +1,1074 @@
+[
+    {
+        "key": "group_webvortex_unlimited_andrenaline",
+        "title": "Unlimited-Andrenaline",
+        "fields": [
+            {
+                "key": "field_webvortex_activity_id",
+                "label": "Activity ID",
+                "name": "activity_id",
+                "type": "number",
+                "instructions": "Enter the ID of the activity",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "min": "",
+                "max": "",
+                "step": ""
+            },
+            {
+                "key": "field_webvortex_title",
+                "label": "Title",
+                "name": "title",
+                "type": "text",
+                "instructions": "Enter the title of the activity",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_webvortex_provider_id",
+                "label": "Provider ID",
+                "name": "provider_id",
+                "type": "number",
+                "instructions": "Enter the provider ID",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_webvortex_rating",
+                "label": "Rating",
+                "name": "rating",
+                "type": "number",
+                "instructions": "Enter the rating of the activity",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "min": "",
+                "max": "",
+                "step": ""
+            },
+            {
+                "key": "field_webvortex_active_months",
+                "label": "Active Months",
+                "name": "active_months",
+                "type": "text",
+                "instructions": "Enter the active months of the activity",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_webvortex_category_ids",
+                "label": "Category IDs",
+                "name": "category_ids",
+                "type": "text",
+                "instructions": "Enter the category IDs of the activity",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_webvortex_description",
+                "label": "Description",
+                "name": "description",
+                "type": "textarea",
+                "instructions": "Enter the description of the activity",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "maxlength": "",
+                "rows": "",
+                "new_lines": ""
+            },
+            {
+                "key": "field_webvortex_photos",
+                "label": "Photos",
+                "name": "photos",
+                "type": "repeater",
+                "instructions": "Upload photos for the activity",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "collapsed": "",
+                "min": "",
+                "max": "",
+                "layout": "table",
+                "button_label": "Add Photo",
+                "sub_fields": [
+                    {
+                        "key": "field_webvortex_photo_id",
+                        "label": "Photo ID",
+                        "name": "photo_id",
+                        "type": "number",
+                        "instructions": "Enter the ID of the photo",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "min": "",
+                        "max": "",
+                        "step": ""
+                    },
+                    {
+                        "key": "field_webvortex_photo_full",
+                        "label": "Full URL",
+                        "name": "full_url",
+                        "type": "url",
+                        "instructions": "Enter the full URL of the photo",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": ""
+                    },
+                    {
+                        "key": "field_webvortex_photo_thumb",
+                        "label": "Thumb URL",
+                        "name": "thumb_url",
+                        "type": "url",
+                        "instructions": "Enter the thumb URL of the photo",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": ""
+                    },
+                    {
+                        "key": "field_webvortex_photo_title",
+                        "label": "Title",
+                        "name": "photo_title",
+                        "type": "text",
+                        "instructions": "Enter the title of the photo",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": ""
+                    }
+                ]
+            },
+            {
+                "key": "field_webvortex_itineraries",
+                "label": "Itineraries",
+                "name": "itineraries",
+                "type": "repeater",
+                "instructions": "Add itineraries for the activity",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "collapsed": "",
+                "min": "",
+                "max": "",
+                "layout": "table",
+                "button_label": "Add Itinerary",
+                "sub_fields": [
+                    {
+                        "key": "field_webvortex_itinerary_id",
+                        "label": "Itinerary ID",
+                        "name": "itinerary_id",
+                        "type": "number",
+                        "instructions": "Enter the ID of the itinerary",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "min": "",
+                        "max": "",
+                        "step": ""
+                    },
+                    {
+                        "key": "field_webvortex_itinerary_title",
+                        "label": "Title",
+                        "name": "title",
+                        "type": "text",
+                        "instructions": "Enter the title of the itinerary",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": ""
+                    },
+                    {
+                        "key": "field_webvortex_itinerary_description",
+                        "label": "Description",
+                        "name": "description",
+                        "type": "textarea",
+                        "instructions": "Enter the description of the itinerary",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "maxlength": "",
+                        "rows": "",
+                        "new_lines": ""
+                    },
+                    {
+                        "key": "field_webvortex_itinerary_level",
+                        "label": "Level",
+                        "name": "level",
+                        "type": "number",
+                        "instructions": "Enter the difficulty level of the itinerary",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "min": "",
+                        "max": "",
+                        "step": ""
+                    },
+                    {
+                        "key": "field_webvortex_itinerary_details",
+                        "label": "Details",
+                        "name": "details",
+                        "type": "group",
+                        "instructions": "Enter the details of the itinerary",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "layout": "block",
+                        "sub_fields": [
+                            {
+                                "key": "field_webvortex_itinerary_included",
+                                "label": "Included",
+                                "name": "included",
+                                "type": "repeater",
+                                "instructions": "Add items that are included",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "collapsed": "",
+                                "min": "",
+                                "max": "",
+                                "layout": "table",
+                                "button_label": "Add Included Item",
+                                "sub_fields": [
+                                    {
+                                        "key": "field_webvortex_included_id",
+                                        "label": "ID",
+                                        "name": "id",
+                                        "type": "number",
+                                        "instructions": "Enter the ID of the included item",
+                                        "required": 1,
+                                        "conditional_logic": 0,
+                                        "wrapper": {
+                                            "width": "",
+                                            "class": "",
+                                            "id": ""
+                                        },
+                                        "default_value": "",
+                                        "placeholder": "",
+                                        "prepend": "",
+                                        "append": "",
+                                        "min": "",
+                                        "max": "",
+                                        "step": ""
+                                    },
+                                    {
+                                        "key": "field_webvortex_included_title",
+                                        "label": "Title",
+                                        "name": "title",
+                                        "type": "text",
+                                        "instructions": "Enter the title of the included item",
+                                        "required": 1,
+                                        "conditional_logic": 0,
+                                        "wrapper": {
+                                            "width": "",
+                                            "class": "",
+                                            "id": ""
+                                        },
+                                        "default_value": "",
+                                        "placeholder": "",
+                                        "prepend": "",
+                                        "append": "",
+                                        "maxlength": ""
+                                    }
+                                ]
+                            },
+                            {
+                                "key": "field_webvortex_itinerary_do_not_forget",
+                                "label": "Do Not Forget",
+                                "name": "do_not_forget",
+                                "type": "repeater",
+                                "instructions": "Add items that participants should not forget",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "collapsed": "",
+                                "min": "",
+                                "max": "",
+                                "layout": "table",
+                                "button_label": "Add Item",
+                                "sub_fields": [
+                                    {
+                                        "key": "field_webvortex_do_not_forget_id",
+                                        "label": "ID",
+                                        "name": "id",
+                                        "type": "number",
+                                        "instructions": "Enter the ID of the item",
+                                        "required": 1,
+                                        "conditional_logic": 0,
+                                        "wrapper": {
+                                            "width": "",
+                                            "class": "",
+                                            "id": ""
+                                        },
+                                        "default_value": "",
+                                        "placeholder": "",
+                                        "prepend": "",
+                                        "append": "",
+                                        "min": "",
+                                        "max": "",
+                                        "step": ""
+                                    },
+                                    {
+                                        "key": "field_webvortex_do_not_forget_title",
+                                        "label": "Title",
+                                        "name": "title",
+                                        "type": "text",
+                                        "instructions": "Enter the title of the item",
+                                        "required": 1,
+                                        "conditional_logic": 0,
+                                        "wrapper": {
+                                            "width": "",
+                                            "class": "",
+                                            "id": ""
+                                        },
+                                        "default_value": "",
+                                        "placeholder": "",
+                                        "prepend": "",
+                                        "append": "",
+                                        "maxlength": ""
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "key": "field_webvortex_itinerary_ratings",
+                        "label": "Ratings",
+                        "name": "ratings",
+                        "type": "repeater",
+                        "instructions": "Add ratings for the itinerary",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "collapsed": "",
+                        "min": "",
+                        "max": "",
+                        "layout": "table",
+                        "button_label": "Add Rating",
+                        "sub_fields": [
+                            {
+                                "key": "field_webvortex_rating_score",
+                                "label": "Score",
+                                "name": "score",
+                                "type": "number",
+                                "instructions": "Enter the score of the rating",
+                                "required": 1,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "default_value": "",
+                                "placeholder": "",
+                                "prepend": "",
+                                "append": "",
+                                "min": "",
+                                "max": "",
+                                "step": ""
+                            },
+                            {
+                                "key": "field_webvortex_rating_text",
+                                "label": "Text",
+                                "name": "text",
+                                "type": "textarea",
+                                "instructions": "Enter the review text",
+                                "required": 1,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "default_value": "",
+                                "placeholder": "",
+                                "maxlength": "",
+                                "rows": "",
+                                "new_lines": ""
+                            },
+                            {
+                                "key": "field_webvortex_rating_fullname",
+                                "label": "Full Name",
+                                "name": "fullname",
+                                "type": "text",
+                                "instructions": "Enter the full name of the reviewer",
+                                "required": 1,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "default_value": "",
+                                "placeholder": "",
+                                "prepend": "",
+                                "append": "",
+                                "maxlength": ""
+                            }
+                        ]
+                    },
+                    {
+                        "key": "field_webvortex_itinerary_min_age",
+                        "label": "Minimum Age",
+                        "name": "min_age",
+                        "type": "number",
+                        "instructions": "Enter the minimum age for participation",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "min": "",
+                        "max": "",
+                        "step": ""
+                    },
+                    {
+                        "key": "field_webvortex_itinerary_spoken_languages",
+                        "label": "Spoken Languages",
+                        "name": "spoken_languages",
+                        "type": "repeater",
+                        "instructions": "Add spoken languages for the itinerary",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "collapsed": "",
+                        "min": "",
+                        "max": "",
+                        "layout": "table",
+                        "button_label": "Add Language",
+                        "sub_fields": [
+                            {
+                                "key": "field_webvortex_language_id",
+                                "label": "ID",
+                                "name": "id",
+                                "type": "number",
+                                "instructions": "Enter the ID of the language",
+                                "required": 1,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "default_value": "",
+                                "placeholder": "",
+                                "prepend": "",
+                                "append": "",
+                                "min": "",
+                                "max": "",
+                                "step": ""
+                            },
+                            {
+                                "key": "field_webvortex_language_acrn",
+                                "label": "Acronym",
+                                "name": "acrn",
+                                "type": "text",
+                                "instructions": "Enter the acronym of the language",
+                                "required": 1,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "default_value": "",
+                                "placeholder": "",
+                                "prepend": "",
+                                "append": "",
+                                "maxlength": ""
+                            },
+                            {
+                                "key": "field_webvortex_language_title",
+                                "label": "Title",
+                                "name": "title",
+                                "type": "text",
+                                "instructions": "Enter the title of the language",
+                                "required": 1,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "default_value": "",
+                                "placeholder": "",
+                                "prepend": "",
+                                "append": "",
+                                "maxlength": ""
+                            }
+                        ]
+                    },
+                    {
+                        "key": "field_webvortex_itinerary_booking_type",
+                        "label": "Booking Type",
+                        "name": "booking_type",
+                        "type": "text",
+                        "instructions": "Enter the booking type",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": ""
+                    },
+                    {
+                        "key": "field_webvortex_itinerary_transport",
+                        "label": "Transport",
+                        "name": "transport",
+                        "type": "true_false",
+                        "instructions": "Is transport included?",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "message": "",
+                        "default_value": 0,
+                        "ui": 0,
+                        "ui_on_text": "",
+                        "ui_off_text": ""
+                    },
+                    {
+                        "key": "field_webvortex_itinerary_allow_multiple_facilities",
+                        "label": "Allow Selection of Multiple Facilities",
+                        "name": "allow_selection_of_multiple_facilities",
+                        "type": "true_false",
+                        "instructions": "Does it allow selection of multiple facilities?",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "message": "",
+                        "default_value": 0,
+                        "ui": 0,
+                        "ui_on_text": "",
+                        "ui_off_text": ""
+                    },
+                    {
+                        "key": "field_webvortex_itinerary_accommodation",
+                        "label": "Accommodation",
+                        "name": "accommodation",
+                        "type": "true_false",
+                        "instructions": "Is accommodation provided?",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "message": "",
+                        "default_value": 0,
+                        "ui": 0,
+                        "ui_on_text": "",
+                        "ui_off_text": ""
+                    },
+                    {
+                        "key": "field_webvortex_itinerary_min_persons",
+                        "label": "Minimum Persons",
+                        "name": "min_persons",
+                        "type": "number",
+                        "instructions": "Enter the minimum number of participants",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "min": "",
+                        "max": "",
+                        "step": ""
+                    },
+                    {
+                        "key": "field_webvortex_itinerary_min_price",
+                        "label": "Minimum Price",
+                        "name": "min_price",
+                        "type": "number",
+                        "instructions": "Enter the minimum price",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "min": "",
+                        "max": "",
+                        "step": ""
+                    },
+                    {
+                        "key": "field_webvortex_itinerary_cancellation_policy",
+                        "label": "Cancellation Policy",
+                        "name": "cancellation_policy",
+                        "type": "group",
+                        "instructions": "Enter the cancellation policy",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "layout": "block",
+                        "sub_fields": [
+                            {
+                                "key": "field_webvortex_policy_id",
+                                "label": "ID",
+                                "name": "id",
+                                "type": "number",
+                                "instructions": "Enter the ID of the policy",
+                                "required": 1,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "default_value": "",
+                                "placeholder": "",
+                                "prepend": "",
+                                "append": "",
+                                "min": "",
+                                "max": "",
+                                "step": ""
+                            },
+                            {
+                                "key": "field_webvortex_policy_charge",
+                                "label": "Charge",
+                                "name": "charge",
+                                "type": "number",
+                                "instructions": "Enter the charge of the policy",
+                                "required": 1,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "default_value": "",
+                                "placeholder": "",
+                                "prepend": "",
+                                "append": "",
+                                "min": "",
+                                "max": "",
+                                "step": ""
+                            },
+                            {
+                                "key": "field_webvortex_policy_days_before_1",
+                                "label": "Days Before (Full Refund)",
+                                "name": "days_before_1",
+                                "type": "number",
+                                "instructions": "Enter the days before for a full refund",
+                                "required": 1,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "default_value": "",
+                                "placeholder": "",
+                                "prepend": "",
+                                "append": "",
+                                "min": "",
+                                "max": "",
+                                "step": ""
+                            },
+                            {
+                                "key": "field_webvortex_policy_days_before_2",
+                                "label": "Days Before (Partial Refund)",
+                                "name": "days_before_2",
+                                "type": "number",
+                                "instructions": "Enter the days before for a partial refund",
+                                "required": 1,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "default_value": "",
+                                "placeholder": "",
+                                "prepend": "",
+                                "append": "",
+                                "min": "",
+                                "max": "",
+                                "step": ""
+                            },
+                            {
+                                "key": "field_webvortex_policy_title",
+                                "label": "Title",
+                                "name": "title",
+                                "type": "text",
+                                "instructions": "Enter the title of the policy",
+                                "required": 1,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "default_value": "",
+                                "placeholder": "",
+                                "prepend": "",
+                                "append": "",
+                                "maxlength": ""
+                            },
+                            {
+                                "key": "field_webvortex_policy_description",
+                                "label": "Description",
+                                "name": "description",
+                                "type": "textarea",
+                                "instructions": "Enter the description of the policy",
+                                "required": 1,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                               
+                                "default_value": "",
+                                "placeholder": "",
+                                "maxlength": "",
+                                "rows": "",
+                                "new_lines": ""
+                            }
+                        ]
+                    },
+                    {
+                        "key": "field_webvortex_itinerary_activity_id",
+                        "label": "Activity ID",
+                        "name": "activity_id",
+                        "type": "number",
+                        "instructions": "Enter the activity ID",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "min": "",
+                        "max": "",
+                        "step": ""
+                    },
+                    {
+                        "key": "field_webvortex_itinerary_is_event",
+                        "label": "Is Event",
+                        "name": "is_event",
+                        "type": "true_false",
+                        "instructions": "Is this an event?",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "message": "",
+                        "default_value": 0,
+                        "ui": 0,
+                        "ui_on_text": "",
+                        "ui_off_text": ""
+                    },
+                    {
+                        "key": "field_webvortex_itinerary_difficulty",
+                        "label": "Difficulty",
+                        "name": "difficulty",
+                        "type": "text",
+                        "instructions": "Enter the difficulty level",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": ""
+                    },
+                    {
+                        "key": "field_webvortex_itinerary_latitude",
+                        "label": "Latitude",
+                        "name": "latitude",
+                        "type": "text",
+                        "instructions": "Enter the latitude",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": ""
+                    },
+                    {
+                        "key": "field_webvortex_itinerary_longitude",
+                        "label": "Longitude",
+                        "name": "longitude",
+                        "type": "text",
+                        "instructions": "Enter the longitude",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": ""
+                    },
+                    {
+                        "key": "field_webvortex_itinerary_duration",
+                        "label": "Duration",
+                        "name": "duration",
+                        "type": "text",
+                        "instructions": "Enter the duration of the itinerary",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": ""
+                    }
+                ]
+            },
+            {
+                "key": "field_webvortex_duration",
+                "label": "Duration",
+                "name": "duration",
+                "type": "text",
+                "instructions": "Enter the duration of the activity",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "activity"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": 0
+    }
+]
+
