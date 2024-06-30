@@ -1,4 +1,5 @@
 <?php
+// Register the custom post type
 function unlimited_andrenaline_v2_custom_post_type()
 {
     $labels = array(
@@ -9,7 +10,7 @@ function unlimited_andrenaline_v2_custom_post_type()
         'archives' => __('Item Archives', 'unlimited-andrenaline-v2'),
         'attributes' => __('Item Attributes', 'unlimited-andrenaline-v2'),
         'parent_item_colon' => __('Parent Item:', 'unlimited-andrenaline-v2'),
-        'all_items' => __('All Items', 'unlimited-andrenaline-v2'),
+        'all_items' => __('All Activities', 'unlimited-andrenaline-v2'),
         'add_new_item' => __('Add New Item', 'unlimited-andrenaline-v2'),
         'add_new' => __('Add New', 'unlimited-andrenaline-v2'),
         'new_item' => __('New Item', 'unlimited-andrenaline-v2'),
@@ -35,7 +36,7 @@ function unlimited_andrenaline_v2_custom_post_type()
         'description' => __('Activity Description', 'unlimited-andrenaline-v2'),
         'labels' => $labels,
         'supports' => array('title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'revisions', 'custom-fields', ),
-        'taxonomies' => array('category', 'post_tag'),
+        'taxonomies' => array('activity_category'), // category
         'hierarchical' => false,
         'public' => true,
         'show_ui' => true,
@@ -49,6 +50,28 @@ function unlimited_andrenaline_v2_custom_post_type()
         'publicly_queryable' => true,
         'capability_type' => 'post',
     );
-    register_post_type('Activity', $args);
+    register_post_type('activity', $args);
 }
 add_action('init', 'unlimited_andrenaline_v2_custom_post_type', 0);
+
+// Add custom columns to the Activity post type admin table
+function set_custom_edit_activity_columns($columns) {
+    $columns['activity_category'] = __('Activity Category', 'unlimited-andrenaline-v2');
+    return $columns;
+}
+add_filter('manage_activity_posts_columns', 'set_custom_edit_activity_columns');
+
+// Populate the custom columns with data
+function custom_activity_column($column, $post_id) {
+    switch ($column) {
+        case 'activity_category':
+            $terms = get_the_term_list($post_id, 'activity_category', '', ', ', '');
+            if (is_string($terms)) {
+                echo $terms;
+            } else {
+                _e('No Activity Category', 'unlimited-andrenaline-v2');
+            }
+            break;
+    }
+}
+add_action('manage_activity_posts_custom_column', 'custom_activity_column', 10, 2);
