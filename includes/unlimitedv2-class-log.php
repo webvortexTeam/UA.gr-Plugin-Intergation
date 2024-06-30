@@ -1,4 +1,7 @@
 <?php
+    if (!defined('ABSPATH')) {
+        exit; // Exit if accessed directly.
+    }
 function _log($msg, $stdout = true)
 {
     if ($stdout) {

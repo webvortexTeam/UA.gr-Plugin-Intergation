@@ -1,4 +1,7 @@
 <?php
+    if (!defined('ABSPATH')) {
+        exit; // Exit if accessed directly.
+    }
 function unlimited_adrenaline_remote_call($method, $api_request, $body, $default = null)
 {
     $api_locale = get_option('activity_api_locale');

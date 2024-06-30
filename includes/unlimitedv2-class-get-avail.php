@@ -1,4 +1,7 @@
 <?php
+    if (!defined('ABSPATH')) {
+        exit; // Exit if accessed directly.
+    }
 function get_availability()
 {
     if (!isset($_POST['itinerary_id'])) {

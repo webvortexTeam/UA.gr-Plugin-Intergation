@@ -1,4 +1,7 @@
 <?php
+    if (!defined('ABSPATH')) {
+        exit; // Exit if accessed directly.
+    }
 function get_itinerary_availability()
 {
     $itinerary_id = sanitize_text_field($_POST['itinerary_id']);

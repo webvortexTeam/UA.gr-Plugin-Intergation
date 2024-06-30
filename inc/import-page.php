@@ -1,4 +1,7 @@
 <?php
+    if (!defined('ABSPATH')) {
+        exit; // Exit if accessed directly.
+    }
 add_action('admin_menu', 'unlimited_andrenaline_admin_menu');
 function unlimited_andrenaline_admin_menu()
 {

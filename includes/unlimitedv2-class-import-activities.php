@@ -1,4 +1,7 @@
 <?php
+    if (!defined('ABSPATH')) {
+        exit; // Exit if accessed directly.
+    }
 function unlimited_andrenaline_import_activities()
 {
     $whitelabelid = get_option('activity_host_url_label');

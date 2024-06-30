@@ -1,4 +1,7 @@
 <?php
+    if (!defined('ABSPATH')) {
+        exit; // Exit if accessed directly.
+    }
 function adrenaline_thank_you_template() {
     ob_start();
     ?>  

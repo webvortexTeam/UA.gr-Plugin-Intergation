@@ -1,4 +1,7 @@
 <?php
+    if (!defined('ABSPATH')) {
+        exit; // Exit if accessed directly.
+    }
 function set_permalink_structure_to_postname() {
     $desired_permalink_structure = '/%postname%/';
     

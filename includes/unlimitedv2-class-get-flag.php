@@ -1,4 +1,7 @@
 <?php
+    if (!defined('ABSPATH')) {
+        exit; // Exit if accessed directly.
+    }
 function get_country_flag_by_language($language)
 {
     $api_url = 'https://restcountries.com/v3.1/lang/' . urlencode($language);

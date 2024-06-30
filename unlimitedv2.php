@@ -9,9 +9,8 @@ Author URI: https://www.webvortex.org
 License: GPL
 */
 
-// Exit if accessed directly
 if (!defined('ABSPATH')) {
-    exit;
+    exit; // Exit if accessed directly.
 }
 
 if (!class_exists('Requests')) {
@@ -414,5 +413,9 @@ function adrenaline_create_pages() {
 // Hook into plugin activation
 register_activation_hook(__FILE__, 'adrenaline_create_pages');
 require_once MY_PLUGIN_DIR_PATH . '/includes/unlimitedv2-class-payment-pages.php'; // Payment σελίδες thank-you - failed
-
+require_once MY_PLUGIN_DIR_PATH . '/inc/admin-cron.php';
+add_action('init', function() {
+    register_activation_hook(__FILE__, 'uac_cron_activation');
+    register_deactivation_hook(__FILE__, 'uac_cron_deactivation');
+});
 

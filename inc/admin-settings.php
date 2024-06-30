@@ -1,6 +1,7 @@
 <?php
-// Add menu item
-add_action('admin_menu', 'activity_create_menu');
+    if (!defined('ABSPATH')) {
+        exit; // Exit if accessed directly.
+    }add_action('admin_menu', 'activity_create_menu');
 
 function activity_create_menu()
 {

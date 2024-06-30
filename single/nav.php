@@ -1,5 +1,11 @@
 
-        <nav aria-label="Breadcrumb">
+    <?php 
+    
+if (!defined('ABSPATH')) {
+    exit; // Exit if accessed directly.
+}
+    ?>
+    <nav aria-label="Breadcrumb">
 
             <ol role="list" class="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
                               <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">

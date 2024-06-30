@@ -1,4 +1,7 @@
 <?php
+    if (!defined('ABSPATH')) {
+        exit; // Exit if accessed directly.
+    }
 function get_latest_pricing()
 {
     if (!isset($_POST['date']) || !isset($_POST['itinerary_id']) || !isset($_POST['time_slot'])) {

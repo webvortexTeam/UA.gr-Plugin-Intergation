@@ -1,6 +1,7 @@
 <?php
-// Register the custom post type
-function unlimited_andrenaline_v2_custom_post_type()
+    if (!defined('ABSPATH')) {
+        exit; // Exit if accessed directly.
+    }function unlimited_andrenaline_v2_custom_post_type()
 {
     $labels = array(
         'name' => _x('Activities', 'Post Type General Name', 'unlimited-andrenaline-v2'),

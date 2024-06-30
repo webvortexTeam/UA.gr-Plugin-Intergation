@@ -1,4 +1,7 @@
 <?php
+    if (!defined('ABSPATH')) {
+        exit; // Exit if accessed directly.
+    }
 function checkout()
 {
     if (!isset($_POST['itinerary_id']) || !isset($_POST['person_count']) || !isset($_POST['customer_details'])) {
