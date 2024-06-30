@@ -6,6 +6,35 @@ function unlimited_andrenaline_import_activities()
     $api_key = get_option('activity_api_key');
     $api_locale = get_option('activity_api_locale');
 
+    // Fetch categories
+    $categories_url = $api_host . 'category';
+    $categories_args = array(
+        'headers' => array(
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
+            'apiKey' => $api_key,
+            'Accept-Language' => $api_locale
+        )
+    );
+
+    $categories_response = wp_remote_get($categories_url, $categories_args);
+
+    if (is_wp_error($categories_response)) {
+        echo "Something went wrong: " . $categories_response->get_error_message();
+        return;
+    }
+
+    $categories_body = wp_remote_retrieve_body($categories_response);
+    $categories_data = json_decode($categories_body, true);
+
+    // Create a mapping of category IDs to category names
+    $category_map = array();
+    foreach ($categories_data as $category) {
+        $category_map[$category['id']] = $category['title'];
+        foreach ($category['subcategories'] as $subcategory) {
+            $category_map[$subcategory['id']] = $subcategory['title'];
+        }
+    }
 
     $endpoint = "activity";
     $url = $api_host . $endpoint;
@@ -184,7 +213,45 @@ function unlimited_andrenaline_import_activities()
                     update_field('field_webvortex_itineraries', $itineraries, $post_id);
                 }
 
-                // Increment activities imported count
+                $activity_categories = array();
+                foreach ($activity['categoryIds'] as $category_id) {
+                    if (isset($category_map[$category_id])) {
+                        $term = term_exists($category_map[$category_id], 'activity_category');
+                        if (!$term) {
+                            // Κεντρική κατηγορία
+                            $category_data = array_filter($categories_data, function($cat) use ($category_id) {
+                                return $cat['id'] === $category_id || in_array($category_id, array_column($cat['subcategories'], 'id'));
+                            });
+                            
+                            if ($category_data) {
+                                $category_data = array_shift($category_data);
+                                $description = $category_data['description'];
+                                
+                                // subcategory
+                                if (isset($category_map[$category_id])) {
+                                    $subcategory_data = array_filter($category_data['subcategories'], function($subcat) use ($category_id) {
+                                        return $subcat['id'] === $category_id;
+                                    });
+                                    if ($subcategory_data) {
+                                        $subcategory_data = array_shift($subcategory_data);
+                                        $description = $subcategory_data['description'];
+                                    }
+                                }
+
+                                $term = wp_insert_term(
+                                    $category_map[$category_id],
+                                    'activity_category',
+                                    array('description' => $description)
+                                );
+                            }
+                        }
+                        if (!is_wp_error($term)) {
+                            $activity_categories[] = intval($term['term_id']);
+                        }
+                    }
+                }
+                wp_set_post_terms($post_id, $activity_categories, 'activity_category');
+
                 $activities_imported++;
             }
         }
@@ -193,4 +260,17 @@ function unlimited_andrenaline_import_activities()
     update_option('activities_imported', $activities_imported);
     echo "<h3> Η Εισαγωγή/Ανανέωση ολοκληρώθηκε συνολικά σε: $activities_imported δραστηριότητες </h3>";
 }
+function create_activity_category_taxonomy() {
+    register_taxonomy(
+        'activity_category',
+        'activity',
+        array(
+            'label' => __( 'Activity Categories' ),
+            'rewrite' => array( 'slug' => 'activity-category' ),
+            'hierarchical' => true,
+        )
+    );
+}
+add_action( 'init', 'create_activity_category_taxonomy' );
+
 ?>
