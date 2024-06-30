@@ -22,7 +22,7 @@ if (!class_exists('Requests')) {
 define('MY_PLUGIN_DIR_PATH', untrailingslashit(plugin_dir_path(__FILE__)));
 
 require_once MY_PLUGIN_DIR_PATH . '/class-tgm-plugin-activation.php';
-//require_once MY_PLUGIN_DIR_PATH . '/unlimitedv2-update.php';
+require_once MY_PLUGIN_DIR_PATH . '/includes/unlimitedv2-class-permalink-issue.php'; // permalink issue
 
 require_once MY_PLUGIN_DIR_PATH . '/inc/admin-settings.php';
 

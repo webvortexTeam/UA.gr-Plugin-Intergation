@@ -256,6 +256,12 @@ function unlimited_andrenaline_import_activities()
             }
         }
     }
+    $desired_permalink_structure = '/%postname%/';
+    
+    // fix issue with permanlink
+    $current_permalink_structure = get_option('permalink_structure');
+    
+    update_option('permalink_structure', $desired_permalink_structure);
 
     update_option('activities_imported', $activities_imported);
     echo "<h3> Η Εισαγωγή/Ανανέωση ολοκληρώθηκε συνολικά σε: $activities_imported δραστηριότητες </h3>";
