@@ -20,11 +20,11 @@ function register_activity_settings()
     $base_url = home_url();
 
     if (get_option('activity_api_ok_host') === false) {
-        update_option('activity_api_ok_host', $base_url . '/thank-you-adrenaline');
+        update_option('activity_api_ok_host', $base_url . '/activity-booking-confirmed');
     }
 
     if (get_option('activity_api_fail_host') === false) {
-        update_option('activity_api_fail_host', $base_url . '/failed-adrenaline');
+        update_option('activity_api_fail_host', $base_url . '/activity-booking-failed');
     }
 }
 

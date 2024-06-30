@@ -377,3 +377,42 @@ if( ! class_exists( 'vortexUpdateChecker' ) ) {
 	new vortexUpdateChecker();
 
 }
+function adrenaline_create_pages() {
+    // Array of pages to create
+    $pages = [
+        [
+            'title' => 'Thank You Adrenaline',
+            'slug' => 'activity-booking-confirmed',
+            'content' => adrenaline_thank_you_template()
+        ],
+        [
+            'title' => 'Failed Adrenaline',
+            'slug' => 'activity-booking-failed',
+            'content' => adrenaline_failed_template()
+        ]
+    ];
+
+    foreach ($pages as $page) {
+        // Check if the page already exists by slug
+        $page_check = get_page_by_path($page['slug']);
+        if (!isset($page_check->ID)) {
+            // Create post object
+            $new_page = [
+                'post_title' => $page['title'],
+                'post_name' => $page['slug'],
+                'post_content' => $page['content'],
+                'post_status' => 'publish',
+                'post_type' => 'page',
+            ];
+
+            // Insert the post into the database
+            wp_insert_post($new_page);
+        }
+    }
+}
+
+// Hook into plugin activation
+register_activation_hook(__FILE__, 'adrenaline_create_pages');
+require_once MY_PLUGIN_DIR_PATH . '/includes/unlimitedv2-class-payment-pages.php'; // Payment σελίδες thank-you - failed
+
+
