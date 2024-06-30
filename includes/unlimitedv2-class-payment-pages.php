@@ -22,7 +22,7 @@ function adrenaline_thank_you_template() {
     </style>
 </head>
 <body class="bg-gray-100">
-    <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-md w-full bg-white shadow-lg rounded-lg p-8">
             <div class="text-center animate-success">
                 <svg class="mx-auto h-16 w-16 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -66,7 +66,7 @@ function adrenaline_failed_template() {
     </style>
 </head>
 <body class="bg-gray-100">
-    <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-md w-full bg-white shadow-lg rounded-lg p-8">
             <div class="text-center animate-failure">
                 <svg class="mx-auto h-16 w-16 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -76,7 +76,7 @@ function adrenaline_failed_template() {
                 <p class="mt-2 text-sm text-gray-600">Sorry, your transaction could not be processed.</p>
             </div>
             <div class="mt-8">
-                <a href="<?php echo $baseurl; ?>/" class="w-full bg-red-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-red-600 transition duration-200 transform hover:scale-105">Try Again</a>
+                <a href="<?php echo $baseurl; ?>/" class="w-full bg-red-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-red-600 transition duration-200 transform hover:scale-105">Return to Home</a>
             </div>
         </div>
     </div>

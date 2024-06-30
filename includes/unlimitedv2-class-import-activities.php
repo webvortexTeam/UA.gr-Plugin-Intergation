@@ -4,6 +4,8 @@ function unlimited_andrenaline_import_activities()
     $whitelabelid = get_option('activity_host_url_label');
     $api_host = get_option('activity_host_url');
     $api_key = get_option('activity_api_key');
+    $api_locale = get_option('activity_api_locale');
+
 
     $endpoint = "activity";
     $url = $api_host . $endpoint;
@@ -20,7 +22,7 @@ function unlimited_andrenaline_import_activities()
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
             'apiKey' => $api_key,
-            'Accept-Language' => 'en'
+            'Accept-Language' => $api_locale
         )
     );
 
@@ -35,7 +37,7 @@ function unlimited_andrenaline_import_activities()
     $data = json_decode($response_body, true);
 
     if (empty($data)) {
-        echo "No activities found.";
+        echo "Δεν βρέθηκαν δραστηριότητες";
         return;
     }
 
@@ -48,11 +50,14 @@ function unlimited_andrenaline_import_activities()
 
     foreach ($batches as $batch) {
         foreach ($batch as $activity) {
+            $activity_title = wp_strip_all_tags($activity['id'] . ' - ' . $activity['title']);
+
+            // Έλεγχος εάν η δραστηριότητα ήδη υπάρχει
             $existing_post = get_posts(
                 array(
                     'post_type' => 'activity',
-                    'meta_key' => 'field_webvortex_activity_id',
-                    'meta_value' => $activity['id'],
+                    'title' => $activity_title,
+                    'posts_per_page' => 1,
                 )
             );
 
@@ -61,13 +66,13 @@ function unlimited_andrenaline_import_activities()
                 wp_update_post(
                     array(
                         'ID' => $post_id,
-                        'post_title' => wp_strip_all_tags($activity['id'] . ' - ' . $activity['title']),
+                        'post_title' => $activity_title,
                     )
                 );
             } else {
                 $post_id = wp_insert_post(
                     array(
-                        'post_title' => wp_strip_all_tags($activity['id'] . ' - ' . $activity['title']),
+                        'post_title' => $activity_title,
                         'post_type' => 'activity',
                         'post_status' => 'publish'
                     )
@@ -186,5 +191,6 @@ function unlimited_andrenaline_import_activities()
     }
 
     update_option('activities_imported', $activities_imported);
-    echo "Import completed. Total activities imported: $activities_imported";
+    echo "<h3> Η Εισαγωγή/Ανανέωση ολοκληρώθηκε συνολικά σε: $activities_imported δραστηριότητες </h3>";
 }
+?>
