@@ -36,6 +36,7 @@ if (have_posts()):
         $description = get_field('description');
         $photos = get_field('photos');
         $itineraries = get_field('itineraries');
+
         $meeting_point = get_field('meeting_point');
         $meeting_time = get_field('meeting_time');
         $additional_info = get_field('additional_info');
@@ -169,31 +170,32 @@ if (have_posts()):
                                                     </ul>
                                                 </div>
                                             <?php endif; ?>
-                                            <div id="cancellationModal"
-                                                class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+                                            <div
+                                                class="cancellationModal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
                                                 <div class="bg-white p-6 rounded-lg shadow-lg">
                                                     <h3 class="text-lg font-semibold mb-4">Cancellation Policy</h3>
-                                                    <div id="cancellationContent" class="text-gray-700">
+                                                    <div class="cancellationContent" class="text-gray-700">
 
                                                         <h3><?php echo esc_html($itinerary['policy_title']); ?></h3>
                                                         <p><?php echo esc_html($itinerary['policy_title']); ?></p>
 
                                                     </div>
-                                                    <button id="closeModalBtn"
-                                                        class="mt-4 px-4 py-2 bg-black text-white rounded">Close</button>
+                                                    <button
+                                                        class="closeModalBtn mt-4 px-4 py-2 bg-black text-white rounded">Close</button>
                                                 </div>
                                             </div>
-                                            <button id="bookNowBtn" data-id="<?php echo esc_attr($itinerary['itinerary_id']); ?>"
-                                                class="mt-4 px-4 py-2 bg-black text-white rounded">Book Now</button>
+                                            <button data-id="<?php echo esc_attr($itinerary['itinerary_id']); ?>"
+                                                class="bookNowBtn mt-4 px-4 py-2 bg-black text-white rounded">Book Now</button>
 
-                                            <div id="bookingModal"
-                                                class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+                                            <div
+                                                class="bookingModal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
                                                 <div class="bg-white p-6 rounded-lg shadow-lg w-1/2 relative">
                                                     <h3 class="text-lg font-semibold mb-4">Book Now</h3>
-                                                    <p>Price: <span id="booking-price"><?php echo wp_kses_post($min_price); ?></span>
+                                                    <p>Price: <span
+                                                            class="booking-price"><?php echo wp_kses_post($itinerary['min_price']); ?></span>
                                                         </p> <!-- #1 change price as per booking/person -->
-                                                    <div id="bookingContent" class="text-gray-700">
-                                                        <div id="step1" class="booking-step">
+                                                    <div class="bookingContent text-gray-700">
+                                                        <div class="step1 booking-step">
                                                             <h4 class="text-lg font-semibold">Choose Date</h4>
 
                                                             <div class="date-picker-container hidden">
@@ -203,10 +205,10 @@ if (have_posts()):
                                                             </div>
 
                                                             <!-- calendar  -->
-                                                            <button id="nextToStep2"
-                                                                class="mt-4 px-4 py-2 bg-black text-white rounded">Next</button>
+                                                            <button
+                                                                class="nextToStep2 mt-4 px-4 py-2 bg-black text-white rounded">Next</button>
                                                         </div>
-                                                        <div id="step2" class="booking-step hidden">
+                                                        <div class="step2 booking-step hidden">
                                                             <h4 class="text-lg font-semibold">Choose Time</h4> <!-- time slots -->
 
                                                             <div class="time-slot-container mb-4 hidden">
@@ -217,20 +219,20 @@ if (have_posts()):
                                                                 </select>
                                                             </div>
 
-                                                            <button id="backToStep1"
-                                                                class="mt-4 px-4 py-2 bg-gray-500 text-white rounded">Back</button>
-                                                            <button id="nextToStep3"
-                                                                class="mt-4 px-4 py-2 bg-black text-white rounded">Next</button>
+                                                            <button
+                                                                class="backToStep1 mt-4 px-4 py-2 bg-gray-500 text-white rounded">Back</button>
+                                                            <button
+                                                                class="nextToStep3 mt-4 px-4 py-2 bg-black text-white rounded">Next</button>
                                                         </div>
-                                                        <div id="step3" class="booking-step hidden">
+                                                        <div class="step3 booking-step hidden">
                                                             <h4 class="text-lg font-semibold">Persons & Extras</h4>
                                                             <!-- visual price change per person at #1 && include in api call -->
                                                             <div class="flex items-center space-x-4">
-                                                                <button id="decrease-btn"
-                                                                    class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">-</button>
-                                                                <span id="person-count" class="text-2xl font-semibold">1</span>
-                                                                <button id="increase-btn"
-                                                                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">+</button>
+                                                                <button
+                                                                    class="decrease-btn bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">-</button>
+                                                                <span class="person-count text-2xl font-semibold">1</span>
+                                                                <button
+                                                                    class="increase-btn bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">+</button>
                                                             </div>
                                                             <h3 class="mt-4">Extras</h3>
                                                             <!-- visual price change at #1 && include in api call -->
@@ -241,38 +243,42 @@ if (have_posts()):
                                                                 </select>
                                                             </div>
 
-                                                            <button id="backToStep2"
-                                                                class="mt-4 px-4 py-2 bg-gray-500 text-white rounded">Back</button>
-                                                            <button id="nextToStep4"
-                                                                class="mt-4 px-4 py-2 bg-black text-white rounded">Next</button>
+                                                            <button
+                                                                class="backToStep2 mt-4 px-4 py-2 bg-gray-500 text-white rounded">Back</button>
+                                                            <button
+                                                                class="nextToStep4 mt-4 px-4 py-2 bg-black text-white rounded">Next</button>
                                                         </div>
-                                                        <div id="step4" class="booking-step hidden">
+                                                        <div class="step4 booking-step hidden">
                                                             <h4 class="text-lg font-semibold">Enter Details</h4>
                                                             <!-- send to wordpress admin email -->
                                                             <input type="text" placeholder="Name" name="customer_name"
-                                                                class="mt-2 p-2 border rounded w-full" required/>
+                                                                id="customer_name-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>"
+                                                                class="mt-2 p-2 border rounded w-full" />
                                                             <input type="text" placeholder="Surname" name="customer_surname"
-                                                                class="mt-2 p-2 border rounded w-full"required />
+                                                                id="customer_surname-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>"
+                                                                class="mt-2 p-2 border rounded w-full" />
                                                             <input type="email" placeholder="Email" name="customer_email"
-                                                                class="mt-2 p-2 border rounded w-full" required/>
+                                                                id="customer_email-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>"
+                                                                class="mt-2 p-2 border rounded w-full" />
                                                             <input type="text" placeholder="Phone Number" name="customer_phone"
-                                                                class="mt-2 p-2 border rounded w-full" required/>
-                                                            <button id="backToStep3"
-                                                                class="mt-4 px-4 py-2 bg-gray-500 text-white rounded">Back</button>
-                                                            <button id="nextToStep5"
-                                                                class="mt-4 px-4 py-2 bg-black text-white rounded">Next</button>
+                                                                id="customer_phone-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>"
+                                                                class="mt-2 p-2 border rounded w-full" />
+                                                            <button
+                                                                class="backToStep3 mt-4 px-4 py-2 bg-gray-500 text-white rounded">Back</button>
+                                                            <button
+                                                                class="nextToStep5 mt-4 px-4 py-2 bg-black text-white rounded">Next</button>
                                                         </div>
-                                                        <div id="step5" class="booking-step hidden">
+                                                        <div class="step5 booking-step hidden">
                                                             <h4 class="text-lg font-semibold">Confirm Booking</h4>
                                                             <p class="mt-2">Are you sure you want to proceed?</p>
-                                                            <button id="backToStep4"
-                                                                class="mt-4 px-4 py-2 bg-gray-500 text-white rounded">Back</button>
-                                                            <button id="confirmBooking"
-                                                                class="mt-4 px-4 py-2 bg-black text-white rounded">Pay</button><!-- send to payment page -->
+                                                            <button
+                                                                class="backToStep4 mt-4 px-4 py-2 bg-gray-500 text-white rounded">Back</button>
+                                                            <button
+                                                                class="confirmBooking mt-4 px-4 py-2 bg-black text-white rounded">Pay</button><!-- send to payment page -->
                                                         </div>
                                                     </div>
-                                                    <button id="closeBookingModalBtn"
-                                                        class="absolute top-4 right-4 bg-gray-300 text-black px-2 py-1 rounded hover:bg-gray-400">X</button>
+                                                    <button
+                                                        class="closeBookingModalBtn absolute top-4 right-4 bg-gray-300 text-black px-2 py-1 rounded hover:bg-gray-400">X</button>
                                                 </div>
                                             </div>
 
@@ -304,9 +310,6 @@ if (have_posts()):
                 const photoItems = document.querySelectorAll('.photo-item');
                 const accordionTitles = document.querySelectorAll('.accordion-title');
                 const cancellationButtons = document.querySelectorAll('.cancellation-button');
-                const cancellationModal = document.getElementById('cancellationModal');
-                const cancellationContent = document.getElementById('cancellationContent');
-                const closeModalBtn = document.getElementById('closeModalBtn');
 
                 if (showMoreBtn) {
                     showMoreBtn.addEventListener('click', function () {
@@ -331,319 +334,290 @@ if (have_posts()):
                 cancellationButtons.forEach(button => {
                     button.addEventListener('click', function () {
                         const itineraryCancellation = this.getAttribute('data-cancellation');
+
+                        const iContainer = jQuery(this).closest('.itinerary-container');
+                        const cancellationModal = iContainer.find('.cancellationModal');
+
+                        const cancellationContent = cancellationModal.find('.cancellationContent');
                         cancellationContent.innerHTML = itineraryCancellation;
-                        cancellationModal.classList.remove('hidden');
+
+                        cancellationModal.removeClass('hidden');
                     });
                 });
 
-                closeModalBtn.addEventListener('click', function () {
-                    cancellationModal.classList.add('hidden');
-                });
+                jQuery('.closeModalBtn').on('click', function () {
+                    const iContainer = jQuery(this).closest('.itinerary-container');
 
-                window.addEventListener('click', function (event) {
-                    if (event.target == cancellationModal) {
-                        cancellationModal.classList.add('hidden');
-                    }
+                    const cancellationModal = iContainer.find('.cancellationModal');
+
+                    cancellationModal.addClass('hidden');
                 });
             });
             document.addEventListener('DOMContentLoaded', function () {
-    const steps = ['step1', 'step2', 'step3', 'step4', 'step5'];
-    let currentStep = 0;
-    let personCount = 1;
+                const steps = ['step1', 'step2', 'step3', 'step4', 'step5'];
+                let currentStep = 0;
+                let personCount = 1;
 
-    const showStep = (step) => {
-        steps.forEach((s, i) => {
-            document.getElementById(s).classList.toggle('hidden', i !== step);
-        });
-    };
+                const showStep = (step, itineraryId) => {
+                    const itineraryContainer = jQuery('.itinerary-container[data-id="' + itineraryId + '"]');
 
-    const updatePricing = (itineraryId) => {
-        const itineraryContainer = jQuery('.itinerary-container[data-id="' + itineraryId + '"]');
-
-        const selectedFacilities = itineraryContainer.find('.facilities-select').val();
-        const selectedDate = itineraryContainer.find('.date-picker-container').find('.flatpickr-input').val();
-        const selectedTimeSlot = itineraryContainer.find('.time-slot-select').val();
-        const personCount = parseInt(itineraryContainer.find('#person-count').text());
-
-        jQuery.ajax({
-            url: '<?php echo admin_url('admin-ajax.php'); ?>',
-            type: 'POST',
-            data: {
-                action: 'get_latest_pricing',
-                itinerary_id: itineraryId,
-                person_count: personCount,
-                facilities: selectedFacilities,
-                date: selectedDate,
-                time_slot: selectedTimeSlot,
-            },
-            success: function (response) {
-                if (response.success) {
-                    document.getElementById('booking-price').innerText = response.data.totalPrice + ' EUR';
-                } else {
-                    console.log('Error: ' + response.data);
-                }
-            },
-            error: function (error) {
-                console.log('AJAX Error: ', error);
-            }
-        });
-    };
-
-    const checkout = (itineraryId, customerDetails) => {
-        const itineraryContainer = jQuery('.itinerary-container[data-id="' + itineraryId + '"]');
-
-        const selectedFacilities = itineraryContainer.find('.facilities-select').val();
-        const selectedDate = itineraryContainer.find('.date-picker-container').find('.flatpickr-input').val();
-        const selectedTimeSlot = itineraryContainer.find('.time-slot-select').val();
-        const personCount = parseInt(itineraryContainer.find('#person-count').text());
-
-        jQuery.ajax({
-            url: '<?php echo admin_url('admin-ajax.php'); ?>',
-            type: 'POST',
-            data: {
-                action: 'checkout',
-                itinerary_id: itineraryId,
-                person_count: personCount,
-                facilities: selectedFacilities,
-                date: selectedDate,
-                time_slot: selectedTimeSlot,
-                customer_details: customerDetails
-            },
-            success: function (response) {
-                if (response.success) {
-                   // console.log('Success: ', response);
-                    window.location.href = response.data.paymentUrl;
-                } else {
-                    console.log('Error: ' + response.data);
-                }
-            },
-            error: function (error) {
-                console.log('AJAX Error: ', error);
-            }
-        });
-    };
-
-    const validateStep = (step) => {
-        let isValid = true;
-        const itineraryContainer = jQuery('.itinerary-container[data-id="' + jQuery('#bookNowBtn').data('id') + '"]');
-
-        switch (step) {
-            case 1:
-                const selectedDate = itineraryContainer.find('.flatpickr-input').val();
-                if (!selectedDate) {
-                    alert('Please choose a date.');
-                    isValid = false;
-                }
-                break;
-            case 2:
-                const selectedTimeSlot = itineraryContainer.find('.time-slot-select').val();
-                if (!selectedTimeSlot) {
-                    alert('Please choose a time slot.');
-                    isValid = false;
-                }
-                break;
-            case 3:
-                // Additional validations for step 3 if any
-                break;
-            case 4:
-                const customerDetails = {
-                    name: itineraryContainer.find('input[name="customer_name"]').val(),
-                    surname: itineraryContainer.find('input[name="customer_surname"]').val(),
-                    email: itineraryContainer.find('input[name="customer_email"]').val(),
-                    phone: itineraryContainer.find('input[name="customer_phone"]').val()
+                    steps.forEach((s, i) => {
+                        if (i === step) {
+                            itineraryContainer.find('.' + s).removeClass('hidden');
+                        } else {
+                            itineraryContainer.find('.' + s).addClass('hidden');
+                        }
+                    });
                 };
-                for (const key in customerDetails) {
-                    if (!customerDetails[key]) {
-                        alert(`Please enter ${key.replace('_', ' ')}.`);
-                        isValid = false;
-                        break;
-                    }
-                }
-                break;
-            default:
-                break;
-        }
-        return isValid;
-    };
 
-    document.getElementById('bookNowBtn').addEventListener('click', (e) => {
-        let activityId = jQuery(e.target).closest('article').data('id');
-        let itineraryId = jQuery(e.target).data('id');
+                const updatePricing = (itineraryId) => {
+                    const itineraryContainer = jQuery('.itinerary-container[data-id="' + itineraryId + '"]');
 
-        const datePickerContainer = jQuery(e.target).parent().find('.date-picker-container')
-        const timeSlotContainer = jQuery(e.target).parent().find('.time-slot-container');
-        const facilitiesContainer = jQuery(e.target).parent().find('.facilities-container');
+                    const selectedFacilities = itineraryContainer.find('.facilities-select').val();
+                    const selectedDate = itineraryContainer.find('.date-picker-container').find('.flatpickr-input').val();
+                    const selectedTimeSlot = itineraryContainer.find('.time-slot-select').val();
+                    const personCount = parseInt(itineraryContainer.find('.person-count').text());
 
-        datePickerContainer.addClass('hidden');
-        timeSlotContainer.addClass('hidden');
-        facilitiesContainer.addClass('hidden');
-
-        jQuery.ajax({
-            url: '<?php echo admin_url('admin-ajax.php'); ?>',
-            type: 'POST',
-            data: {
-                action: 'get_availability',
-                itinerary_id: itineraryId,
-                activity_id: activityId,
-            },
-            success: function (response) {
-                if (response.success) {
-                    let availableDates = [];
-                    let timeSlots = {};
-                    let facilities = response.data.facilities;
-
-                    Object.entries(response.data.dates).forEach(function ([date, dateInfo]) {
-                        if (dateInfo && typeof dateInfo === "object" && dateInfo.available) {
-                            availableDates.push(date);
-                            timeSlots[date] = dateInfo.availabilityTimes;
-                        }
-                    });
-
-                    jQuery('#datetime-' + itineraryId).flatpickr({
-                        enableTime: false,
-                        dateFormat: "Y-m-d",
-                        enable: availableDates,
-                        onChange: function (selectedDates, dateStr, instance) {
-                            if (timeSlots[dateStr]) {
-                                timeSlotContainer.find('.time-slot-select').html('<option value="">Select a time slot</option>');
-                                timeSlots[dateStr].forEach(function (slot) {
-                                    timeSlotContainer.find('.time-slot-select').append('<option value="' + slot.timeId + '">' + slot.startTime + '</option>');
-                                });
-                                timeSlotContainer.removeClass('hidden');
+                    jQuery.ajax({
+                        url: '<?php echo admin_url('admin-ajax.php'); ?>',
+                        type: 'POST',
+                        data: {
+                            action: 'get_latest_pricing',
+                            itinerary_id: itineraryId,
+                            person_count: personCount,
+                            facilities: selectedFacilities,
+                            date: selectedDate,
+                            time_slot: selectedTimeSlot,
+                        },
+                        success: function (response) {
+                            if (response.success) {
+                                itineraryContainer.find('.booking-price').text(response.data.totalPrice + ' EUR');
                             } else {
-                                timeSlotContainer.addClass('hidden');
+                                console.log('Error: ' + response.data);
                             }
+                        },
+                        error: function (error) {
+                            console.log('AJAX Error: ', error);
+                        }
+                    });
+                };
+
+                const checkout = (itineraryId, customerDetails) => {
+                    const itineraryContainer = jQuery('.itinerary-container[data-id="' + itineraryId + '"]');
+
+                    const selectedFacilities = itineraryContainer.find('.facilities-select').val();
+                    const selectedDate = itineraryContainer.find('.date-picker-container').find('.flatpickr-input').val();
+                    const selectedTimeSlot = itineraryContainer.find('.time-slot-select').val();
+                    const personCount = parseInt(itineraryContainer.find('.person-count').text());
+
+                    jQuery.ajax({
+                        url: '<?php echo admin_url('admin-ajax.php'); ?>',
+                        type: 'POST',
+                        data: {
+                            action: 'checkout',
+                            itinerary_id: itineraryId,
+                            person_count: personCount,
+                            facilities: selectedFacilities,
+                            date: selectedDate,
+                            time_slot: selectedTimeSlot,
+                            customer_details: customerDetails
+                        },
+                        success: function (response) {
+                            if (response.success) {
+                               // console.log('Success: ', response);
+                                window.location.href = response.data.paymentUrl;
+                            } else {
+                                console.log('Error: ' + response.data);
+                            }
+                        },
+                        error: function (error) {
+                            console.log('AJAX Error: ', error);
+                        }
+                    });
+                };
+
+                jQuery('.bookNowBtn').on('click', (e) => {
+                    let activityId = jQuery(e.target).closest('article').data('id');
+                    let itineraryId = jQuery(e.target).data('id');
+
+                    const datePickerContainer = jQuery(e.target).parent().find('.date-picker-container')
+                    const timeSlotContainer = jQuery(e.target).parent().find('.time-slot-container');
+                    const facilitiesContainer = jQuery(e.target).parent().find('.facilities-container');
+
+                    const bookingModal = jQuery(e.target).parent().find('.bookingModal');
+
+                    datePickerContainer.addClass('hidden');
+                    timeSlotContainer.addClass('hidden');
+                    facilitiesContainer.addClass('hidden');
+
+                    jQuery.ajax({
+                        url: '<?php echo admin_url('admin-ajax.php'); ?>',
+                        type: 'POST',
+                        data: {
+                            action: 'get_availability',
+                            itinerary_id: itineraryId,
+                            activity_id: activityId,
+                        },
+                        success: function (response) {
+                            if (response.success) {
+                                let availableDates = [];
+                                let timeSlots = {};
+                                let facilities = response.data.facilities;
+
+                                Object.entries(response.data.dates).forEach(function ([date, dateInfo]) {
+                                    if (dateInfo && typeof dateInfo === "object" && dateInfo.available) {
+                                        availableDates.push(date);
+                                        timeSlots[date] = dateInfo.availabilityTimes;
+                                    }
+                                });
+
+                                jQuery('#datetime-' + itineraryId).flatpickr({
+                                    enableTime: false,
+                                    dateFormat: "Y-m-d",
+                                    enable: availableDates,
+                                    onChange: function (selectedDates, dateStr, instance) {
+                                        if (timeSlots[dateStr]) {
+                                            timeSlotContainer.find('.time-slot-select').html('<option value="">Select a time slot</option>');
+                                            timeSlots[dateStr].forEach(function (slot) {
+                                                timeSlotContainer.find('.time-slot-select').append('<option value="' + slot.timeId + '">' + slot.startTime + '</option>');
+                                            });
+                                            timeSlotContainer.removeClass('hidden');
+                                        } else {
+                                            timeSlotContainer.addClass('hidden');
+                                        }
+                                    }
+                                });
+
+                                datePickerContainer.removeClass('hidden');
+
+                                facilities.forEach(function (facility) {
+                                    facilitiesContainer.find('.facilities-select').append('<option value="' + facility.id + '">' + facility.title + '</option>');
+                                });
+
+                                facilitiesContainer.removeClass('hidden');
+
+                                facilitiesContainer.find('.facilities-select').on('change', function () {
+                                    updatePricing(itineraryId);
+                                });
+                            } else {
+                                console.log('Error: ' + response.data);
+                            }
+                        },
+                        error: function (error) {
+                            console.log('AJAX Error: ', error);
                         }
                     });
 
-                    datePickerContainer.removeClass('hidden');
+                    bookingModal.removeClass('hidden');
+                    showStep(0);
+                });
 
-                    facilities.forEach(function (facility) {
-                        facilitiesContainer.find('.facilities-select').append('<option value="' + facility.id + '">' + facility.title + '</option>');
-                    });
+                jQuery('.closeBookingModalBtn').on('click', (e) => {
+                    jQuery(e.target).closest('.bookingModal').addClass('hidden');
+                });
 
-                    facilitiesContainer.removeClass('hidden');
+                jQuery('.nextToStep2').on('click', (e) => {
+                    const itineraryId = jQuery(e.target).closest('.itinerary-container').data('id');
 
-                    facilitiesContainer.find('.facilities-select').on('change', function () {
+                    currentStep = 1;
+                    showStep(currentStep, itineraryId);
+                });
+
+                jQuery('.nextToStep3').on('click', (e) => {
+                    const itineraryId = jQuery(e.target).closest('.itinerary-container').data('id');
+
+                    currentStep = 2;
+                    showStep(currentStep, itineraryId);
+                });
+
+                jQuery('.nextToStep4').on('click', (e) => {
+                    const itineraryId = jQuery(e.target).closest('.itinerary-container').data('id');
+
+                    currentStep = 3;
+                    showStep(currentStep, itineraryId);
+                });
+
+                jQuery('.nextToStep5').on('click', (e) => {
+                    const itineraryId = jQuery(e.target).closest('.itinerary-container').data('id');
+
+                    currentStep = 4;
+                    showStep(currentStep, itineraryId);
+                });
+
+                jQuery('.backToStep1').on('click', (e) => {
+                    const itineraryId = jQuery(e.target).closest('.itinerary-container').data('id');
+
+                    currentStep = 0;
+                    showStep(currentStep, itineraryId);
+                });
+
+                jQuery('.backToStep2').on('click', (e) => {
+                    const itineraryId = jQuery(e.target).closest('.itinerary-container').data('id');
+
+                    currentStep = 1;
+                    showStep(currentStep, itineraryId);
+                });
+
+                jQuery('.backToStep3').on('click', (e) => {
+                    const itineraryId = jQuery(e.target).closest('.itinerary-container').data('id');
+
+                    currentStep = 2;
+                    showStep(currentStep, itineraryId);
+                });
+
+                jQuery('.backToStep4').on('click', (e) => {
+                    const itineraryId = jQuery(e.target).closest('.itinerary-container').data('id');
+
+                    currentStep = 3;
+                    showStep(currentStep, itineraryId);
+                });
+
+                jQuery('.confirmBooking').on('click', (e) => {
+                    const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
+                    const itineraryId = itineraryContainer.data('id');
+
+                    const customerDetails = {
+                        name: itineraryContainer.find('input[name="customer_name"]').val(),
+                        surname: itineraryContainer.find('input[name="customer_surname"]').val(),
+                        email: itineraryContainer.find('input[name="customer_email"]').val(),
+                        phone: itineraryContainer.find('input[name="customer_phone"]').val()
+                    };
+
+                    itineraryContainer.find('.bookingModal').addClass('hidden');
+
+                    checkout(itineraryId, customerDetails);
+                });
+
+                jQuery('.increase-btn').on('click', (e) => {
+                    const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
+                    const itineraryId = itineraryContainer.data('id');
+
+                    personCount++;
+                    itineraryContainer.find('.person-count').text(personCount);
+
+                    updatePricing(itineraryId);
+                });
+
+                jQuery('.decrease-btn').on('click', (e) => {
+                    const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
+                    const itineraryId = itineraryContainer.data('id');
+
+                    if (personCount > 1) {
+
+                        personCount--;
+                        itineraryContainer.find('.person-count').text(personCount);
+
                         updatePricing(itineraryId);
-                    });
-                } else {
-                    console.log('Error: ' + response.data);
-                }
-            },
-            error: function (error) {
-                console.log('AJAX Error: ', error);
-            }
-        });
+                    }
+                });
+            });
 
-        document.getElementById('bookingModal').classList.remove('hidden');
-        showStep(0);
-    });
-
-    document.getElementById('closeBookingModalBtn').addEventListener('click', () => {
-        document.getElementById('bookingModal').classList.add('hidden');
-    });
-
-    window.addEventListener('click', (event) => {
-        if (event.target === document.getElementById('bookingModal')) {
-            document.getElementById('bookingModal').classList.add('hidden');
-        }
-    });
-
-    document.getElementById('nextToStep2').addEventListener('click', () => {
-        if (validateStep(1)) {
-            currentStep = 1;
-            showStep(currentStep);
-        }
-    });
-
-    document.getElementById('nextToStep3').addEventListener('click', () => {
-        if (validateStep(2)) {
-            currentStep = 2;
-            showStep(currentStep);
-        }
-    });
-
-    document.getElementById('nextToStep4').addEventListener('click', () => {
-        if (validateStep(3)) {
-            currentStep = 3;
-            showStep(currentStep);
-        }
-    });
-
-    document.getElementById('nextToStep5').addEventListener('click', () => {
-        if (validateStep(4)) {
-            currentStep = 4;
-            showStep(currentStep);
-        }
-    });
-
-    document.getElementById('backToStep1').addEventListener('click', () => {
-        currentStep = 0;
-        showStep(currentStep);
-    });
-
-    document.getElementById('backToStep2').addEventListener('click', () => {
-        currentStep = 1;
-        showStep(currentStep);
-    });
-
-    document.getElementById('backToStep3').addEventListener('click', () => {
-        currentStep = 2;
-        showStep(currentStep);
-    });
-
-    document.getElementById('backToStep4').addEventListener('click', () => {
-        currentStep = 3;
-        showStep(currentStep);
-    });
-
-    document.getElementById('confirmBooking').addEventListener('click', (e) => {
-        const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
-        const itineraryId = itineraryContainer.data('id');
-
-        const customerDetails = {
-            name: itineraryContainer.find('input[name="customer_name"]').val(),
-            surname: itineraryContainer.find('input[name="customer_surname"]').val(),
-            email: itineraryContainer.find('input[name="customer_email"]').val(),
-            phone: itineraryContainer.find('input[name="customer_phone"]').val()
-        };
-
-        document.getElementById('bookingModal').classList.add('hidden');
-
-        checkout(itineraryId, customerDetails);
-    });
-
-    document.getElementById('increase-btn').addEventListener('click', (e) => {
-        personCount++;
-        document.getElementById('person-count').textContent = personCount;
-
-        const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
-        const itineraryId = itineraryContainer.data('id');
-
-        updatePricing(itineraryId);
-    });
-
-    document.getElementById('decrease-btn').addEventListener('click', (e) => {
-        if (personCount > 1) {
-            personCount--;
-            document.getElementById('person-count').textContent = personCount;
-
-            const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
-            const itineraryId = itineraryContainer.data('id');
-
-            updatePricing(itineraryId);
-        }
-    });
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-    jQuery('.flatpickr-input').flatpickr({
-        enableTime: false,
-        dateFormat: "Y-m-d",
-    });
-});
-
+            document.addEventListener('DOMContentLoaded', function () {
+                jQuery('.flatpickr-input').flatpickr({
+                    enableTime: false,
+                    dateFormat: "Y-m-d",
+                });
+            });
         </script>
         <?php
     endwhile;
