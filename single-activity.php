@@ -517,33 +517,60 @@ if (have_posts()):
                 });
 
                 jQuery('.nextToStep2').on('click', (e) => {
-                    const itineraryId = jQuery(e.target).closest('.itinerary-container').data('id');
+                    const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
+                    const itineraryId = itineraryContainer.data('id');
+
+                    const selectedDate = itineraryContainer.find('.flatpickr-input').val();
+
+                    if (!selectedDate) {
+                        alert('Please select a date.');
+                        return;
+                    }
 
                     currentStep = 1;
                     showStep(currentStep, itineraryId);
                 });
 
                 jQuery('.nextToStep3').on('click', (e) => {
-                    const itineraryId = jQuery(e.target).closest('.itinerary-container').data('id');
+                    const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
+                    const itineraryId = itineraryContainer.data('id');
+
+                    const selectedTimeSlot = itineraryContainer.find('.time-slot-select').val();
+
+                    if (!selectedTimeSlot) {
+                        alert('Please select a time slot.');
+                        return;
+                    }
 
                     currentStep = 2;
                     showStep(currentStep, itineraryId);
                 });
 
                 jQuery('.nextToStep4').on('click', (e) => {
-                    const itineraryId = jQuery(e.target).closest('.itinerary-container').data('id');
+                    const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
+                    const itineraryId = itineraryContainer.data('id');
 
                     currentStep = 3;
                     showStep(currentStep, itineraryId);
                 });
 
                 jQuery('.nextToStep5').on('click', (e) => {
-                    const itineraryId = jQuery(e.target).closest('.itinerary-container').data('id');
+                    const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
+                    const itineraryId = itineraryContainer.data('id');
+
+                    const customerName = itineraryContainer.find('input[name="customer_name"]').val();
+                    const customerSurname = itineraryContainer.find('input[name="customer_surname"]').val();
+                    const customerEmail = itineraryContainer.find('input[name="customer_email"]').val();
+                    const customerPhone = itineraryContainer.find('input[name="customer_phone"]').val();
+
+                    if (!customerName || !customerSurname || !customerEmail || !customerPhone) {
+                        alert('Please fill in all the customer details.');
+                        return;
+                    }
 
                     currentStep = 4;
                     showStep(currentStep, itineraryId);
                 });
-
                 jQuery('.backToStep1').on('click', (e) => {
                     const itineraryId = jQuery(e.target).closest('.itinerary-container').data('id');
 
