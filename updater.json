@@ -1,0 +1,21 @@
+{
+    "name": "Unlimited Andrenaline V2",
+    "slug": "unlimited-andrenaline-v2",
+    "author": "<a href='https://www.webvortex.org'>WebVortex</a>",
+    "author_profile": "",
+    "version": "1.0",
+    "download_url": "",
+    "requires": "3.0",
+    "tested": "5.8",
+    "requires_php": "5.3",
+    "last_updated": "2021-01-30 02:10:00",
+    "sections": {
+        "description": "Update",
+        "installation": "text",
+        "changelog": "<h4>1.0 –  29 Ιουνίου 2024</h4><ul><li>Bug fixes.</li><li>Initital release.</li></ul>"
+    },
+    "banners": {
+        "low": "https://www.hosthub.com/wp-content/uploads/2023/08/Explore-1024x427.png",
+        "high": "https://www.hosthub.com/wp-content/uploads/2023/08/Explore-1024x427.png"
+    }
+}
