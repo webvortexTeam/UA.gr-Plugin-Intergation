@@ -191,7 +191,7 @@ function checkout()
             "email" => $customer_details['email'],
             "phone" => $customer_details['phone'],
             "countryCode" => 'GR',
-            'failUrl' => get_option('activity_api_ok_host'),
+            'failUrl' => get_option('activity_api_fail_host'),
             'successUrl' => get_option('activity_api_ok_host'),
         ),
         null
