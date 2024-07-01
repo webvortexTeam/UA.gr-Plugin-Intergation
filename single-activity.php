@@ -353,298 +353,325 @@ if (have_posts()):
                     cancellationModal.addClass('hidden');
                 });
             });
-            document.addEventListener('DOMContentLoaded', function () {
-                const steps = ['step1', 'step2', 'step3', 'step4', 'step5'];
-                let currentStep = 0;
-                let personCount = 1;
+           document.addEventListener('DOMContentLoaded', function () {
+    const steps = ['step1', 'step2', 'step3', 'step4', 'step5'];
+    let currentStep = 0;
+    let personCount = 1;
+    let pricingAvailable = true;  // Global variable to track pricing availability
+    const maxPersons = 2;  // Set the maximum limit for persons
 
-                const showStep = (step, itineraryId) => {
-                    const itineraryContainer = jQuery('.itinerary-container[data-id="' + itineraryId + '"]');
+    const showStep = (step, itineraryId) => {
+        const itineraryContainer = jQuery('.itinerary-container[data-id="' + itineraryId + '"]');
 
-                    steps.forEach((s, i) => {
-                        if (i === step) {
-                            itineraryContainer.find('.' + s).removeClass('hidden');
-                        } else {
-                            itineraryContainer.find('.' + s).addClass('hidden');
-                        }
-                    });
-                };
+        steps.forEach((s, i) => {
+            if (i === step) {
+                itineraryContainer.find('.' + s).removeClass('hidden');
+            } else {
+                itineraryContainer.find('.' + s).addClass('hidden');
+            }
+        });
+    };
 
-                const updatePricing = (itineraryId) => {
-                    const itineraryContainer = jQuery('.itinerary-container[data-id="' + itineraryId + '"]');
+    const updatePricing = (itineraryId) => {
+        const itineraryContainer = jQuery('.itinerary-container[data-id="' + itineraryId + '"]');
 
-                    const selectedFacilities = itineraryContainer.find('.facilities-select').val();
-                    const selectedDate = itineraryContainer.find('.date-picker-container').find('.flatpickr-input').val();
-                    const selectedTimeSlot = itineraryContainer.find('.time-slot-select').val();
-                    const personCount = parseInt(itineraryContainer.find('.person-count').text());
+        const selectedFacilities = itineraryContainer.find('.facilities-select').val();
+        const selectedDate = itineraryContainer.find('.date-picker-container').find('.flatpickr-input').val();
+        const selectedTimeSlot = itineraryContainer.find('.time-slot-select').val();
+        const personCount = parseInt(itineraryContainer.find('.person-count').text());
 
-                    jQuery.ajax({
-                        url: '<?php echo admin_url('admin-ajax.php'); ?>',
-                        type: 'POST',
-                        data: {
-                            action: 'get_latest_pricing',
-                            itinerary_id: itineraryId,
-                            person_count: personCount,
-                            facilities: selectedFacilities,
-                            date: selectedDate,
-                            time_slot: selectedTimeSlot,
-                        },
-                        success: function (response) {
-                            if (response.success) {
-                                itineraryContainer.find('.booking-price').text(response.data.totalPrice + ' EUR');
-                            } else {
-                                console.log('Error: ' + response.data);
-                            }
-                        },
-                        error: function (error) {
-                            console.log('AJAX Error: ', error);
-                        }
-                    });
-                };
+        // Disable buttons before AJAX request
+        itineraryContainer.find('.increase-btn').prop('disabled', true);
+        itineraryContainer.find('.facilities-select').prop('disabled', true);
 
-                const checkout = (itineraryId, customerDetails) => {
-                    const itineraryContainer = jQuery('.itinerary-container[data-id="' + itineraryId + '"]');
-
-                    const selectedFacilities = itineraryContainer.find('.facilities-select').val();
-                    const selectedDate = itineraryContainer.find('.date-picker-container').find('.flatpickr-input').val();
-                    const selectedTimeSlot = itineraryContainer.find('.time-slot-select').val();
-                    const personCount = parseInt(itineraryContainer.find('.person-count').text());
-
-                    jQuery.ajax({
-                        url: '<?php echo admin_url('admin-ajax.php'); ?>',
-                        type: 'POST',
-                        data: {
-                            action: 'checkout',
-                            itinerary_id: itineraryId,
-                            person_count: personCount,
-                            facilities: selectedFacilities,
-                            date: selectedDate,
-                            time_slot: selectedTimeSlot,
-                            customer_details: customerDetails
-                        },
-                        success: function (response) {
-                            if (response.success) {
-                               // console.log('Success: ', response);
-                                window.location.href = response.data.paymentUrl;
-                            } else {
-                                console.log('Error: ' + response.data);
-                            }
-                        },
-                        error: function (error) {
-                            console.log('AJAX Error: ', error);
-                        }
-                    });
-                };
-
-                jQuery('.bookNowBtn').on('click', (e) => {
-                    let activityId = jQuery(e.target).closest('article').data('id');
-                    let itineraryId = jQuery(e.target).data('id');
-
-                    const datePickerContainer = jQuery(e.target).parent().find('.date-picker-container')
-                    const timeSlotContainer = jQuery(e.target).parent().find('.time-slot-container');
-                    const facilitiesContainer = jQuery(e.target).parent().find('.facilities-container');
-
-                    const bookingModal = jQuery(e.target).parent().find('.bookingModal');
-
-                    datePickerContainer.addClass('hidden');
-                    timeSlotContainer.addClass('hidden');
-                    facilitiesContainer.addClass('hidden');
-
-                    jQuery.ajax({
-                        url: '<?php echo admin_url('admin-ajax.php'); ?>',
-                        type: 'POST',
-                        data: {
-                            action: 'get_availability',
-                            itinerary_id: itineraryId,
-                            activity_id: activityId,
-                        },
-                        success: function (response) {
-                            if (response.success) {
-                                let availableDates = [];
-                                let timeSlots = {};
-                                let facilities = response.data.facilities;
-
-                                Object.entries(response.data.dates).forEach(function ([date, dateInfo]) {
-                                    if (dateInfo && typeof dateInfo === "object" && dateInfo.available) {
-                                        availableDates.push(date);
-                                        timeSlots[date] = dateInfo.availabilityTimes;
-                                    }
-                                });
-
-                                jQuery('#datetime-' + itineraryId).flatpickr({
-                                    enableTime: false,
-                                    dateFormat: "Y-m-d",
-                                    enable: availableDates,
-                                    onChange: function (selectedDates, dateStr, instance) {
-                                        if (timeSlots[dateStr]) {
-                                            timeSlotContainer.find('.time-slot-select').html('<option value="">Select a time slot</option>');
-                                            timeSlots[dateStr].forEach(function (slot) {
-                                                timeSlotContainer.find('.time-slot-select').append('<option value="' + slot.timeId + '">' + slot.startTime + '</option>');
-                                            });
-                                            timeSlotContainer.removeClass('hidden');
-                                        } else {
-                                            timeSlotContainer.addClass('hidden');
-                                        }
-                                    }
-                                });
-
-                                datePickerContainer.removeClass('hidden');
-
-                                facilities.forEach(function (facility) {
-                                    facilitiesContainer.find('.facilities-select').append('<option value="' + facility.id + '">' + facility.title + '</option>');
-                                });
-
-                                facilitiesContainer.removeClass('hidden');
-
-                                facilitiesContainer.find('.facilities-select').on('change', function () {
-                                    updatePricing(itineraryId);
-                                });
-                            } else {
-                                console.log('Error: ' + response.data);
-                            }
-                        },
-                        error: function (error) {
-                            console.log('AJAX Error: ', error);
-                        }
-                    });
-
-                    bookingModal.removeClass('hidden');
-                    showStep(0);
-                });
-
-                jQuery('.closeBookingModalBtn').on('click', (e) => {
-                    jQuery(e.target).closest('.bookingModal').addClass('hidden');
-                });
-
-                jQuery('.nextToStep2').on('click', (e) => {
-                    const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
-                    const itineraryId = itineraryContainer.data('id');
-
-                    const selectedDate = itineraryContainer.find('.flatpickr-input').val();
-
-                    if (!selectedDate) {
-                        alert('Please select a date.');
-                        return;
+        jQuery.ajax({
+            url: '<?php echo admin_url('admin-ajax.php'); ?>',
+            type: 'POST',
+            data: {
+                action: 'get_latest_pricing',
+                itinerary_id: itineraryId,
+                person_count: personCount,
+                facilities: selectedFacilities,
+                date: selectedDate,
+                time_slot: selectedTimeSlot,
+            },
+            success: function (response) {
+                if (response.success && response.data.totalPrice !== undefined) {
+                    itineraryContainer.find('.booking-price').text(response.data.totalPrice + ' EUR');
+                    pricingAvailable = true;
+                } else {
+                    console.log('Error: ' + response.data);
+                    pricingAvailable = false;
+                }
+            },
+            error: function (error) {
+                console.log('AJAX Error: ', error);
+                pricingAvailable = false;
+            },
+            complete: function () {
+                // Re-enable or keep disabled based on pricing availability and person count limit
+                if (pricingAvailable) {
+                    if (personCount < maxPersons) {
+                        itineraryContainer.find('.increase-btn').prop('disabled', false);
                     }
+                    itineraryContainer.find('.facilities-select').prop('disabled', false);
+                } else {
+                    itineraryContainer.find('.increase-btn').prop('disabled', true);
+                    itineraryContainer.find('.facilities-select').prop('disabled', true);
+                }
+            }
+        });
+    };
 
-                    currentStep = 1;
-                    showStep(currentStep, itineraryId);
-                });
+    const checkout = (itineraryId, customerDetails) => {
+        const itineraryContainer = jQuery('.itinerary-container[data-id="' + itineraryId + '"]');
 
-                jQuery('.nextToStep3').on('click', (e) => {
-                    const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
-                    const itineraryId = itineraryContainer.data('id');
+        const selectedFacilities = itineraryContainer.find('.facilities-select').val();
+        const selectedDate = itineraryContainer.find('.date-picker-container').find('.flatpickr-input').val();
+        const selectedTimeSlot = itineraryContainer.find('.time-slot-select').val();
+        const personCount = parseInt(itineraryContainer.find('.person-count').text());
 
-                    const selectedTimeSlot = itineraryContainer.find('.time-slot-select').val();
+        jQuery.ajax({
+            url: '<?php echo admin_url('admin-ajax.php'); ?>',
+            type: 'POST',
+            data: {
+                action: 'checkout',
+                itinerary_id: itineraryId,
+                person_count: personCount,
+                facilities: selectedFacilities,
+                date: selectedDate,
+                time_slot: selectedTimeSlot,
+                customer_details: customerDetails
+            },
+            success: function (response) {
+                if (response.success) {
+                    // console.log('Success: ', response);
+                    window.location.href = response.data.paymentUrl;
+                } else {
+                    console.log('Error: ' + response.data);
+                }
+            },
+            error: function (error) {
+                console.log('AJAX Error: ', error);
+            }
+        });
+    };
 
-                    if (!selectedTimeSlot) {
-                        alert('Please select a time slot.');
-                        return;
-                    }
+    jQuery('.bookNowBtn').on('click', (e) => {
+        let activityId = jQuery(e.target).closest('article').data('id');
+        let itineraryId = jQuery(e.target).data('id');
 
-                    currentStep = 2;
-                    showStep(currentStep, itineraryId);
-                });
+        const datePickerContainer = jQuery(e.target).parent().find('.date-picker-container')
+        const timeSlotContainer = jQuery(e.target).parent().find('.time-slot-container');
+        const facilitiesContainer = jQuery(e.target).parent().find('.facilities-container');
 
-                jQuery('.nextToStep4').on('click', (e) => {
-                    const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
-                    const itineraryId = itineraryContainer.data('id');
+        const bookingModal = jQuery(e.target).parent().find('.bookingModal');
 
-                    currentStep = 3;
-                    showStep(currentStep, itineraryId);
-                });
+        datePickerContainer.addClass('hidden');
+        timeSlotContainer.addClass('hidden');
+        facilitiesContainer.addClass('hidden');
 
-                jQuery('.nextToStep5').on('click', (e) => {
-                    const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
-                    const itineraryId = itineraryContainer.data('id');
+        jQuery.ajax({
+            url: '<?php echo admin_url('admin-ajax.php'); ?>',
+            type: 'POST',
+            data: {
+                action: 'get_availability',
+                itinerary_id: itineraryId,
+                activity_id: activityId,
+            },
+            success: function (response) {
+                if (response.success) {
+                    let availableDates = [];
+                    let timeSlots = {};
+                    let facilities = response.data.facilities;
 
-                    const customerName = itineraryContainer.find('input[name="customer_name"]').val();
-                    const customerSurname = itineraryContainer.find('input[name="customer_surname"]').val();
-                    const customerEmail = itineraryContainer.find('input[name="customer_email"]').val();
-                    const customerPhone = itineraryContainer.find('input[name="customer_phone"]').val();
+                    Object.entries(response.data.dates).forEach(function ([date, dateInfo]) {
+                        if (dateInfo && typeof dateInfo === "object" && dateInfo.available) {
+                            availableDates.push(date);
+                            timeSlots[date] = dateInfo.availabilityTimes;
+                        }
+                    });
 
-                    if (!customerName || !customerSurname || !customerEmail || !customerPhone) {
-                        alert('Please fill in all the customer details.');
-                        return;
-                    }
+                    jQuery('#datetime-' + itineraryId).flatpickr({
+                        enableTime: false,
+                        dateFormat: "Y-m-d",
+                        enable: availableDates,
+                        onChange: function (selectedDates, dateStr, instance) {
+                            if (timeSlots[dateStr]) {
+                                timeSlotContainer.find('.time-slot-select').html('<option value="">Select a time slot</option>');
+                                timeSlots[dateStr].forEach(function (slot) {
+                                    timeSlotContainer.find('.time-slot-select').append('<option value="' + slot.timeId + '">' + slot.startTime + '</option>');
+                                });
+                                timeSlotContainer.removeClass('hidden');
+                            } else {
+                                timeSlotContainer.addClass('hidden');
+                            }
+                        }
+                    });
 
-                    currentStep = 4;
-                    showStep(currentStep, itineraryId);
-                });
-                jQuery('.backToStep1').on('click', (e) => {
-                    const itineraryId = jQuery(e.target).closest('.itinerary-container').data('id');
+                    datePickerContainer.removeClass('hidden');
 
-                    currentStep = 0;
-                    showStep(currentStep, itineraryId);
-                });
+                    facilities.forEach(function (facility) {
+                        facilitiesContainer.find('.facilities-select').append('<option value="' + facility.id + '">' + facility.title + '</option>');
+                    });
 
-                jQuery('.backToStep2').on('click', (e) => {
-                    const itineraryId = jQuery(e.target).closest('.itinerary-container').data('id');
+                    facilitiesContainer.removeClass('hidden');
 
-                    currentStep = 1;
-                    showStep(currentStep, itineraryId);
-                });
-
-                jQuery('.backToStep3').on('click', (e) => {
-                    const itineraryId = jQuery(e.target).closest('.itinerary-container').data('id');
-
-                    currentStep = 2;
-                    showStep(currentStep, itineraryId);
-                });
-
-                jQuery('.backToStep4').on('click', (e) => {
-                    const itineraryId = jQuery(e.target).closest('.itinerary-container').data('id');
-
-                    currentStep = 3;
-                    showStep(currentStep, itineraryId);
-                });
-
-                jQuery('.confirmBooking').on('click', (e) => {
-                    const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
-                    const itineraryId = itineraryContainer.data('id');
-
-                    const customerDetails = {
-                        name: itineraryContainer.find('input[name="customer_name"]').val(),
-                        surname: itineraryContainer.find('input[name="customer_surname"]').val(),
-                        email: itineraryContainer.find('input[name="customer_email"]').val(),
-                        phone: itineraryContainer.find('input[name="customer_phone"]').val()
-                    };
-
-                    itineraryContainer.find('.bookingModal').addClass('hidden');
-
-                    checkout(itineraryId, customerDetails);
-                });
-
-                jQuery('.increase-btn').on('click', (e) => {
-                    const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
-                    const itineraryId = itineraryContainer.data('id');
-
-                    personCount++;
-                    itineraryContainer.find('.person-count').text(personCount);
-
-                    updatePricing(itineraryId);
-                });
-
-                jQuery('.decrease-btn').on('click', (e) => {
-                    const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
-                    const itineraryId = itineraryContainer.data('id');
-
-                    if (personCount > 1) {
-
-                        personCount--;
-                        itineraryContainer.find('.person-count').text(personCount);
-
+                    facilitiesContainer.find('.facilities-select').on('change', function () {
                         updatePricing(itineraryId);
-                    }
-                });
-            });
+                    });
+                } else {
+                    console.log('Error: ' + response.data);
+                }
+            },
+            error: function (error) {
+                console.log('AJAX Error: ', error);
+            }
+        });
 
-            document.addEventListener('DOMContentLoaded', function () {
-                jQuery('.flatpickr-input').flatpickr({
-                    enableTime: false,
-                    dateFormat: "Y-m-d",
-                });
-            });
+        bookingModal.removeClass('hidden');
+        showStep(0);
+    });
+
+    jQuery('.closeBookingModalBtn').on('click', (e) => {
+        jQuery(e.target).closest('.bookingModal').addClass('hidden');
+    });
+
+    jQuery('.nextToStep2').on('click', (e) => {
+        const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
+        const itineraryId = itineraryContainer.data('id');
+
+        const selectedDate = itineraryContainer.find('.flatpickr-input').val();
+
+        if (!selectedDate) {
+            alert('Please select a date.');
+            return;
+        }
+
+        currentStep = 1;
+        showStep(currentStep, itineraryId);
+    });
+
+    jQuery('.nextToStep3').on('click', (e) => {
+        const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
+        const itineraryId = itineraryContainer.data('id');
+
+        const selectedTimeSlot = itineraryContainer.find('.time-slot-select').val();
+
+        if (!selectedTimeSlot) {
+            alert('Please select a time slot.');
+            return;
+        }
+
+        currentStep = 2;
+        showStep(currentStep, itineraryId);
+    });
+
+    jQuery('.nextToStep4').on('click', (e) => {
+        const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
+        const itineraryId = itineraryContainer.data('id');
+
+        currentStep = 3;
+        showStep(currentStep, itineraryId);
+    });
+
+    jQuery('.nextToStep5').on('click', (e) => {
+        const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
+        const itineraryId = itineraryContainer.data('id');
+
+        const customerName = itineraryContainer.find('input[name="customer_name"]').val();
+        const customerSurname = itineraryContainer.find('input[name="customer_surname"]').val();
+        const customerEmail = itineraryContainer.find('input[name="customer_email"]').val();
+        const customerPhone = itineraryContainer.find('input[name="customer_phone"]').val();
+
+        if (!customerName || !customerSurname || !customerEmail || !customerPhone) {
+            alert('Please fill in all the customer details.');
+            return;
+        }
+
+        currentStep = 4;
+        showStep(currentStep, itineraryId);
+    });
+
+    jQuery('.backToStep1').on('click', (e) => {
+        const itineraryId = jQuery(e.target).closest('.itinerary-container').data('id');
+
+        currentStep = 0;
+        showStep(currentStep, itineraryId);
+    });
+
+    jQuery('.backToStep2').on('click', (e) => {
+        const itineraryId = jQuery(e.target).closest('.itinerary-container').data('id');
+
+        currentStep = 1;
+        showStep(currentStep, itineraryId);
+    });
+
+    jQuery('.backToStep3').on('click', (e) => {
+        const itineraryId = jQuery(e.target).closest('.itinerary-container').data('id');
+
+        currentStep = 2;
+        showStep(currentStep, itineraryId);
+    });
+
+    jQuery('.backToStep4').on('click', (e) => {
+        const itineraryId = jQuery(e.target).closest('.itinerary-container').data('id');
+
+        currentStep = 3;
+        showStep(currentStep, itineraryId);
+    });
+
+    jQuery('.confirmBooking').on('click', (e) => {
+        const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
+        const itineraryId = itineraryContainer.data('id');
+
+        const customerDetails = {
+            name: itineraryContainer.find('input[name="customer_name"]').val(),
+            surname: itineraryContainer.find('input[name="customer_surname"]').val(),
+            email: itineraryContainer.find('input[name="customer_email"]').val(),
+            phone: itineraryContainer.find('input[name="customer_phone"]').val()
+        };
+
+        itineraryContainer.find('.bookingModal').addClass('hidden');
+
+        checkout(itineraryId, customerDetails);
+    });
+
+    jQuery('.increase-btn').on('click', (e) => {
+        const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
+        const itineraryId = itineraryContainer.data('id');
+
+        if (personCount < maxPersons) {
+            personCount++;
+            itineraryContainer.find('.person-count').text(personCount);
+            updatePricing(itineraryId);
+        }
+
+        if (personCount >= maxPersons) {
+            jQuery(e.target).prop('disabled', true);
+        }
+    });
+
+    jQuery('.decrease-btn').on('click', (e) => {
+        const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
+        const itineraryId = itineraryContainer.data('id');
+
+        if (personCount > 1) {
+            personCount--;
+            itineraryContainer.find('.person-count').text(personCount);
+            itineraryContainer.find('.increase-btn').prop('disabled', false); // Enable increase button when count is decreased
+            updatePricing(itineraryId);
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    jQuery('.flatpickr-input').flatpickr({
+        enableTime: false,
+        dateFormat: "Y-m-d",
+    });
+});
+
         </script>
         <?php
     endwhile;
