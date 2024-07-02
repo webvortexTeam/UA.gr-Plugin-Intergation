@@ -52,6 +52,17 @@ if (have_posts()):
         endif;
 
         $reviews = get_field('reviews');
+
+        $button_color = get_option('vortex_ua_button_color', '#ffffff');
+        $itinerary_bg_color = get_option('vortex_ua_itinerary_bg_color', '#ffffff');
+        echo '<style type="text/css">
+            .vortex-ua-button {
+                background-color: ' . esc_attr($button_color) . ';
+            }
+            .vortex-ua-itinerary-bg {
+                background-color: ' . esc_attr($itinerary_bg_color) . ';
+            }
+        </style>';
         ?>
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
@@ -108,7 +119,7 @@ if (have_posts()):
                             </div>
                         <?php endif; ?>
                         <br></br>
-                        <a href="#booktypesv" class="mt-4 px-4 py-2 bg-black text-white rounded">Book Now</a>
+                        <a href="#booktypesv" class="mt-4 px-4 py-2 vortex-ua-button text-white rounded">Book Now</a>
 
                     </div>
 
@@ -126,7 +137,7 @@ if (have_posts()):
                                 <h3 class="text-sm font-medium text-gray-900">Itineraries</h3>
                                 <div class="mt-4 space-y-4">
                                     <?php foreach ($itineraries as $itinerary): ?>
-                                        <div class="bg-gray-100 p-4 rounded-lg shadow-md itinerary-container"
+                                        <div class="vortex-ua-itinerary-bg p-4 rounded-lg shadow-md itinerary-container"
                                             data-id="<?php echo esc_attr($itinerary['itinerary_id']); ?>">
                                             <h4 class="text-lg font-semibold"><?php echo esc_html($itinerary['title'] ?? ''); ?></h4>
                                             <div class="prose max-w-none mb-2 mt-4 text-gray-700">
@@ -189,7 +200,7 @@ if (have_posts()):
                                                 </div>
                                             </div>
                                             <button data-id="<?php echo esc_attr($itinerary['itinerary_id']); ?>"
-                                                class="bookNowBtn mt-4 px-4 py-2 bg-black text-white rounded">Book Now</button>
+                                                class="bookNowBtn mt-4 px-4 py-2 vortex-ua-button text-white rounded">Book Now</button>
 
                                             <div
                                                 class="bookingModal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
@@ -210,7 +221,7 @@ if (have_posts()):
 
                                                             <!-- calendar  -->
                                                             <button
-                                                                class="nextToStep2 mt-4 px-4 py-2 bg-black text-white rounded">Next</button>
+                                                                class="nextToStep2 mt-4 px-4 py-2 vortex-ua-button text-white rounded">Next</button>
                                                         </div>
                                                         <div class="step2 booking-step hidden">
                                                             <h4 class="text-lg font-semibold">Choose Time</h4> <!-- time slots -->
@@ -226,7 +237,7 @@ if (have_posts()):
                                                             <button
                                                                 class="backToStep1 mt-4 px-4 py-2 bg-gray-500 text-white rounded">Back</button>
                                                             <button
-                                                                class="nextToStep3 mt-4 px-4 py-2 bg-black text-white rounded">Next</button>
+                                                                class="nextToStep3 mt-4 px-4 py-2 vortex-ua-button text-white rounded">Next</button>
                                                         </div>
                                                         <div class="step3 booking-step hidden">
                                                             <h4 class="text-lg font-semibold">Persons & Extras</h4>
@@ -250,7 +261,7 @@ if (have_posts()):
                                                             <button
                                                                 class="backToStep2 mt-4 px-4 py-2 bg-gray-500 text-white rounded">Back</button>
                                                             <button
-                                                                class="nextToStep4 mt-4 px-4 py-2 bg-black text-white rounded">Next</button>
+                                                                class="nextToStep4 mt-4 px-4 py-2 vortex-ua-button text-white rounded">Next</button>
                                                         </div>
                                                         <div class="step4 booking-step hidden">
                                                             <h4 class="text-lg font-semibold">Enter Details</h4>
@@ -270,7 +281,7 @@ if (have_posts()):
                                                             <button
                                                                 class="backToStep3 mt-4 px-4 py-2 bg-gray-500 text-white rounded">Back</button>
                                                             <button
-                                                                class="nextToStep5 mt-4 px-4 py-2 bg-black text-white rounded">Next</button>
+                                                                class="nextToStep5 mt-4 px-4 py-2 vortex-ua-button text-white rounded">Next</button>
                                                         </div>
                                                         <div class="step5 booking-step hidden">
                                                             <h4 class="text-lg font-semibold">Confirm Booking</h4>
@@ -278,7 +289,7 @@ if (have_posts()):
                                                             <button
                                                                 class="backToStep4 mt-4 px-4 py-2 bg-gray-500 text-white rounded">Back</button>
                                                             <button
-                                                                class="confirmBooking mt-4 px-4 py-2 bg-black text-white rounded">Pay</button><!-- send to payment page -->
+                                                                class="confirmBooking mt-4 px-4 py-2 vortex-ua-button text-white rounded">Pay</button><!-- send to payment page -->
                                                         </div>
                                                     </div>
                                                     <button
