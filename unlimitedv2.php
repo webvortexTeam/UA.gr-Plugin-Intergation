@@ -248,7 +248,7 @@ if( ! class_exists( 'vortexUpdateChecker' ) ) {
 			if( false === $remote || ! $this->cache_allowed ) {
 
 				$remote = wp_remote_get(
-					'https://raw.githubusercontent.com/webvortexTeam/UA.gr-Plugin-Intergation/main/updater.json',
+					'https://webvortexteam.github.io/UA.gr-Plugin-Intergation/updater.json',
 					array(
 						'timeout' => 10,
 						'headers' => array(
