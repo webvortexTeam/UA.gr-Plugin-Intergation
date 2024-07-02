@@ -1,12 +1,15 @@
 <?php
 /*
-Plugin Name: Unlimited Andrenaline V2
-Description: API Intergation
-Author: WebVortex
-Text Domain: unlimited-andrenaline-v2
+Plugin Name: Unlimited Adrenaline V2
+Plugin URI: https://github.com/webvortexTeam/UA.gr-Plugin-Intergation
+Description: API διασύνδεση με τις δραστηριότητες της Unlimited Andrenaline
 Version: 1.0
+Author: WebVortex
 Author URI: https://www.webvortex.org
-License: GPL
+Text Domain: unlimited-adrenaline-v2
+Domain Path: /languages
+License: GPL-2.0+
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
 
 if (!defined('ABSPATH')) {
