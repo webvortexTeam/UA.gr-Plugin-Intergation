@@ -247,15 +247,33 @@ if (have_posts()):
                                                                 <button
                                                                     class="increase-btn bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">+</button>
                                                             </div>
-                                                            <h3 class="mt-4">Extras</h3>
-                                                            <!-- visual price change at #1 && include in api call -->
-                                                            <div class="facilities-container mb-4 hidden">
-                                                                <select multiple
-                                                                    id="facilities-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>"
-                                                                    class="facilities-select mt-2 p-2 border rounded w-full">
-                                                                </select>
-                                                            </div>
+                                                            <h3 class="mt-4 extras-header">Extras</h3>
+                                                                <!-- visual price change at #1 && include in api call -->
+                                                                <div class="facilities-container mb-4 hidden">
+                                                                    <select multiple
+                                                                        id="facilities-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>"
+                                                                        class="facilities-select mt-2 p-2 border rounded w-full">
+                                                                    </select>
+                                                                </div>
+                                                                <script>document.addEventListener('DOMContentLoaded', function() {
+                                                                    function checkAndToggleExtras() {
+                                                                        const extrasHeader = document.querySelector('.extras-header');
+                                                                        const facilitiesContainer = document.querySelector('.facilities-container');
+                                                                        const facilitiesSelect = facilitiesContainer.querySelector('select');
+                                                                        
+                                                                        if (facilitiesSelect.options.length === 0) {
+                                                                            extrasHeader.style.display = 'none';
+                                                                            facilitiesContainer.style.display = 'none';
+                                                                        } else {
+                                                                            extrasHeader.style.display = 'block';
+                                                                            facilitiesContainer.style.display = 'block';
+                                                                        }
+                                                                    }
 
+                                                                    checkAndToggleExtras();
+
+                                                                });
+                                                                </script>
                                                             <button
                                                                 class="backToStep2 mt-4 px-4 py-2 bg-gray-500 text-white rounded">Back</button>
                                                             <button
