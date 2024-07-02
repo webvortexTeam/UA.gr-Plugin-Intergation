@@ -60,13 +60,13 @@ add_action('admin_init', function() {
         echo '<button id="upload_logo_button" class="button">Ανεβάστε Λογότυπο</button>';
     }, 'vortex_ua_styling_settings', 'vortex_ua_styling_section');
 
-    add_settings_field('vortex_ua_button_color', 'Χρώμα Κύριου Κουμπιού', function() {
-        $value = get_option('vortex_ua_button_color', '#ffffff');
+    add_settings_field('vortex_ua_button_color', 'Χρώμα Background Κύριου Κουμπιού', function() {
+        $value = get_option('vortex_ua_button_color', '#000000');
         echo '<input type="text" name="vortex_ua_button_color" value="' . esc_attr($value) . '" class="vortex-color-picker-field border rounded p-2" data-coloris />';
     }, 'vortex_ua_styling_settings', 'vortex_ua_styling_section');
 
     add_settings_field('vortex_ua_itinerary_bg_color', 'Itinerary Background Χρώμα', function() {
-        $value = get_option('vortex_ua_itinerary_bg_color', '#ffffff');
+        $value = get_option('vortex_ua_itinerary_bg_color', '#f6f9fc');
         echo '<input type="text" name="vortex_ua_itinerary_bg_color" value="' . esc_attr($value) . '" class="vortex-color-picker-field border rounded p-2" data-coloris />';
     }, 'vortex_ua_styling_settings', 'vortex_ua_styling_section');
 });

@@ -53,8 +53,8 @@ if (have_posts()):
 
         $reviews = get_field('reviews');
 
-        $button_color = get_option('vortex_ua_button_color', '#ffffff');
-        $itinerary_bg_color = get_option('vortex_ua_itinerary_bg_color', '#ffffff');
+        $button_color = get_option('vortex_ua_button_color', '#000000');
+        $itinerary_bg_color = get_option('vortex_ua_itinerary_bg_color', '#f6f9fc');
         echo '<style type="text/css">
             .vortex-ua-button {
                 background-color: ' . esc_attr($button_color) . ';
