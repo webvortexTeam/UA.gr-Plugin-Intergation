@@ -8,25 +8,19 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
-get_header();
+if (function_exists('elementor_theme_do_location') && elementor_theme_do_location('header')) {
+    elementor_theme_do_location('header');
+} else {
+    get_header();
+}
 
 if (have_posts()):
-
-    // function unlimited_adrenaline_enqueue_styles_scripts()
-    // {
-    //     wp_enqueue_style('flatpickr-styles', 'https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css');
-    //     wp_enqueue_script('flatpickr-script', 'https://cdn.jsdelivr.net/npm/flatpickr', array(), null, true);
-    //     wp_enqueue_script('jquery');
-    //     wp_enqueue_script('jquery-ui-dialog');
-    //     wp_enqueue_style('jquery-ui-css', 'https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
-    // }
-    // add_action('wp_enqueue_scripts', 'unlimited_adrenaline_enqueue_styles_scripts');
 
     while (have_posts()):
         the_post();
 
         // Retrieve ACF fields
-        $title = get_the_title();
+        $title = get_field('title');
         $activity_id = get_field('activity_id');
         $provider_id = get_field('provider_id');
         $rating = get_field('rating');
@@ -55,16 +49,39 @@ if (have_posts()):
 
         $button_color = get_option('vortex_ua_button_color', '#000000');
         $itinerary_bg_color = get_option('vortex_ua_itinerary_bg_color', '#f6f9fc');
-        echo '<style type="text/css">
-            .vortex-ua-button {
-                background-color: ' . esc_attr($button_color) . ';
-            }
-            .vortex-ua-itinerary-bg {
-                background-color: ' . esc_attr($itinerary_bg_color) . ';
-            }
-        </style>';
-        ?>
+echo '<style type="text/css">
+    .vortex-ua-button {
+        background-color: ' . esc_attr($button_color) . ';
+    }
+    
+    .vortex-ua-itinerary-bg {
+        background-color: ' . esc_attr($itinerary_bg_color) . ';
+    }
+    .itinerary-container {
+        margin-bottom: 1rem; /* Add margin between itineraries */
+        border-radius: 0.5rem; /* Rounded corners */
+            z-index: 9900099;
+
+    }
+    .itinerary-header {
+        padding: 0.75rem 1rem; /* Padding for the header */
+        cursor: pointer; /* Pointer cursor for clickable header */
+        border-bottom: 1px solid #e5e7eb; /* Border between header and content */
+    }
+    .itinerary-content {
+        padding: 1rem; /* Padding for the content */
+    }
+    .itinerary-price {
+        font-size: 1rem; /* Font size for the price */
+    }
+    .itinerary-header h4 {
+        margin: 0; /* Remove margin from header title */
+    }
+</style>';
+?>
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
         <div class="bg-white">
             <div class="pt-6">
@@ -91,67 +108,98 @@ if (have_posts()):
                     <div class="mt-4 lg:row-span-3 lg:mt-0">
                         <?php if (!empty($min_price)): ?>
                             <div class="mt-10">
-                                <h2 class="text-sm font-medium text-gray-900">from</h2>
+                                <h2 class="text-sm font-medium text-gray-900">από</h2>
                                 <div class="text-3xl tracking-tight text-gray-900">
-                                    <?php echo wp_kses_post($min_price); ?> EUR
+                                    <?php echo wp_kses_post($min_price); ?> €
                                 </div>
                             </div>
                         <?php endif; ?>
-                        <h2 class="sr-only">Activity information</h2>
-                        <p class="text-2xl tracking-tight text-gray-900"><?php echo esc_html($rating); ?> Stars</p>
+                        <h2 class="sr-only">Πληροφορίες Δραστηριότητας</h2>
+                        <p class="text-2xl tracking-tight text-gray-900"><?php echo esc_html($rating); ?> Αστέρια</p>
 
                         <div class="mt-6">
-                            <h3 class="text-lg font-medium text-gray-900">Details</h3>
+                            <h3 class="text-lg font-medium text-gray-900">Πληροφορίες</h3>
                             <div class="mt-4 space-y-2 text-sm text-gray-700">
                                 <p>
-                                    <stron g>Active Months:</strong> <?php echo esc_html($active_months); ?>
+                                    <stron g>Ενεργοί μήνες:</strong> <?php echo esc_html($active_months); ?>
                                 </p>
-                                <p><strong>Categories:</strong> <?php echo esc_html($category_ids); ?></p>
                             </div>
                         </div>
+                        <div id="vortex-ua-info-new-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+                            <div class="bg-white p-6 rounded-lg shadow-lg">
+                                <h3 class="text-lg font-semibold mb-4">Απορίες & FAQ</h3>
+                                <div class="new-popup-content text-gray-700">
+                                    <p>test</p>
+                                </div>
+                                <a id="close-vortex-ua-info-new-btn" class="mt-4 px-4 py-2 rounded">Κλείσιμο</a>
+                            </div>
+                        </div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const newPopupBtn = document.getElementById('vortex-ua-info-new-btn');
+    const newPopupModal = document.getElementById('vortex-ua-info-new-modal');
+    const closeNewPopupBtn = document.getElementById('close-vortex-ua-info-new-btn');
+
+    newPopupBtn.addEventListener('click', function () {
+        newPopupModal.classList.remove('hidden');
+    });
+
+    closeNewPopupBtn.addEventListener('click', function () {
+        newPopupModal.classList.add('hidden');
+    });
+
+    // Optional: Close the modal when clicking outside of it
+    newPopupModal.addEventListener('click', function (event) {
+        if (event.target === newPopupModal) {
+            newPopupModal.classList.add('hidden');
+        }
+    });
+});
+</script>
 
                         <?php if (!empty($additional_info)): ?>
                             <div class="mt-6">
-                                <h3 class="text-lg font-medium text-gray-900">Additional Information</h3>
+                                <h3 class="text-lg font-medium text-gray-900">Επιπλέον Πληροφορίες</h3>
                                 <div class="prose max-w-none mt-4 text-gray-700">
                                     <?php echo wp_kses_post($additional_info); ?>
                                 </div>
                             </div>
                         <?php endif; ?>
                         <br></br>
-                        <a href="#booktypesv" class="mt-4 px-4 py-2 vortex-ua-button text-white rounded">Book Now</a>
+                        <a href="#booktypesv" class="mt-4 px-4 py-2 vortex-ua-button text-white rounded">Κράτηση τώρα</a>
+                            <a id="vortex-ua-info-new-btn" class="mt-4 px-4 py-2">Απορίες & FAQ</a>
 
                     </div>
 
                     <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
                         <!-- Description -->
                         <div>
-                            <h3 class="sr-only">Description</h3>
+                            <h3 class="sr-only">Περιγραφή</h3>
                             <div class="space-y-6 text-base text-gray-900">
                                 <?php echo wp_kses_post($description); ?>
                             </div>
                         </div>
-
-                        <?php if (!empty($itineraries)): ?>
-                            <div class="mt-10" id="booktypesv">
-                                <h3 class="text-sm font-medium text-gray-900">Itineraries</h3>
-                                <div class="mt-4 space-y-4">
-                                    <?php foreach ($itineraries as $itinerary): ?>
-                                        <div class="vortex-ua-itinerary-bg p-4 rounded-lg shadow-md itinerary-container"
-                                            data-id="<?php echo esc_attr($itinerary['itinerary_id']); ?>">
-                                            <h4 class="text-lg font-semibold"><?php echo esc_html($itinerary['title'] ?? ''); ?></h4>
-                                            <div class="prose max-w-none mb-2 mt-4 text-gray-700">
-                                                <?php echo wp_kses_post($itinerary['description'] ?? ''); ?>
-                                            </div>
-                                            <p><strong>Level:</strong> <?php echo esc_html($itinerary['difficulty'] ?? ''); ?></p>
-                                            <p><strong>Price:</strong> <?php echo esc_html($itinerary['min_price'] ?? ''); ?> EUR
-                                                <?php echo esc_html($itinerary['booking_type'] ?? ''); ?>
-                                            </p>
-                                            <p><strong>Min Age:</strong> <?php echo esc_html($itinerary['min_age'] ?? ''); ?></p>
-                                            <p><strong>Duration:</strong> <?php echo esc_html($itinerary['duration'] ?? ''); ?></p>
-                                            <div class="mt-4">
-                                                <h5 class="text-lg font-semibold">We Speak</h5>
-                                                <ul class="list-disc list-inside">
+<?php if (!empty($itineraries)): ?>
+    <div class="mt-10" id="booktypesv">
+        <div class="mt-4 space-y-4">
+            <?php foreach ($itineraries as $index => $itinerary): ?>
+                <div class="vortex-ua-itinerary-bg p-4 mb-4 rounded-lg shadow-md itinerary-container"
+                    data-id="<?php echo esc_attr($itinerary['itinerary_id']); ?>">
+                    <div class="itinerary-header flex justify-between items-center cursor-pointer p-2" data-index="<?php echo $index; ?>">
+                        <h4 class="text-lg font-semibold">
+                            <?php  echo esc_html($itinerary['title'] ?? $title); ?>
+                        </h4>
+                        <div class="itinerary-price">Από <?php echo esc_html($itinerary['min_price'] ?? ''); ?> €</div>
+                    </div>
+                    <div class="itinerary-content <?php echo count($itineraries) > 1 ? 'hidden' : ''; ?> mt-4 p-4">
+                        <div class="prose max-w-none mb-2 mt-4 text-gray-700">
+                            <?php echo wp_kses_post($itinerary['description'] ?? ''); ?>
+                        </div>
+                        <p><strong>Ελάχιστη Ηλικία:</strong> <?php echo esc_html($itinerary['min_age'] ?? ''); ?></p>
+                        <p><strong>Διάρκεια:</strong> <?php echo esc_html($itinerary['duration'] ?? ''); ?></p>
+                        <div class="mt-4">
+                            <h5 class="text-lg font-semibold">Μιλάμε</h5>
+                            <ul class="list-disc list-inside">
                                                     <?php foreach ($itinerary['spoken_languages'] as $lang):
                                                         $flag_url = get_country_flag_by_language($lang['title']);
                                                         ?>
@@ -167,7 +215,7 @@ if (have_posts()):
                                             </div>
                                             <?php if (!empty($itinerary['details']['included'])): ?>
                                                 <div class="mt-4">
-                                                    <h5 class="text-lg font-semibold">Included</h5>
+                                                    <h5 class="text-lg font-semibold">Περιλαμβάνεται</h5>
                                                     <ul class="list-disc list-inside">
                                                         <?php foreach ($itinerary['details']['included'] as $included): ?>
                                                             <li><?php echo esc_html($included['title']); ?></li>
@@ -177,7 +225,7 @@ if (have_posts()):
                                             <?php endif; ?>
                                             <?php if (!empty($itinerary['details']['do_not_forget'])): ?>
                                                 <div class="mt-4">
-                                                    <h5 class="text-lg font-semibold">Do Not Forget</h5>
+                                                    <h5 class="text-lg font-semibold">Μην ξεχάσετε</h5>
                                                     <ul class="list-disc list-inside">
                                                         <?php foreach ($itinerary['details']['do_not_forget'] as $do_not_forget): ?>
                                                             <li><?php echo esc_html($do_not_forget['title']); ?></li>
@@ -185,11 +233,90 @@ if (have_posts()):
                                                     </ul>
                                                 </div>
                                             <?php endif; ?>
+            <div id="map-<?php echo $index; ?>" style="height: 400px; width: 100%; z-index: 0 !important;"></div>
+<style>
+#map {
+    z-index: -1;
+    position: relative;
+}
+
+.flashing-red-icon .flashing-red-point {
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 50%;
+    animation: flash 1s infinite;
+    
+}
+
+@keyframes flash {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const itineraries = <?php echo json_encode($itineraries); ?>;
+    const geocodeApiUrl = 'https://nominatim.openstreetmap.org/reverse?format=json&lat={lat}&lon={lng}';
+
+    itineraries.forEach((itinerary, index) => {
+        const lat = parseFloat(itinerary.latitude);
+        const lng = parseFloat(itinerary.longitude);
+
+        if (!isNaN(lat) && !isNaN(lng)) {
+            // Initialize the map for each itinerary
+            const map = L.map(`map-${index}`).setView([lat, lng], 16);
+
+            // Add CartoDB Positron tile layer
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                subdomains: 'abcd',
+                maxZoom: 59
+            }).addTo(map);
+
+            // Create a custom flashing red icon
+            const flashingRedIcon = L.divIcon({
+                className: 'flashing-red-icon',
+                html: '<div class="flashing-red-point"></div>',
+                iconSize: [20, 20],
+                iconAnchor: [10, 10]
+            });
+
+            // Add the marker with the custom icon to the map
+            const marker = L.marker([lat, lng], { icon: flashingRedIcon }).addTo(map);
+
+            // Zoom effect on load
+            map.on('load', function () {
+                setTimeout(() => {
+                    map.setZoom(28);
+                }, 500); // delay for zoom effect
+            });
+
+            // Fetch the address and show it in a popup
+            fetch(geocodeApiUrl.replace('{lat}', lat).replace('{lng}', lng))
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.address) {
+                        const address = data.address;
+                        const displayName = `${address.road || ''}, ${address.city || address.town || address.village || ''}, ${address.country || ''}, ${address.postcode || ''}`.replace(/^,|,$/g, '');
+                        marker.bindPopup(displayName).openPopup();
+                    } else {
+                        marker.bindPopup('Η διεύθυνση δεν βρέθηκε.').openPopup();
+                    }
+                })
+                .catch(error => {
+                    marker.bindPopup('Error fetching address').openPopup();
+                    console.error('Error fetching address:', error);
+                });
+        }
+    });
+});
+</script>
 
                                             <div
                                                 class="cancellationModal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
                                                 <div class="bg-white p-6 rounded-lg shadow-lg">
-                                                    <h3 class="text-lg font-semibold mb-4">Cancellation Policy</h3>
+                                                    <h3 class="text-lg font-semibold mb-4">Πολιτική Ακύρωσης</h3>
                                                     <div class="cancellationContent" class="text-gray-700">
                                                         <h3 class="text-lg"><?php echo esc_html($itinerary['cancellation_policy']['title']); ?></h3>
                                                                 <p class="text-sm"><?php echo wp_kses_post($itinerary['cancellation_policy']['description']); ?></p>
@@ -200,45 +327,45 @@ if (have_posts()):
                                                 </div>
                                             </div>
                                             <button data-id="<?php echo esc_attr($itinerary['itinerary_id']); ?>"
-                                                class="bookNowBtn mt-4 px-4 py-2 vortex-ua-button text-white rounded">Book Now</button>
+                                                class="bookNowBtn mt-4 px-4 py-2 vortex-ua-button text-white rounded">Κράτηση τώρα</button>
 
-                                            <div
-                                                class="bookingModal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
-                                                <div class="bg-white p-6 rounded-lg shadow-lg w-1/2 relative">
-                                                    <h3 class="text-lg font-semibold mb-4">Book Now</h3>
-                                                    <p>Price: <span
+                                                <div class="bookingModal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+                                                    <div class="bg-white p-6 rounded-lg shadow-lg w-full h-full md:w-1/2 md:h-auto relative">
+                                                
+                                                    <h3 class="text-lg font-semibold mb-4">Είστε 5 βήματα μακριά!</h3>
+                                                    <p>Συνολική Τιμή: <span
                                                             class="booking-price"><?php echo wp_kses_post($itinerary['min_price']); ?></span>
                                                         </p> <!-- #1 change price as per booking/person -->
                                                     <div class="bookingContent text-gray-700">
                                                         <div class="step1 booking-step">
-                                                            <h4 class="text-lg font-semibold">Choose Date</h4>
+                                                            <h4 class="text-lg font-semibold">Επιλέξτε ημερομηνία</h4>
 
                                                             <div class="date-picker-container hidden">
                                                                 <input type="text" id="datetime-<?php echo esc_attr($itinerary['itinerary_id']); ?>" data-itinerary-id="<?php echo esc_attr($itinerary['itinerary_id']); ?>" class="flatpickr-input mt-2 p-2 border rounded w-full" />
-</div>
+                                                            </div>
 
                                                             <!-- calendar  -->
                                                             <button
-                                                                class="nextToStep2 mt-4 px-4 py-2 vortex-ua-button text-white rounded">Next</button>
+                                                                class="nextToStep2 mt-4 px-4 py-2 vortex-ua-button text-white rounded">Επόμενο</button>
                                                         </div>
                                                         <div class="step2 booking-step hidden">
-                                                            <h4 class="text-lg font-semibold">Choose Time</h4> <!-- time slots -->
+                                                            <h4 class="text-lg font-semibold">Επιλέξτε ώρα</h4> <!-- time slots -->
 
                                                             <div class="time-slot-container mb-4 hidden">
                                                                 <select
                                                                     id="timeslot-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>"
                                                                     class="time-slot-select mt-2 p-2 border rounded w-full">
-                                                                    <option value="">Select a time slot</option>
+                                                                    <option value="">Επιλέξτε</option>
                                                                 </select>
                                                             </div>
 
                                                             <button
-                                                                class="backToStep1 mt-4 px-4 py-2 bg-gray-500 text-white rounded">Back</button>
+                                                                class="backToStep1 mt-4 px-4 py-2 bg-gray-500 text-white rounded">Πίσω</button>
                                                             <button
-                                                                class="nextToStep3 mt-4 px-4 py-2 vortex-ua-button text-white rounded">Next</button>
+                                                                class="nextToStep3 mt-4 px-4 py-2 vortex-ua-button text-white rounded">Επόμενο</button>
                                                         </div>
                                                         <div class="step3 booking-step hidden">
-                                                            <h4 class="text-lg font-semibold">Persons & Extras</h4>
+                                                            <h4 class="text-lg font-semibold">Άτομα & Εξτρά</h4>
                                                             <!-- visual price change per person at #1 && include in api call -->
                                                             <div class="flex items-center space-x-4">
                                                                 <button
@@ -247,7 +374,7 @@ if (have_posts()):
                                                                 <button
                                                                     class="increase-btn bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">+</button>
                                                             </div>
-                                                            <h3 class="mt-4 extras-header">Extras</h3>
+                                                            <h3 class="mt-4 extras-header">Έξτρα Υπηρεσίες</h3>
                                                                 <!-- visual price change at #1 && include in api call -->
                                                                 <div class="facilities-container mb-4 hidden">
                                                                     <select multiple
@@ -274,38 +401,49 @@ if (have_posts()):
 
                                                                 });
                                                                 </script>
+
                                                             <button
-                                                                class="backToStep2 mt-4 px-4 py-2 bg-gray-500 text-white rounded">Back</button>
+                                                                class="backToStep2 mt-4 px-4 py-2 bg-gray-500 text-white rounded">Πίσω</button>
                                                             <button
-                                                                class="nextToStep4 mt-4 px-4 py-2 vortex-ua-button text-white rounded">Next</button>
+                                                                class="nextToStep4 mt-4 px-4 py-2 vortex-ua-button text-white rounded">Επόμενο</button>
                                                         </div>
                                                         <div class="step4 booking-step hidden">
-                                                            <h4 class="text-lg font-semibold">Enter Details</h4>
+                                                            <h4 class="text-lg font-semibold">Εισάγετε τα στοιχεία σας</h4>
                                                             <!-- send to wordpress admin email -->
-                                                            <input type="text" placeholder="Name" name="customer_name"
+                                                            <input type="text" placeholder="Όνομα" name="customer_name"
                                                                 id="customer_name-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>"
                                                                 class="mt-2 p-2 border rounded w-full" />
-                                                            <input type="text" placeholder="Surname" name="customer_surname"
+                                                            <input type="text" placeholder="Επίθετο" name="customer_surname"
                                                                 id="customer_surname-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>"
                                                                 class="mt-2 p-2 border rounded w-full" />
                                                             <input type="email" placeholder="Email" name="customer_email"
                                                                 id="customer_email-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>"
                                                                 class="mt-2 p-2 border rounded w-full" />
-                                                            <input type="number" placeholder="Phone Number" name="customer_phone"
+                                                            <input type="number" placeholder="Τηλέφωνο" name="customer_phone"
                                                                 id="customer_phone-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>"
                                                                 class="mt-2 p-2 border rounded w-full" />
                                                             <button
-                                                                class="backToStep3 mt-4 px-4 py-2 bg-gray-500 text-white rounded">Back</button>
+                                                                class="backToStep3 mt-4 px-4 py-2 bg-gray-500 text-white rounded">Πίσω</button>
                                                             <button
-                                                                class="nextToStep5 mt-4 px-4 py-2 vortex-ua-button text-white rounded">Next</button>
+                                                                class="nextToStep5 mt-4 px-4 py-2 vortex-ua-button text-white rounded">Επόμενο</button>
                                                         </div>
                                                         <div class="step5 booking-step hidden">
-                                                            <h4 class="text-lg font-semibold">Confirm Booking</h4>
-                                                            <p class="mt-2">Are you sure you want to proceed?</p>
-                                                            <button
-                                                                class="backToStep4 mt-4 px-4 py-2 bg-gray-500 text-white rounded">Back</button>
-                                                            <button
-                                                                class="confirmBooking mt-4 px-4 py-2 vortex-ua-button text-white rounded">Pay</button><!-- send to payment page -->
+
+                                                            <div class="mt-4">
+                                                                <h5 class="text-lg font-semibold">Σύνοψη Κράτησης</h5>
+                                                                <p><strong>Ημερομηνία:</strong> <span id="summary-date"></span></p>
+                                                                <p><strong>Ώρα:</strong> <span id="summary-time"></span></p>
+                                                                <p><strong>Άτομα:</strong> <span id="summary-persons"></span></p>
+                                                                <p><strong>Εγκαταστάσεις:</strong> <span id="summary-facilities"></span></p>
+                                                                <p><strong>Όνομα:</strong> <span id="summary-name"></span></p>
+                                                                <p><strong>Επίθετο:</strong> <span id="summary-surname"></span></p>
+                                                                <p><strong>Email:</strong> <span id="summary-email"></span></p>
+                                                                <p><strong>Τηλέφωνο:</strong> <span id="summary-phone"></span></p>
+                                                            </div>
+                                                                <h4 class="text-lg font-semibold">Επιβεβαίωση κράτησης</h4>
+                                                            <p class="mt-2">Είστε σίγουροι ότι θέλετε να συνεχίσετε;</p>
+                                                            <button class="backToStep4 mt-4 px-4 py-2 bg-gray-500 text-white rounded">Πίσω</button>
+                                                            <button class="confirmBooking mt-4 px-4 py-2 vortex-ua-button text-white rounded">Πληρωμή Κράτησης</button><!-- send to payment page -->
                                                         </div>
                                                     </div>
                                                     <button
@@ -313,8 +451,8 @@ if (have_posts()):
                                                 </div>
                                             </div>
 
-                                            <button class="mt-4 px-4 py-2 text-black text-sm rounded cancellation-button">Cancellation
-                                                Policy</button>
+                                            <button class="mt-4 px-4 py-2 text-black text-sm rounded cancellation-button">Πολιτική Ακύρωσης</button>
+                                        </div>
 
                                         </div>
                                     <?php endforeach; ?>
@@ -325,7 +463,7 @@ if (have_posts()):
 
                         <?php if (!empty($reviews)): ?>
                             <div class="mt-10">
-                                <h2 class="text-sm font-medium text-gray-900">Reviews</h2>
+                                <h2 class="text-sm font-medium text-gray-900">Κριτικές</h2>
                                 <div class="mt-4 prose max-w-none text-gray-700">
                                     <?php echo wp_kses_post($reviews); ?>
                                 </div>
@@ -341,7 +479,30 @@ if (have_posts()):
                 const photoItems = document.querySelectorAll('.photo-item');
                 const accordionTitles = document.querySelectorAll('.accordion-title');
                 const cancellationButtons = document.querySelectorAll('.cancellation-button');
+     const itineraryHeaders = document.querySelectorAll('.itinerary-header');
+    const itinerariesCount = document.querySelectorAll('.itinerary-container').length;
 
+    itineraryHeaders.forEach(header => {
+        header.addEventListener('click', function () {
+            const index = this.getAttribute('data-index');
+            const content = this.nextElementSibling;
+            const allContents = document.querySelectorAll('.itinerary-content');
+
+            if (itinerariesCount > 1) {
+                allContents.forEach((item, i) => {
+                    if (i != index) {
+                        item.classList.add('hidden');
+                    }
+                });
+                content.classList.toggle('hidden');
+            }
+        });
+    });
+
+    // Automatically open the first itinerary if there's only one
+    if (itinerariesCount === 1) {
+        document.querySelector('.itinerary-content').classList.remove('hidden');
+    }
                 if (showMoreBtn) {
                     showMoreBtn.addEventListener('click', function () {
                         photoItems.forEach((item, index) => {
@@ -511,7 +672,7 @@ const fetchAvailability = (itineraryId, startDate, endDate, calendarInstance) =>
                 calendarInstance.config.onChange.push(function(selectedDates, dateStr, instance) {
                     const timeSlotSelect = jQuery(instance.element).closest('.itinerary-container').find('.time-slot-select');
                     if (timeSlots[dateStr]) {
-                        timeSlotSelect.html('<option value="">Select a time slot</option>');
+                        timeSlotSelect.html('<option value="">Επιλέξτε ώρα</option>');
                         timeSlots[dateStr].forEach(function (slot) {
                             timeSlotSelect.append('<option value="' + slot.timeId + '">' + slot.startTime + '</option>');
                         });
@@ -577,7 +738,7 @@ jQuery('.bookNowBtn').on('click', (e) => {
     onChange: function(selectedDates, dateStr, instance) {
         const timeSlotSelect = jQuery(instance.element).closest('.itinerary-container').find('.time-slot-select');
         if (timeSlots[dateStr]) {
-            timeSlotSelect.html('<option value="">Select a time slot</option>');
+            timeSlotSelect.html('<option value="">Επιλέξτε ώρα</option>');
             timeSlots[dateStr].forEach(function (slot) {
                 timeSlotSelect.append('<option value="' + slot.timeId + '">' + slot.startTime + '</option>');
             });
@@ -639,7 +800,7 @@ jQuery('.bookNowBtn').on('click', (e) => {
         const selectedDate = itineraryContainer.find('.flatpickr-input').val();
 
         if (!selectedDate) {
-            alert('Please select a date.');
+            alert('Παρακαλώ επιλέξτε μια ημερομηνία ή επιστρέψτε πίσω.');
             return;
         }
 
@@ -654,7 +815,7 @@ jQuery('.bookNowBtn').on('click', (e) => {
         const selectedTimeSlot = itineraryContainer.find('.time-slot-select').val();
 
         if (!selectedTimeSlot) {
-            alert('Please select a time slot.');
+            alert('Παρακαλώ επιλέξτε ώρα ή επιστρέψτε πίσω.');
             return;
         }
 
@@ -671,16 +832,33 @@ jQuery('.bookNowBtn').on('click', (e) => {
     });
 
     jQuery('.nextToStep5').on('click', (e) => {
-        const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
+       const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
         const itineraryId = itineraryContainer.data('id');
+
+        // Fetch and display summary details
+        const selectedDate = itineraryContainer.find('.flatpickr-input').val();
+        const selectedTimeSlot = itineraryContainer.find('.time-slot-select option:selected').text();
+        const personCount = itineraryContainer.find('.person-count').text();
+        const selectedFacilities = itineraryContainer.find('.facilities-select option:selected').map(function() {
+            return jQuery(this).text();
+        }).get().join(', ');
 
         const customerName = itineraryContainer.find('input[name="customer_name"]').val();
         const customerSurname = itineraryContainer.find('input[name="customer_surname"]').val();
         const customerEmail = itineraryContainer.find('input[name="customer_email"]').val();
         const customerPhone = itineraryContainer.find('input[name="customer_phone"]').val();
 
+        jQuery('#summary-date').text(selectedDate);
+        jQuery('#summary-time').text(selectedTimeSlot);
+        jQuery('#summary-persons').text(personCount);
+        jQuery('#summary-facilities').text(selectedFacilities || 'Καμία');
+        jQuery('#summary-name').text(customerName);
+        jQuery('#summary-surname').text(customerSurname);
+        jQuery('#summary-email').text(customerEmail);
+        jQuery('#summary-phone').text(customerPhone);
+
         if (!customerName || !customerSurname || !customerEmail || !customerPhone) {
-            alert('Please fill in all the customer details.');
+            alert('Παρακαλώ συμπληρώστε όλα τα στοιχεία σας');
             return;
         }
 
