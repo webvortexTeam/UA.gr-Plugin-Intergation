@@ -24,6 +24,7 @@ require_once MY_PLUGIN_DIR_PATH . '/class-tgm-plugin-activation.php';
 require_once MY_PLUGIN_DIR_PATH . '/includes/unlimitedv2-class-permalink-issue.php'; // permalink issue
 
 require_once MY_PLUGIN_DIR_PATH . '/inc/admin-settings.php';
+require_once MY_PLUGIN_DIR_PATH . '/inc/admin-style.php';
 
 add_action('tgmpa_register', 'unlimited_andrenaline_v2_register_required_plugins');
 

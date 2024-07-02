@@ -53,17 +53,22 @@ if (have_posts()):
 
         $reviews = get_field('reviews');
         ?>
-        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
         <div class="bg-white">
             <div class="pt-6">
 
-                <?php include plugin_dir_path(__FILE__) . 'single/nav.php'; ?>
-                <!-- Image gallery -->
+                <?php 
+                $show_breadcrumbs = get_option('vortex_ua_show_breadcrumbs', 'yes');
+
+                if ($show_breadcrumbs === 'yes') {
+                    include plugin_dir_path(__FILE__) . 'single/nav.php';
+                }
+
+                ?>  
                 <?php include plugin_dir_path(__FILE__) . 'single/gallery.php'; ?>
 
 
-                <!-- Product info -->
                 <article data-id="<?php echo esc_attr($activity_id); ?>"
                     class="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
                     <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
@@ -84,7 +89,6 @@ if (have_posts()):
                         <h2 class="sr-only">Activity information</h2>
                         <p class="text-2xl tracking-tight text-gray-900"><?php echo esc_html($rating); ?> Stars</p>
 
-                        <!-- Details -->
                         <div class="mt-6">
                             <h3 class="text-lg font-medium text-gray-900">Details</h3>
                             <div class="mt-4 space-y-2 text-sm text-gray-700">
