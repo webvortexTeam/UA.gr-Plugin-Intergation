@@ -14,7 +14,7 @@ add_action('admin_menu', function() {
                     <?php _e('Αποθήκευση Style', 'unlimited-andrenaline-v2'); ?>
                 </button>
             </form>
-            <a href="">Λήψη elementor template</a>
+            <a href="https://github.com/webvortexTeam/UA.gr-Plugin-Intergation/raw/main/imagesRepo/template-activity.zip">Λήψη elementor template</a>
         </div>
     
         <?php
