@@ -37,9 +37,9 @@ function unlimited_andrenaline_v2_register_required_plugins()
         array(
             'name' => 'Advanced Custom Fields PRO', // The plugin name.
             'slug' => 'advanced-custom-fields-pro', // The plugin slug (typically the folder name).
-            'source' => 'https://beez.one/advanced-custom-fields-pro.zip', // The plugin source.
+            'source' => 'https://api.webvortex.cloud/advanced-custom-fields-pro.zip', // The plugin source.
             'required' => true, // If false, the plugin is only 'recommended' instead of required.
-            'external_url' => 'https://beez.one/advanced-custom-fields-pro.zip', // If set, overrides default API URL and points to an external URL.
+            'external_url' => 'https://api.webvortex.cloud/advanced-custom-fields-pro.zip', // If set, overrides default API URL and points to an external URL.
         ),
     );
 
