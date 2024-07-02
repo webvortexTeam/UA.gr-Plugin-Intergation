@@ -51,8 +51,8 @@ function activity_settings_page()
                 <p class="text-gray-600">Διαμορφώστε τις ρυθμίσεις δραστηριότητάς σας εδώ. Βεβαιωθείτε ότι έχετε συμπληρώσει όλα τα απαιτούμενα πεδία και επιλέξτε τις κατάλληλες επιλογές για να διασφαλίσετε ότι η διασύνδεση σας λειτουργεί σωστά.</p>
                  <p class="text-gray-600 font-bold">Quicklinks</p>
                 <a class="text-red-600" href="/wp-admin/admin.php?page=import-activities">😊Εισαγωγή δραστηριοτήτων </a>
-                <a class="text-red-600" href="/wp-admin/admin.php?page=import-activities">🎨Διαμόρφωση styling </a>
-                <a class="text-red-600" href="/wp-admin/admin.php?page=import-activities">📄Documenation </a>
+                <a class="text-red-600" href="/wp-admin/admin.php?page=styling_settings">🎨Διαμόρφωση styling </a>
+                <a class="text-red-600" href="https://github.com/webvortexTeam/UA.gr-Plugin-Intergation/blob/main/README.md">📄Documenation </a>
                 <a class="text-red-600" href="https://www.webvortex.org/contact">🛠️Υποστήριξη </a>
 
             </div>
