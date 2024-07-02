@@ -214,7 +214,7 @@ if (have_posts()):
                                                             <h4 class="text-lg font-semibold">Choose Date</h4>
 
                                                             <div class="date-picker-container hidden">
-                                                                <input type="text" value="2024-07-02" id="datetime-<?php echo esc_attr($itinerary['itinerary_id']); ?>" data-itinerary-id="<?php echo esc_attr($itinerary['itinerary_id']); ?>" class="flatpickr-input mt-2 p-2 border rounded w-full" />
+                                                                <input type="text" id="datetime-<?php echo esc_attr($itinerary['itinerary_id']); ?>" data-itinerary-id="<?php echo esc_attr($itinerary['itinerary_id']); ?>" class="flatpickr-input mt-2 p-2 border rounded w-full" />
 </div>
 
                                                             <!-- calendar  -->
