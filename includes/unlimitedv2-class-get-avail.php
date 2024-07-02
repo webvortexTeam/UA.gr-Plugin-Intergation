@@ -2,7 +2,6 @@
     if (!defined('ABSPATH')) {
         exit; // Exit if accessed directly.
     }
-    <?php
     function get_availability() {
         if (!isset($_POST['itinerary_id'])) {
             wp_send_json_error('Missing itinerary_id parameter.');
