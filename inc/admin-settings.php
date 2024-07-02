@@ -52,7 +52,9 @@ function activity_settings_page()
                  <p class="text-gray-600 font-bold">Quicklinks</p>
                 <a class="text-red-600" href="/wp-admin/admin.php?page=import-activities">😊Εισαγωγή δραστηριοτήτων </a>
                 <a class="text-red-600" href="/wp-admin/admin.php?page=styling_settings">🎨Διαμόρφωση styling </a>
-                <a class="text-red-600" href="https://github.com/webvortexTeam/UA.gr-Plugin-Intergation/blob/main/README.md">📄Documenation </a>
+                <a class="text-red-600" href="/wp-admin/admin.php?page=cron-activities">⏰ Αυτοματοποίηση / CRON </a>
+
+                <a class="text-red-600" href="https://webvortexteam.github.io/UA.gr-Plugin-Intergation/">📄Documenation </a>
                 <a class="text-red-600" href="https://www.webvortex.org/contact">🛠️Υποστήριξη </a>
 
             </div>

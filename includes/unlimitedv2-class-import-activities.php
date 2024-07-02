@@ -212,37 +212,38 @@ function unlimited_andrenaline_import_activities()
                         }
 
                         $itineraries[] = array(
-                            'field_webvortex_itinerary_id' => $itinerary['id'],
-                            'field_webvortex_itinerary_title' => $itinerary['title'],
-                            'field_webvortex_itinerary_description' => $itinerary['description'],
-                            'field_webvortex_itinerary_level' => $itinerary['level'],
-                            'field_webvortex_itinerary_details' => array(
-                                'field_webvortex_itinerary_included' => $included,
-                                'field_webvortex_itinerary_do_not_forget' => $do_not_forget
-                            ),
-                            'field_webvortex_itinerary_ratings' => $ratings,
-                            'field_webvortex_itinerary_min_age' => $itinerary['min_age'],
-                            'field_webvortex_itinerary_spoken_languages' => $languages,
-                            'field_webvortex_itinerary_booking_type' => $itinerary['bookingType'],
-                            'field_webvortex_itinerary_transport' => $itinerary['transport'],
-                            'field_webvortex_itinerary_allow_multiple_facilities' => $itinerary['allowSelectionOfMultipleFacilities'],
-                            'field_webvortex_itinerary_accommodation' => $itinerary['accommodation'],
-                            'field_webvortex_itinerary_min_persons' => $itinerary['min_persons'],
-                            'field_webvortex_itinerary_min_price' => $itinerary['min_price'],
-                            'field_webvortex_cancellation_policy' => array(
-                                'field_webvortex_policy_id' => $itinerary['cancellationPolicy']['id'],
-                                'field_webvortex_policy_charge' => $itinerary['cancellationPolicy']['charge'],
-                                'field_webvortex_policy_days_before_1' => $itinerary['cancellationPolicy']['days_before_1'],
-                                'field_webvortex_policy_days_before_2' => $itinerary['cancellationPolicy']['days_before_2'],
-                                'field_webvortex_policy_title' => $itinerary['cancellationPolicy']['title'],
-                                'field_webvortex_policy_description' => $itinerary['cancellationPolicy']['description']
-                            ),
-                            'field_webvortex_itinerary_is_event' => $itinerary['isEvent'],
-                            'field_webvortex_itinerary_difficulty' => $itinerary['difficulty'],
-                            'field_webvortex_itinerary_latitude' => $itinerary['latitude'],
-                            'field_webvortex_itinerary_longitude' => $itinerary['longitude'],
-                            'field_webvortex_itinerary_duration' => $itinerary['duration']
-                        );
+    'field_webvortex_itinerary_id' => $itinerary['id'],
+    'field_webvortex_itinerary_title' => $itinerary['title'],
+    'field_webvortex_itinerary_description' => $itinerary['description'],
+    'field_webvortex_itinerary_level' => $itinerary['level'],
+    'field_webvortex_itinerary_details' => array(
+        'field_webvortex_itinerary_included' => $included,
+        'field_webvortex_itinerary_do_not_forget' => $do_not_forget
+    ),
+    'field_webvortex_itinerary_ratings' => $ratings,
+    'field_webvortex_itinerary_min_age' => $itinerary['min_age'],
+    'field_webvortex_itinerary_spoken_languages' => $languages,
+    'field_webvortex_itinerary_booking_type' => $itinerary['bookingType'],
+    'field_webvortex_itinerary_transport' => $itinerary['transport'],
+    'field_webvortex_itinerary_allow_multiple_facilities' => $itinerary['allowSelectionOfMultipleFacilities'],
+    'field_webvortex_itinerary_accommodation' => $itinerary['accommodation'],
+    'field_webvortex_itinerary_min_persons' => $itinerary['min_persons'],
+    'field_webvortex_itinerary_min_price' => $itinerary['min_price'],
+    'field_webvortex_itinerary_cancellation_policy' => array(
+        'field_webvortex_policy_id' => $itinerary['cancellationPolicy']['id'],
+        'field_webvortex_policy_charge' => $itinerary['cancellationPolicy']['charge'],
+        'field_webvortex_policy_days_before_1' => $itinerary['cancellationPolicy']['days_before_1'],
+        'field_webvortex_policy_days_before_2' => $itinerary['cancellationPolicy']['days_before_2'],
+        'field_webvortex_policy_title' => $itinerary['cancellationPolicy']['title'],
+        'field_webvortex_policy_description' => $itinerary['cancellationPolicy']['description']
+    ),
+    'field_webvortex_itinerary_is_event' => $itinerary['isEvent'],
+    'field_webvortex_itinerary_difficulty' => $itinerary['difficulty'],
+    'field_webvortex_itinerary_latitude' => $itinerary['latitude'],
+    'field_webvortex_itinerary_longitude' => $itinerary['longitude'],
+    'field_webvortex_itinerary_duration' => $itinerary['duration']
+);
+
                     }
                     update_field('field_webvortex_itineraries', $itineraries, $post_id);
                 }

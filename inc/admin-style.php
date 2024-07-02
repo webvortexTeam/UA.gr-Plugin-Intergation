@@ -14,6 +14,7 @@ add_action('admin_menu', function() {
                     <?php _e('Αποθήκευση Style', 'unlimited-andrenaline-v2'); ?>
                 </button>
             </form>
+            <a href="">Λήψη elementor template</a>
         </div>
     
         <?php

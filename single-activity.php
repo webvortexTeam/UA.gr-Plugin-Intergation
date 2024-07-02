@@ -185,15 +185,15 @@ if (have_posts()):
                                                     </ul>
                                                 </div>
                                             <?php endif; ?>
+
                                             <div
                                                 class="cancellationModal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
                                                 <div class="bg-white p-6 rounded-lg shadow-lg">
                                                     <h3 class="text-lg font-semibold mb-4">Cancellation Policy</h3>
                                                     <div class="cancellationContent" class="text-gray-700">
-
-                                                        <h3><?php echo esc_html($itinerary['policy_title']); ?></h3>
-                                                        <p><?php echo esc_html($itinerary['policy_title']); ?></p>
-
+                                                        <h3 class="text-lg"><?php echo esc_html($itinerary['cancellation_policy']['title']); ?></h3>
+                                                                <p class="text-sm"><?php echo wp_kses_post($itinerary['cancellation_policy']['description']); ?></p>
+           
                                                     </div>
                                                     <button
                                                         class="closeModalBtn mt-4 px-4 py-2 bg-black text-white rounded">Close</button>
@@ -318,7 +318,56 @@ if (have_posts()):
             </div>
         </div>
         <script>
+         document.addEventListener('DOMContentLoaded', function () {
+                const showMoreBtn = document.getElementById('show-more-btn');
+                const photoItems = document.querySelectorAll('.photo-item');
+                const accordionTitles = document.querySelectorAll('.accordion-title');
+                const cancellationButtons = document.querySelectorAll('.cancellation-button');
+
+                if (showMoreBtn) {
+                    showMoreBtn.addEventListener('click', function () {
+                        photoItems.forEach((item, index) => {
+                            if (index >= 6) {
+                                item.classList.toggle('hidden');
+                            }
+                        });
+
+                        showMoreBtn.innerText = showMoreBtn.innerText === 'Show More' ? 'Show Less' : 'Show More';
+                    });
+                }
+
+                accordionTitles.forEach(title => {
+                    title.addEventListener('click', function () {
+                        const content = this.nextElementSibling;
+                        content.classList.toggle('hidden');
+                        this.querySelector('.accordion-icon').innerText = content.classList.contains('hidden') ? '+' : '-';
+                    });
+                });
+
+                cancellationButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        const itineraryCancellation = this.getAttribute('data-cancellation');
+
+                        const iContainer = jQuery(this).closest('.itinerary-container');
+                        const cancellationModal = iContainer.find('.cancellationModal');
+
+                        const cancellationContent = cancellationModal.find('.cancellationContent');
+                        cancellationContent.innerHTML = itineraryCancellation;
+
+                        cancellationModal.removeClass('hidden');
+                    });
+                });
+
+                jQuery('.closeModalBtn').on('click', function () {
+                    const iContainer = jQuery(this).closest('.itinerary-container');
+
+                    const cancellationModal = iContainer.find('.cancellationModal');
+
+                    cancellationModal.addClass('hidden');
+                });
+            });
 document.addEventListener('DOMContentLoaded', function () {
+
     const steps = ['step1', 'step2', 'step3', 'step4', 'step5'];
     let currentStep = 0;
     let personCount = 1;
@@ -409,6 +458,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
 const fetchAvailability = (itineraryId, startDate, endDate, calendarInstance) => {
+    // Ensure start date is today or later
     const today = new Date();
     if (startDate < today) {
         startDate = today;
@@ -461,6 +511,10 @@ const fetchAvailability = (itineraryId, startDate, endDate, calendarInstance) =>
         }
     });
 };
+
+
+
+
 
 jQuery('.bookNowBtn').on('click', (e) => {
     let activityId = jQuery(e.target).closest('article').data('id');
@@ -519,6 +573,7 @@ jQuery('.bookNowBtn').on('click', (e) => {
         let startDate = new Date(instance.currentYear, instance.currentMonth, 1);  // Always set start date to the 1st of the month
         const endDate = new Date(instance.currentYear, instance.currentMonth + 1, 0);
 
+        // Ensure start date is today or later
         const today = new Date();
         if (startDate < today) {
             startDate = today;

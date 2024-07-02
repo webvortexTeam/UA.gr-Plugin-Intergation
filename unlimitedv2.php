@@ -393,10 +393,8 @@ function adrenaline_create_pages() {
     ];
 
     foreach ($pages as $page) {
-        // Check if the page already exists by slug
         $page_check = get_page_by_path($page['slug']);
         if (!isset($page_check->ID)) {
-            // Create post object
             $new_page = [
                 'post_title' => $page['title'],
                 'post_name' => $page['slug'],
@@ -405,13 +403,11 @@ function adrenaline_create_pages() {
                 'post_type' => 'page',
             ];
 
-            // Insert the post into the database
             wp_insert_post($new_page);
         }
     }
 }
 
-// Hook into plugin activation
 register_activation_hook(__FILE__, 'adrenaline_create_pages');
 require_once MY_PLUGIN_DIR_PATH . '/includes/unlimitedv2-class-payment-pages.php'; // Payment σελίδες thank-you - failed
 require_once MY_PLUGIN_DIR_PATH . '/inc/admin-cron.php';
@@ -419,4 +415,4 @@ add_action('init', function() {
     register_activation_hook(__FILE__, 'uac_cron_activation');
     register_deactivation_hook(__FILE__, 'uac_cron_deactivation');
 });
-
+require_once MY_PLUGIN_DIR_PATH . '/includes/unlimitedv2-class-price-cheapest.php';
