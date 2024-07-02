@@ -377,6 +377,7 @@ if (have_posts()):
                     const selectedDate = itineraryContainer.find('.date-picker-container').find('.flatpickr-input').val();
                     const selectedTimeSlot = itineraryContainer.find('.time-slot-select').val();
                     const personCount = parseInt(itineraryContainer.find('.person-count').text());
+                    const step4button = itineraryContainer.find('.nextToStep4');
 
                     jQuery.ajax({
                         url: '<?php echo admin_url('admin-ajax.php'); ?>',
@@ -391,7 +392,16 @@ if (have_posts()):
                         },
                         success: function (response) {
                             if (response.success) {
-                                itineraryContainer.find('.booking-price').text(response.data.totalPrice + ' EUR');
+                                const error = response.data.error ?? null;
+                                const price = response.data.totalPrice ? response.data.totalPrice + ' €' : null;
+
+                                if(error || !price) {
+                                    step4button.attr('disabled', true);
+                                } else {
+                                    step4button.attr('disabled', false);
+                                }
+
+                                itineraryContainer.find('.booking-price').text(price ?? error ?? 'Error');
                             } else {
                                 console.log('Error: ' + response.data);
                             }
