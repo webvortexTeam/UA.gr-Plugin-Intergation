@@ -69,16 +69,16 @@ function activity_settings_page()
                             </label>
                             <input type="text" id="activity_api_key" name="activity_api_key" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" value="●●●●●●●●●●●●" />
                             <div class="absolute top-1/2 left-full ml-2 w-48 p-2 text-sm text-white bg-red-500 rounded-md shadow-lg hidden group-hover:block transform -translate-y-1/2">
-                                Εισάγετε το API key που έχετε παραλάβει απο την πλατφόρμα μας
+                                Εισάγετε το API key που έχετε παραλάβει απο την πλατφόρμα μας 
                             </div>
                         </div>
                         <div class="relative group">
                             <label for="activity_host_url" class="block text-gray-700">Σύνδεσμος API
                                 <span class="ml-2 text-gray-400 cursor-pointer" title="Εισάγετε το staging ή production URL που έχετε λάβει">[?]</span>
                             </label>
-                            <input type="text" id="activity_host_url" name="activity_host_url" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" value="<?php echo esc_attr(get_option('activity_host_url')); ?>" />
+                            <input type="text" id="activity_host_url" name="activity_host_url" placeholder="https://api-staging.unlimited-adrenaline.gr/api/ (/ στο τέλος)" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" value="<?php echo esc_attr(get_option('activity_host_url')); ?>" />
                             <div class="absolute top-1/2 left-full ml-2 w-48 p-2 text-sm text-white bg-red-500 rounded-md shadow-lg hidden group-hover:block transform -translate-y-1/2">
-                                Εισάγετε το staging ή production URL που έχετε λάβει
+                                Εισάγετε το staging ή production URL που έχετε λάβει , ΝΑ ΤΕΛΕΙΩΝΕΙ ΣΕ /
                             </div>
                         </div>
                         <div class="relative group">

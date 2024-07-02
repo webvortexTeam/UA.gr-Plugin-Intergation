@@ -273,7 +273,7 @@ if (have_posts()):
                                                             <input type="email" placeholder="Email" name="customer_email"
                                                                 id="customer_email-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>"
                                                                 class="mt-2 p-2 border rounded w-full" />
-                                                            <input type="text" placeholder="Phone Number" name="customer_phone"
+                                                            <input type="number" placeholder="Phone Number" name="customer_phone"
                                                                 id="customer_phone-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>"
                                                                 class="mt-2 p-2 border rounded w-full" />
                                                             <button
