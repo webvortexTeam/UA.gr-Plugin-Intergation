@@ -419,3 +419,19 @@ add_action('init', function() {
     register_deactivation_hook(__FILE__, 'uac_cron_deactivation');
 });
 require_once MY_PLUGIN_DIR_PATH . '/includes/unlimitedv2-class-price-cheapest.php';
+function check_max_execution_time() {
+    $max_execution_time = ini_get('max_execution_time');
+    if ($max_execution_time !== false && $max_execution_time < 120) {
+        add_action('admin_notices', 'show_max_execution_time_warning');
+    }
+}
+
+function show_max_execution_time_warning() {
+    ?>
+    <div class="notice notice-warning">
+        <p><?php _e('ΠΡΟΣΟΧΗ: Η ρύθμιση PHP max_execution_time είναι λιγότερο από 120 δευτερόλεπτα. Η εισαγωγή των δραστηριοτήτων της UNLIMITED ANDRENALINE ίσως δεν ολοκληρωθεί επιτυχώς.', 'unlimited-adrenaline-v2'); ?></p>
+    </div>
+    <?php
+}
+
+add_action('admin_init', 'check_max_execution_time');
