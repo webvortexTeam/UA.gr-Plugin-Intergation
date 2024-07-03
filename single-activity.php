@@ -44,7 +44,16 @@ if (have_posts()):
                 }
             endwhile;
         endif;
-
+        if (!empty($itineraries)) {
+            foreach ($itineraries as $itinerary) {
+                // Get reviews for each itinerary
+                if (!empty($itinerary['ratings'])) {
+                    foreach ($itinerary['ratings'] as $review) {
+                        $all_reviews[] = $review;
+                    }
+                }
+            }
+        }
         $reviews = get_field('reviews');
 
         $button_color = get_option('vortex_ua_button_color', '#000000');
@@ -115,6 +124,23 @@ echo '<style type="text/css">
 
                     <!-- Options -->
                     <div class="mt-4 lg:row-span-3 lg:mt-0">
+                       <div class="flex items-center">
+    <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+    </svg>
+    <p class="ms-2 text-sm font-bold text-gray-900 dark:text-white"> <?php echo esc_html($rating); ?> </p>
+    <span class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
+                               <?php 
+                $show_reviews = get_option('vortex_ua_show_reviews', 'yes');
+
+                if ($show_reviews === 'yes') {
+                    ?>
+    <a href="#unlimited-a-reviews" class="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white">Διαβάστε κριτικές</a>
+               <?php
+                }
+
+                ?> 
+</div>
                         <?php if (!empty($min_price)): ?>
                             <div class="mt-10">
                                 <h2 class="text-sm font-medium text-gray-900">από</h2>
@@ -123,8 +149,6 @@ echo '<style type="text/css">
                                 </div>
                             </div>
                         <?php endif; ?>
-                        <h2 class="sr-only">Πληροφορίες Δραστηριότητας</h2>
-                        <p class="text-2xl tracking-tight text-gray-900"><?php echo esc_html($rating); ?> Αστέρια</p>
 
                         <div class="mt-6">
                             <h3 class="text-lg font-medium text-gray-900">Πληροφορίες</h3>
@@ -337,13 +361,19 @@ if ($show_read_more === 'yes') {
                                         </div>
                                     <?php endforeach; ?>
                                 </div>
-                                <a id="vortex-ua-info-new-btn" class="mt-4 px-4 py-2">Απορίες & FAQ</a>
 
                             </div>
                         <?php endif; ?>
+                           <?php 
+                $show_reviews = get_option('vortex_ua_show_reviews', 'yes');
 
-                        <?php include plugin_dir_path(__FILE__) . 'single/reviews.php'; ?>
+                if ($show_reviews === 'yes') {
+                    include plugin_dir_path(__FILE__) . 'single/reviews.php';
+                }
 
+                ?>  
+                        <a id="vortex-ua-info-new-btn" class="mt-4 px-4 py-2">Επιπλέον Πληροφορίες</a>
+                        <a id="vortex-ua-info-new-btn" class="mt-4 px-4 py-2">Όροι Χρήσης</a>
                 
                     </div>
                 </article>
