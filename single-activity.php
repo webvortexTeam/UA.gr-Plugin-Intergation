@@ -98,7 +98,11 @@ echo '<style type="text/css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <?php                }
-
+$custom_html_inside_booking = get_option('vortex_ua_custom_html_inside_booking', '');
+$vortex_ua_custom_html_section_1 = get_option('vortex_ua_custom_html_section_1', '');
+$vortex_ua_custom_html_section_2 = get_option('vortex_ua_custom_html_section_2', '');
+$vortex_ua_custom_html_section_3 = get_option('vortex_ua_custom_html_section_3', '');
+$vortex_ua_custom_html_section_4 = get_option('vortex_ua_custom_html_section_4', '');
                 ?> 
 
         <div class="bg-white">
@@ -170,11 +174,14 @@ echo '<style type="text/css">
                             </div>
                         <?php endif; ?>
                         <br></br>
-                        <a href="#booktypesv" class="mt-4 px-4 py-2 vortex-ua-button text-white rounded">Κράτηση τώρα</a>
-
+                        <a href="#booktypesv" class="mt-4 px-4 py-2 vortex-ua-button text-white rounded">Ας ξεκινήσουμε</a>
+                                                            <?php if (!empty($vortex_ua_custom_html_section_2)) {
+                                                            echo wp_kses_post($vortex_ua_custom_html_section_2);
+                                                        } ?>
                     </div>
 
                     <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
+
                     <?php 
   $show_read_more = get_option('vortex_ua_show_read_more', 'yes');
 if ($show_read_more === 'yes') {
@@ -184,6 +191,9 @@ if ($show_read_more === 'yes') {
 }
 
                 ?>  
+                                                                                                <?php if (!empty($vortex_ua_custom_html_section_3)) {
+                                                            echo wp_kses_post($vortex_ua_custom_html_section_3);
+                                                        } ?>
 <?php if (!empty($itineraries)): ?>
     <div class="mt-10" id="booktypesv">
         <div class="mt-4 space-y-4">
@@ -216,7 +226,6 @@ if ($show_read_more === 'yes') {
 
                 ?>  
             
-
                                             <div
                                                 class="cancellationModal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
                                                 <div class="bg-white p-6 rounded-lg shadow-lg">
@@ -240,6 +249,9 @@ if ($show_read_more === 'yes') {
                                                     <p>Συνολική Τιμή: <span
                                                             class="booking-price"><?php echo wp_kses_post($itinerary['min_price']); ?></span>
                                                         </p> <!-- #1 change price as per booking/person -->
+                                                        <?php if (!empty($custom_html_inside_booking)) {
+                                                            echo wp_kses_post($custom_html_inside_booking);
+                                                        } ?>
                                                     <div class="bookingContent text-gray-700">
                                                         <div class="step1 booking-step">
                                                             <h4 class="text-lg font-semibold">Επιλέξτε ημερομηνία</h4>
@@ -347,8 +359,41 @@ if ($show_read_more === 'yes') {
                                                                 <h4 class="text-lg font-semibold">Επιβεβαίωση κράτησης</h4>
                                                             <p class="mt-2">Είστε σίγουροι ότι θέλετε να συνεχίσετε;</p>
                                                             <button class="backToStep4 mt-4 px-4 py-2 bg-gray-500 text-white rounded">Πίσω</button>
-                                                            <button class="confirmBooking mt-4 px-4 py-2 vortex-ua-button text-white rounded">Πληρωμή Κράτησης</button><!-- send to payment page -->
+<button class="confirmBooking mt-4 px-4 py-2 vortex-ua-button text-white rounded" id="confirmBookingButton">Πληρωμή Κράτησης</button>
+
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('confirmBookingButton').addEventListener('click', function(e) {
+        e.preventDefault();
+
+        var customerName = document.getElementById('customer_name-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>').value;
+        var customerSurname = document.getElementById('customer_surname-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>').value;
+        var customerEmail = document.getElementById('customer_email-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>').value;
+        var customerPhone = document.getElementById('customer_phone-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>').value;
+
+        var data = {
+            action: 'send_booking_email',
+            booking_nonce: '<?php echo wp_create_nonce('vortex_ua_book_notice'); ?>',
+            customer_name: customerName,
+            customer_surname: customerSurname,
+            customer_email: customerEmail,
+            customer_phone: customerPhone,
+            activity_id: '<?php echo esc_js($activity_id); ?>',
+            itinerary_id: '<?php echo esc_js($itinerary['itinerary_id']); ?>'
+        };
+
+        jQuery.post('<?php echo admin_url('admin-ajax.php'); ?>', data, function(response) {
+            if (response.success) {
+            } else {
+            }
+        });
+    });
+});
+</script>
                                                         </div>
+                                                            <?php if (!empty($vortex_ua_custom_html_section_1)) {
+                                                            echo wp_kses_post($vortex_ua_custom_html_section_1);
+                                                        } ?>
                                                     </div>
                                                     <button
                                                         class="closeBookingModalBtn absolute top-4 right-4 bg-gray-300 text-black px-2 py-1 rounded hover:bg-gray-400">X</button>
@@ -363,6 +408,10 @@ if ($show_read_more === 'yes') {
                                 </div>
 
                             </div>
+                            
+                                                                                <?php if (!empty($vortex_ua_custom_html_section_4)) {
+                                                            echo wp_kses_post($vortex_ua_custom_html_section_4);
+                                                        } ?>
                         <?php endif; ?>
                            <?php 
                 $show_reviews = get_option('vortex_ua_show_reviews', 'yes');

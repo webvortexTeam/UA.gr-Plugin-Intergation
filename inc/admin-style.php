@@ -16,14 +16,13 @@ add_action('admin_menu', function() {
             </form>
             <a href="https://github.com/webvortexTeam/UA.gr-Plugin-Intergation/raw/main/imagesRepo/template-activity.zip">Λήψη elementor template</a>
         </div>
-    
         <?php
     });
 });
 
 add_action('admin_init', function() {
     $settings = [
-        'vortex_ua_show_breadcrumbs', 'vortex_ua_show_logo', 'vortex_ua_show_read_more', 'vortex_ua_show_reviews', 'vortex_ua_show_map', 'vortex_ua_logo_url', 
+        'vortex_ua_show_breadcrumbs', 'vortex_ua_show_logo', 'vortex_ua_custom_html_inside_booking', 'vortex_ua_custom_html_section_1', 'vortex_ua_custom_html_section_2', 'vortex_ua_custom_html_section_3', 'vortex_ua_custom_html_section_4', 'vortex_ua_show_read_more', 'vortex_ua_show_reviews', 'vortex_ua_show_map', 'vortex_ua_logo_url', 
         'vortex_ua_button_color', 'vortex_ua_itinerary_bg_color'
     ];
     foreach ($settings as $setting) {
@@ -43,6 +42,7 @@ add_action('admin_init', function() {
         echo '</div>';
         echo '</div>';
     }, 'vortex_ua_styling_settings', 'vortex_ua_styling_section');
+
     add_settings_field('vortex_ua_show_read_more', 'Εμφάνιση Read More Περιγραφής', function() {
         $value = get_option('vortex_ua_show_read_more', 'yes');
         echo '<div class="flex items-center">';
@@ -52,7 +52,8 @@ add_action('admin_init', function() {
         echo '</div>';
         echo '</div>';
     }, 'vortex_ua_styling_settings', 'vortex_ua_styling_section');
-        add_settings_field('vortex_ua_show_reviews', 'Εμφάνιση Κριτικών', function() {
+
+    add_settings_field('vortex_ua_show_reviews', 'Εμφάνιση Κριτικών', function() {
         $value = get_option('vortex_ua_show_reviews', 'yes');
         echo '<div class="flex items-center">';
         echo '<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">';
@@ -61,6 +62,7 @@ add_action('admin_init', function() {
         echo '</div>';
         echo '</div>';
     }, 'vortex_ua_styling_settings', 'vortex_ua_styling_section');
+
     add_settings_field('vortex_ua_show_map', 'Εμφάνιση Χάρτη Συνάντησης', function() {
         $value = get_option('vortex_ua_show_map', 'yes');
         echo '<div class="flex items-center">';
@@ -70,6 +72,7 @@ add_action('admin_init', function() {
         echo '</div>';
         echo '</div>';
     }, 'vortex_ua_styling_settings', 'vortex_ua_styling_section');
+
     add_settings_field('vortex_ua_show_logo', 'Εμφάνιση Λογότυπου', function() {
         $value = get_option('vortex_ua_show_logo', 'yes');
         echo '<div class="flex items-center">';
@@ -96,14 +99,49 @@ add_action('admin_init', function() {
         $value = get_option('vortex_ua_itinerary_bg_color', '#f6f9fc');
         echo '<input type="text" name="vortex_ua_itinerary_bg_color" value="' . esc_attr($value) . '" class="vortex-color-picker-field border rounded p-2" data-coloris />';
     }, 'vortex_ua_styling_settings', 'vortex_ua_styling_section');
+
+    add_settings_field('vortex_ua_custom_html_inside_booking', 'HTML Booking above', function() {
+        $value = get_option('vortex_ua_custom_html_inside_booking', '');
+        echo '<textarea id="vortex_ua_custom_html_inside_booking" name="vortex_ua_custom_html_inside_booking" rows="10" class="large-text code">'. esc_textarea($value) .'</textarea>';
+        echo '<p>Εισάγετε το HTML που θέλετε να εμφανίζεται στο πάνω μέρος πάνω του booking popup.</p>';
+    }, 'vortex_ua_styling_settings', 'vortex_ua_styling_section');
+
+    add_settings_field('vortex_ua_custom_html_section_1', 'HTML Booking below', function() {
+        $value = get_option('vortex_ua_custom_html_section_1', '');
+        echo '<textarea id="vortex_ua_custom_html_section_1" name="vortex_ua_custom_html_section_1" rows="10" class="large-text code">'. esc_textarea($value) .'</textarea>';
+        echo '<p>Εισάγετε το HTML που θέλετε να εμφανίζεται στο κάτω μέρος πάνω του booking popup.</p>';
+    }, 'vortex_ua_styling_settings', 'vortex_ua_styling_section');
+
+    add_settings_field('vortex_ua_custom_html_section_2', 'HTML Below Ας ξεκινήσουμε', function() {
+        $value = get_option('vortex_ua_custom_html_section_2', '');
+        echo '<textarea id="vortex_ua_custom_html_section_2" name="vortex_ua_custom_html_section_2" rows="10" class="large-text code">'. esc_textarea($value) .'</textarea>';
+        echo '<p>Εισάγετε το HTML που θέλετε να εμφανίζεται στο κάτω μέρος πάνω του κουμπιού Ας ξεκινήσουμε.</p>';
+    }, 'vortex_ua_styling_settings', 'vortex_ua_styling_section');
+
+    add_settings_field('vortex_ua_custom_html_section_3', 'HTML Above Itineraries', function() {
+        $value = get_option('vortex_ua_custom_html_section_3', '');
+        echo '<textarea id="vortex_ua_custom_html_section_3" name="vortex_ua_custom_html_section_3" rows="10" class="large-text code">'. esc_textarea($value) .'</textarea>';
+        echo '<p>Εισάγετε το HTML που θέλετε να εμφανίζεται στο πάνω μέρος των Itinerary.</p>';
+    }, 'vortex_ua_styling_settings', 'vortex_ua_styling_section');
+
+    add_settings_field('vortex_ua_custom_html_section_4', 'HTML Below Itineraries', function() {
+        $value = get_option('vortex_ua_custom_html_section_4', '');
+        echo '<textarea id="vortex_ua_custom_html_section_4" name="vortex_ua_custom_html_section_4" rows="10" class="large-text code">'. esc_textarea($value) .'</textarea>';
+        echo '<p>Εισάγετε το HTML που θέλετε να εμφανίζεται στο κάτω μέρος των Itinerary.</p>';
+    }, 'vortex_ua_styling_settings', 'vortex_ua_styling_section');
+
 });
+
 add_action('admin_enqueue_scripts', function($hook_suffix) {
-    
+    wp_enqueue_script('medium-editor-js', 'https://cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js', [], null, true);
+    wp_enqueue_style('medium-editor-css', 'https://cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css');
+
     wp_enqueue_style('coloris-css', 'https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.css');
-    wp_enqueue_script('coloris-js', 'https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.js', [], false, true);
-    
+    wp_enqueue_script('coloris-js', 'https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.js', [], null, true);
+
     wp_enqueue_media();
-    
+
+    // Inline script for initializing MediumEditor and Coloris
     wp_add_inline_script('coloris-js', '
         document.addEventListener("DOMContentLoaded", function() {
             Coloris({
@@ -113,7 +151,7 @@ add_action('admin_enqueue_scripts', function($hook_suffix) {
                 alpha: true,
                 format: "hex"
             });
-            
+
             jQuery("#upload_logo_button").on("click", function(e) {
                 e.preventDefault();
                 var custom_uploader = wp.media({
@@ -126,7 +164,34 @@ add_action('admin_enqueue_scripts', function($hook_suffix) {
                     jQuery("#logo_preview").attr("src", attachment.url);
                 }).open();
             });
+
+            var editorOptions = {
+                toolbar: {
+                    allowMultiParagraphSelection: true,
+                    buttons: ["bold", "italic", "underline", "anchor", "h2", "h3", "quote", "html"],
+                    diffLeft: 0,
+                    diffTop: -10,
+                    firstButtonClass: "medium-editor-button-first",
+                    lastButtonClass: "medium-editor-button-last",
+                    relativeContainer: null,
+                    standardizeSelectionStart: false,
+                    static: false,
+                    align: "center",
+                    sticky: false,
+                    updateOnEmptySelection: false
+                },
+                placeholder: {
+                    text: "Εισάγετε το html content σας εδώ"
+                }
+            };
+
+            var editor = new MediumEditor("#vortex_ua_custom_html_inside_booking", editorOptions);
+            var editor1 = new MediumEditor("#vortex_ua_custom_html_section_1", editorOptions);
+            var editor2 = new MediumEditor("#vortex_ua_custom_html_section_2", editorOptions);
+            var editor3 = new MediumEditor("#vortex_ua_custom_html_section_3", editorOptions);
+            var editor4 = new MediumEditor("#vortex_ua_custom_html_section_4", editorOptions);
         });
     ');
 });
 
+?>
