@@ -79,9 +79,18 @@ echo '<style type="text/css">
     }
 </style>';
 ?>
-        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<?php 
+                $show_map = get_option('vortex_ua_show_map', 'yes');
+
+                if ($show_map === 'yes') {
+?>
+
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<?php                }
+
+                ?> 
 
         <div class="bg-white">
             <div class="pt-6">
@@ -142,13 +151,8 @@ echo '<style type="text/css">
                     </div>
 
                     <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
-                        <!-- Description -->
-                        <div>
-                            <h3 class="sr-only">Περιγραφή</h3>
-                            <div class="space-y-6 text-base text-gray-900">
-                                <?php echo wp_kses_post($description); ?>
-                            </div>
-                        </div>
+                    <?php include plugin_dir_path(__FILE__) . 'single/perigrafi.php'; ?>
+
 <?php if (!empty($itineraries)): ?>
     <div class="mt-10" id="booktypesv">
         <div class="mt-4 space-y-4">

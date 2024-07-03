@@ -23,7 +23,7 @@ add_action('admin_menu', function() {
 
 add_action('admin_init', function() {
     $settings = [
-        'vortex_ua_show_breadcrumbs', 'vortex_ua_show_logo', 'vortex_ua_show_map', 'vortex_ua_logo_url', 
+        'vortex_ua_show_breadcrumbs', 'vortex_ua_show_logo', 'vortex_ua_show_read_more', 'vortex_ua_show_map', 'vortex_ua_logo_url', 
         'vortex_ua_button_color', 'vortex_ua_itinerary_bg_color'
     ];
     foreach ($settings as $setting) {
@@ -40,6 +40,15 @@ add_action('admin_init', function() {
         echo '<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">';
         echo '<input type="checkbox" id="vortex_ua_show_breadcrumbs" name="vortex_ua_show_breadcrumbs" value="yes"' . checked('yes', $value, false) . ' class="vortex-toggle-ua-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" />';
         echo '<label for="vortex_ua_show_breadcrumbs" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>';
+        echo '</div>';
+        echo '</div>';
+    }, 'vortex_ua_styling_settings', 'vortex_ua_styling_section');
+    add_settings_field('vortex_ua_show_read_more', 'Εμφάνιση Read More Περιγραφής', function() {
+        $value = get_option('vortex_ua_show_read_more', 'yes');
+        echo '<div class="flex items-center">';
+        echo '<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">';
+        echo '<input type="checkbox" id="vortex_ua_show_read_more" name="vortex_ua_show_read_more" value="yes"' . checked('yes', $value, false) . ' class="vortex-toggle-ua-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" />';
+        echo '<label for="vortex_ua_show_read_more" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>';
         echo '</div>';
         echo '</div>';
     }, 'vortex_ua_styling_settings', 'vortex_ua_styling_section');
