@@ -1,8 +1,3 @@
-<?php 
-                $show_map = get_option('vortex_ua_show_read_more', 'yes');
-
-                if ($show_map === 'yes') {
-?>
 <div>
     <h3 class="sr-only">Περιγραφή</h3>
     <div id="vortex-ua-description-container" class="relative max-h-[200px] overflow-hidden">
@@ -54,23 +49,3 @@
 </style>
 
 
-<?php                } else {
-?>
-
-
-
-<?php
-
-
-}
-
-                ?>  
-
-<h3 class="sr-only">Περιγραφή</h3>
-                            <div class="space-y-6 text-base text-gray-900">
-                                <?php echo wp_kses_post($description); ?>
-                            </div>
-                        </div>
-
-
-<div>
