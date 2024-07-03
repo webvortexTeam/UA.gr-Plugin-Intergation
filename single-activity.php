@@ -122,6 +122,18 @@ $vortex_ua_custom_html_section_4 = get_option('vortex_ua_custom_html_section_4',
                 <article data-id="<?php echo esc_attr($activity_id); ?>"
                     class="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
                     <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
+                                              <?php
+$post_id = get_the_ID(); 
+$terms = wp_get_post_terms( $post_id, 'activity_category' );
+
+if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+    foreach ( $terms as $term ) {
+        echo '<a href="' . esc_url( get_term_link( $term->term_id ) ) . '">' . esc_html( $term->name ) . '</a><br>';
+    }
+} else {
+    echo 'Δεν βρέθηκαν κατηγορίες';
+}
+?>
                         <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl"><?php echo esc_html($title); ?>
                         </h1>
                     </div>
@@ -133,8 +145,11 @@ $vortex_ua_custom_html_section_4 = get_option('vortex_ua_custom_html_section_4',
         <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
     </svg>
     <p class="ms-2 text-sm font-bold text-gray-900 dark:text-white"> <?php echo esc_html($rating); ?> </p>
+    
     <span class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
+
                                <?php 
+                               
                 $show_reviews = get_option('vortex_ua_show_reviews', 'yes');
 
                 if ($show_reviews === 'yes') {
@@ -152,16 +167,9 @@ $vortex_ua_custom_html_section_4 = get_option('vortex_ua_custom_html_section_4',
                                     <?php echo wp_kses_post($min_price); ?> €
                                 </div>
                             </div>
+  
                         <?php endif; ?>
 
-                        <div class="mt-6">
-                            <h3 class="text-lg font-medium text-gray-900">Πληροφορίες</h3>
-                            <div class="mt-4 space-y-2 text-sm text-gray-700">
-                                <p>
-                                    <stron g>Ενεργοί μήνες:</strong> <?php echo esc_html($active_months); ?>
-                                </p>
-                            </div>
-                        </div>
                         <?php include plugin_dir_path(__FILE__) . 'single/faq-popup.php'; ?>
 
 
@@ -203,16 +211,22 @@ if ($show_read_more === 'yes') {
                     <div class="itinerary-header flex justify-between items-center cursor-pointer p-2" data-index="<?php echo $index; ?>">
                         <h4 class="text-lg font-semibold">
                             <?php  echo esc_html($itinerary['title'] ?? $title); ?>
+
                         </h4>
                         <div class="itinerary-price">Από <?php echo esc_html($itinerary['min_price'] ?? ''); ?> €</div>
                     </div>
+                    
                     <div class="itinerary-content <?php echo count($itineraries) > 1 ? 'hidden' : ''; ?> mt-4 p-4">
+                            <p>ID δραστηριότητας: <?php echo esc_html($itinerary['itinerary_id']); ?></p>
+
                         <div class="prose max-w-none mb-2 mt-4 text-gray-700">
                             <?php echo wp_kses_post($itinerary['description'] ?? ''); ?>
                         </div>
                         <p><strong>Ελάχιστα Άτομα:</strong> <?php echo esc_html($itinerary['min_persons'] ?? ''); ?></p>
                         <p><strong>Ελάχιστη Ηλικία:</strong> <?php echo esc_html($itinerary['min_age'] ?? ''); ?></p>
                         <p><strong>Διάρκεια:</strong> <?php echo esc_html($itinerary['duration'] ?? ''); ?></p>
+                         <p><strong>Ενεργοί μήνες:</strong> <?php echo esc_html($active_months); ?></p>
+
                         <?php include plugin_dir_path(__FILE__) . 'single/itinerary-we-speak.php'; ?>
 
                                             <?php include plugin_dir_path(__FILE__) . 'single/itinerary-included.php'; ?>
@@ -409,6 +423,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
                             </div>
                             
+                        <a id="vortex-ua-info-new-btn" class="mt-4 px-4 py-2">Επιπλέον Πληροφορίες</a> <br></br>
+                        <a href="https://www.unlimited-adrenaline.gr/terms-of-use" target="_blank" class="mt-4 px-4 py-2">Όροι Χρήσης ↗</a>
+                
                                                                                 <?php if (!empty($vortex_ua_custom_html_section_4)) {
                                                             echo wp_kses_post($vortex_ua_custom_html_section_4);
                                                         } ?>
@@ -421,9 +438,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
                 ?>  
-                        <a id="vortex-ua-info-new-btn" class="mt-4 px-4 py-2">Επιπλέον Πληροφορίες</a>
-                        <a id="vortex-ua-info-new-btn" class="mt-4 px-4 py-2">Όροι Χρήσης</a>
-                
                     </div>
                 </article>
             </div>
