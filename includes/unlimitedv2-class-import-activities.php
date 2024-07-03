@@ -110,7 +110,7 @@ function unlimited_andrenaline_import_activities()
 
     foreach ($batches as $batch) {
         foreach ($batch as $activity) {
-            $activity_title = wp_strip_all_tags($activity['id'] . ' - ' . $activity['title']);
+            $activity_title = $activity['title'];
 
             // Έλεγχος εάν η δραστηριότητα ήδη υπάρχει
             $existing_post = get_posts(
@@ -210,10 +210,11 @@ function unlimited_andrenaline_import_activities()
                                 );
                             }
                         }
+                        $itinerary_title = !empty($itinerary['title']) ? $itinerary['title'] : $activity_title;
 
                         $itineraries[] = array(
     'field_webvortex_itinerary_id' => $itinerary['id'],
-    'field_webvortex_itinerary_title' => $itinerary['title'],
+    'field_webvortex_itinerary_title' => $itinerary_title,
     'field_webvortex_itinerary_description' => $itinerary['description'],
     'field_webvortex_itinerary_level' => $itinerary['level'],
     'field_webvortex_itinerary_details' => array(

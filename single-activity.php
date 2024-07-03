@@ -176,6 +176,7 @@ if ($show_read_more === 'yes') {
                         <div class="prose max-w-none mb-2 mt-4 text-gray-700">
                             <?php echo wp_kses_post($itinerary['description'] ?? ''); ?>
                         </div>
+                        <p><strong>Ελάχιστα Άτομα:</strong> <?php echo esc_html($itinerary['min_persons'] ?? ''); ?></p>
                         <p><strong>Ελάχιστη Ηλικία:</strong> <?php echo esc_html($itinerary['min_age'] ?? ''); ?></p>
                         <p><strong>Διάρκεια:</strong> <?php echo esc_html($itinerary['duration'] ?? ''); ?></p>
                         <?php include plugin_dir_path(__FILE__) . 'single/itinerary-we-speak.php'; ?>
@@ -313,7 +314,7 @@ if ($show_read_more === 'yes') {
                                                                 <p><strong>Ημερομηνία:</strong> <span id="summary-date"></span></p>
                                                                 <p><strong>Ώρα:</strong> <span id="summary-time"></span></p>
                                                                 <p><strong>Άτομα:</strong> <span id="summary-persons"></span></p>
-                                                                <p><strong>Εγκαταστάσεις:</strong> <span id="summary-facilities"></span></p>
+                                                                <p><strong>Έξτρα Παροχές:</strong> <span id="summary-facilities"></span></p>
                                                                 <p><strong>Όνομα:</strong> <span id="summary-name"></span></p>
                                                                 <p><strong>Επίθετο:</strong> <span id="summary-surname"></span></p>
                                                                 <p><strong>Email:</strong> <span id="summary-email"></span></p>
