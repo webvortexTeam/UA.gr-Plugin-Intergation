@@ -1,4 +1,9 @@
 
+<?php
+if (!defined('ABSPATH')) {
+    exit; // Exit if accessed directly.
+}
+?>
 <?php if (!empty($itinerary['details']['do_not_forget'])): ?>
                                                 <div class="mt-4">
                                                     <h5 class="text-lg font-semibold">Μην ξεχάσετε</h5>

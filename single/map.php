@@ -1,3 +1,8 @@
+<?php
+if (!defined('ABSPATH')) {
+    exit; // Exit if accessed directly.
+}
+?>
 <div id="map-<?php echo $index; ?>" style="height: 400px; width: 100%; z-index: 0 !important;"></div>
 <style>
 #map {

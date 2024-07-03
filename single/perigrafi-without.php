@@ -1,3 +1,8 @@
+<?php
+if (!defined('ABSPATH')) {
+    exit; // Exit if accessed directly.
+}
+?>
 <div>
                             <h3 class="sr-only">Περιγραφή</h3>
                             <div class="space-y-6 text-base text-gray-900">

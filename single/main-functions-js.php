@@ -1,3 +1,8 @@
+<?php
+if (!defined('ABSPATH')) {
+    exit; // Exit if accessed directly.
+}
+?>
 <script>
          document.addEventListener('DOMContentLoaded', function () {
                 const showMoreBtn = document.getElementById('show-more-btn');

@@ -1,3 +1,8 @@
+<?php
+if (!defined('ABSPATH')) {
+    exit; // Exit if accessed directly.
+}
+?>
 <div id="unlimited-a-reviews" class="reviews-section bg-white p-6 rounded-lg">
     <h2 class="text-2xl font-bold mb-4">Κριτικές</h2>
     <?php if (!empty($all_reviews)): ?>

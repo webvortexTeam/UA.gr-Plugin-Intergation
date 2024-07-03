@@ -1,3 +1,8 @@
+<?php
+if (!defined('ABSPATH')) {
+    exit; // Exit if accessed directly.
+}
+?>
 <div id="vortex-ua-info-new-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
                             <div class="bg-white p-6 rounded-lg shadow-lg">
                                 <h3 class="text-lg font-semibold mb-4">Απορίες & FAQ</h3>

@@ -1,3 +1,8 @@
+<?php
+if (!defined('ABSPATH')) {
+    exit; // Exit if accessed directly.
+}
+?>
 <div class="mt-4">
                             <h5 class="text-lg font-semibold">Μιλάμε</h5>
                             <ul class="list-disc list-inside">

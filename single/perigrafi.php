@@ -1,3 +1,8 @@
+<?php
+if (!defined('ABSPATH')) {
+    exit; // Exit if accessed directly.
+}
+?>
 <div>
     <h3 class="sr-only">Περιγραφή</h3>
     <div id="vortex-ua-description-container" class="relative max-h-[200px] overflow-hidden">
