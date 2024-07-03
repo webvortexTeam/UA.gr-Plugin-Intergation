@@ -151,17 +151,13 @@ echo '<style type="text/css">
                     </div>
 
                     <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
-                    <?php include plugin_dir_path(__FILE__) . 'single/perigrafi.php'; ?>
                     <?php 
-                        $show_read_more = get_option('vortex_ua_show_read_more', 'yes');
-
-                        if ($show_read_more === 'yes') {
-                            include plugin_dir_path(__FILE__) . 'single/perigrafi.php';
-                        } elseif ($show_read_more === 'no') {
-                            include plugin_dir_path(__FILE__) . 'single/perigrafi-without.php';
-                        } else {
-                            echo '<p>Invalid value for vortex_ua_show_read_more</p>';
-                        }
+  $show_read_more = get_option('vortex_ua_show_read_more', 'yes');
+if ($show_read_more === 'yes') {
+    include plugin_dir_path(__FILE__) . 'single/perigrafi.php';
+} else {
+    include plugin_dir_path(__FILE__) . 'single/perigrafi-without.php';
+}
 
                 ?>  
 <?php if (!empty($itineraries)): ?>
