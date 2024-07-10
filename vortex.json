@@ -322,6 +322,27 @@
                         "parent_repeater": "field_webvortex_itineraries"
                     },
                     {
+                        "key": "field_webvortex_itinerary_location_text",
+                        "label": "Location text",
+                        "name": "Location",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "Enter the location of the itinerary",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": "",
+                        "parent_repeater": "field_webvortex_itineraries"
+                    },
+                    {
                         "key": "field_webvortex_itinerary_description",
                         "label": "Description",
                         "name": "description",

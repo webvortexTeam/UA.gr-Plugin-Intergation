@@ -59,39 +59,110 @@ function activity_settings_page()
 
             </div>
             <div class="md:w-1/2 bg-gray-100 p-6 rounded-lg">
+            <div class="space-y-4">
+            <?php
+     $max_execution_time = ini_get('max_execution_time');
+    if ($max_execution_time !== false && $max_execution_time < 280) {
+?>
+
+<p class="bg-gray-500 text-white">❌Προσοχή: Το max_execution_time είναι λιγότερο του 80, εάν έχετε πολλές δραστηριότητες ή αδύναμο διακομιστή τότε ίσως αντιμετωπίσετε προβλήματα κατά την εισαγωγή.</p>
+
+<?php
+
+    }
+            
+            
+            
+            
+            
+             ?>
+        <div class="flex items-center space-x-4 bg-gray-200 rounded-lg">
+            <span class="text-lg blur-sm">#1</span>
+                        <?php
+            if ( ! function_exists('acf_pro_get_license') ) {
+                    ?>
+                    <p>Το ACF PRO δεν είναι εγκαταστημένο, παρακάλω κάντε το εγκατάσταση δωρεάν <a href="/wp-admin/plugins.php?page=tgmpa-install-plugins">ΕΔΩ(/wp-admin/plugins.php?page=tgmpa-install-plugins)</a></p>
+                    <span class="inline-blocktext-white text-sm px-2 py-1 rounded-full">❌</span>
+
+                    <?php
+                } else {
+                    ?>
+                    <p>Το ACF PRO είναι εγκαταστημένο, μην ξεχάσετε να βάλετε το key σας  <a href="/wp-admin/edit.php?post_type=acf-field-group&page=acf-settings-updates">ΕΔΩ(/wp-admin/edit.php?post_type=acf-field-group&page=acf-settings-updates)</a> </p>
+
+            <span class="inline-blocktext-white text-sm px-2 py-1 rounded-full">✅</span>
+
+                    
+                    <?php
+
+                }
+                         
+                        
+                        ?>
+                     </div>
+        <div class="flex items-center space-x-4 bg-gray-200 rounded-lg">
+            <span class="text-lg">#2</span>
+            <?php
+            
+              $api_key = get_option('activity_api_key');
+            $host_url = get_option('activity_host_url');
+            $api_locale = get_option('activity_api_locale');
+            $host_url_label = get_option('activity_host_url_label');
+            $api_ok_host = get_option('activity_api_ok_host');
+            $api_fail_host = get_option('activity_api_fail_host');
+
+            if (empty($api_key) || empty($host_url) || empty($api_locale) || empty($host_url_label) || empty($api_ok_host) || empty($api_fail_host)) {
+        ?>
+                <p>Συμπληρώστε όλα τα στοιχεία παρακάτω, εάν δεν γνωρίζετε κάποιο επικοινωνήστε μαζί μας. </p>
+
+                    <span class="inline-blocktext-white text-sm px-2 py-1 rounded-full">❌</span>
+
+        <?php
+            } else {
+                            ?>
+                            <p>Όλα τα στοιχεία είναι συμπληρωμένα, βεβαιωθείτε οτι είναι σωστά. </p>
+                    <span class="inline-blocktext-white text-sm px-2 py-1 rounded-full">✅</span>
+
+                            
+                            <?php
+
+                        }
+            
+             ?>
+        </div>
+    </div>
                 <form method="post" action="options.php" class="space-y-6">
                     <?php settings_fields('activity-settings-group'); ?>
                     <?php do_settings_sections('activity-settings-group'); ?>
                     <div class="space-y-4">
                         <div class="relative group">
-                            <label for="activity_api_key" class="block text-gray-700">API Κλειδί
+                            <label for="activity_api_key" class="block text-gray-700">API Κλειδί*
                                 <span class="ml-2 text-gray-400 cursor-pointer" title="Εισάγετε το API key που έχετε παραλάβει απο την πλατφόρμα μας">[?]</span>
                             </label>
-                            <input type="text" id="activity_api_key" name="activity_api_key" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" value="●●●●●●●●●●●●" />
+                            <input type="text" id="activity_api_key" name="activity_api_key" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" value="<?php echo esc_attr(get_option('activity_api_key')); ?>" required/>
                             <div class="absolute top-1/2 left-full ml-2 w-48 p-2 text-sm text-white bg-red-500 rounded-md shadow-lg hidden group-hover:block transform -translate-y-1/2">
                                 Εισάγετε το API key που έχετε παραλάβει απο την πλατφόρμα μας 
                             </div>
                         </div>
                         <div class="relative group">
-                            <label for="activity_host_url" class="block text-gray-700">Σύνδεσμος API
+                            <label for="activity_host_url" class="block text-gray-700">Σύνδεσμος API*
                                 <span class="ml-2 text-gray-400 cursor-pointer" title="Εισάγετε το staging ή production URL που έχετε λάβει">[?]</span>
                             </label>
-                            <input type="text" id="activity_host_url" name="activity_host_url" placeholder="https://api-staging.unlimited-adrenaline.gr/api/ (/ στο τέλος)" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" value="<?php echo esc_attr(get_option('activity_host_url')); ?>" />
+                            <input type="text" id="activity_host_url" name="activity_host_url" placeholder="https://api-staging.unlimited-adrenaline.gr/api/ (/ στο τέλος)" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" value="<?php echo esc_attr(get_option('activity_host_url')); ?>" required/>
                             <div class="absolute top-1/2 left-full ml-2 w-48 p-2 text-sm text-white bg-red-500 rounded-md shadow-lg hidden group-hover:block transform -translate-y-1/2">
                                 Εισάγετε το staging ή production URL που έχετε λάβει , ΝΑ ΤΕΛΕΙΩΝΕΙ ΣΕ /
                             </div>
                         </div>
                         <div class="relative group">
-                            <label for="activity_host_url_label" class="block text-gray-700">Whitelabel ID
+                            <label for="activity_host_url_label" class="block text-gray-700">Whitelabel ID*
                                 <span class="ml-2 text-gray-400 cursor-pointer" title="Εισάγετε το whitelabel ID σας">[?]</span>
                             </label>
-                            <input type="text" id="activity_host_url_label" name="activity_host_url_label" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" value="●●●" />
+                            <input type="text" id="activity_host_url_label" name="activity_host_url_label" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" value="<?php echo esc_attr(get_option('activity_host_url_label')); ?>" required/>
                             <div class="absolute top-1/2 left-full ml-2 w-48 p-2 text-sm text-white bg-red-500 rounded-md shadow-lg hidden group-hover:block transform -translate-y-1/2">
                                 Εισάγετε το whitelabel ID σας
                             </div>
                         </div>
                         <div class="relative group">
-                            <label for="activity_api_locale" class="block text-gray-700">Γλώσσα Εισαγωγής
+                            <label for="activity_api_locale" class="block text-gray-700">Γλώσσα Εισαγωγής*
                                 <span class="ml-2 text-gray-400 cursor-pointer" title="Select API locale">[?]</span>
                             </label>
                             <select id="activity_api_locale" name="activity_api_locale" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500">
@@ -127,6 +198,50 @@ function activity_settings_page()
                         </button>
 
                 </form>
+        <div class="flex items-center space-x-4 bg-gray-200 rounded-lg">
+            <span class="text-lg">#3</span>
+            <?php
+            
+              $api_key = get_option('activity_api_key');
+            $host_url = get_option('activity_host_url');
+            $api_locale = get_option('activity_api_locale');
+            $host_url_label = get_option('activity_host_url_label');
+            $api_ok_host = get_option('activity_api_ok_host');
+            $api_fail_host = get_option('activity_api_fail_host');
+
+            if (empty($api_key) || empty($host_url) || empty($api_locale) || empty($host_url_label) || empty($api_ok_host) || empty($api_fail_host)) {
+        ?>
+                <p>Συμπληρώστε όλα τα στοιχεία για να γίνει εισαγωγή </p>
+
+                    <span class="inline-blocktext-white text-sm px-2 py-1 rounded-full">❌</span>
+
+        <?php
+            } else {
+                            ?>
+                                          <form method="post" action="" class="flex flex-col">
+                        <input type="hidden" name="unlimited_andrenaline_import_activities" value="1">
+                        
+                        <button type="submit" class="py-2 px-4 bg-red-500 hover:bg-red-600 rounded-lg text-white font-semibold transition-colors duration-300">ΕΙΣΑΓΩΓΗ / ΑΝΑΝΕΩΣΗ</button>
+                    </form>
+                    <?php
+                    if (isset($_POST['unlimited_andrenaline_import_activities'])) {
+                        unlimited_andrenaline_import_activities();
+                    }
+                    ?>
+                    <div id="import-progress" class="mt-6">
+                        <p class="text-lg"><strong>Δραστηριότητες που βρέθηκαν:</strong> <span id="activities-found" class="text-red-500"><?php echo get_option('activities_found', 0); ?></span></p>
+                        <p> Αποθηκεύστε μια φορά τα permanlinks σας εδώ <a href="/wp-admin/options-permalink.php">/wp-admin/options-permalink.php</a> </p>
+                    </div>
+                    <span class="inline-blocktext-white text-sm px-2 py-1 rounded-full">✅</span>
+
+                            
+                            <?php
+
+                        }
+            
+             ?>
+        </div>
+
             </div>
         </div>
     </div>

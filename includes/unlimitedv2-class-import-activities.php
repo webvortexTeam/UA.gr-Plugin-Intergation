@@ -216,6 +216,7 @@ function unlimited_andrenaline_import_activities()
     'field_webvortex_itinerary_id' => $itinerary['id'],
     'field_webvortex_itinerary_title' => $itinerary_title,
     'field_webvortex_itinerary_description' => $itinerary['description'],
+    'field_webvortex_itinerary_location_text' => $itinerary['meetingPointArea'],
     'field_webvortex_itinerary_level' => $itinerary['level'],
     'field_webvortex_itinerary_details' => array(
         'field_webvortex_itinerary_included' => $included,
@@ -244,7 +245,15 @@ function unlimited_andrenaline_import_activities()
     'field_webvortex_itinerary_longitude' => $itinerary['longitude'],
     'field_webvortex_itinerary_duration' => $itinerary['duration']
 );
-
+if (!empty($itinerary['meetingPointArea'])) {
+    $location_term = term_exists($itinerary['meetingPointArea'], 'activity_location');
+    if (!$location_term) {
+        $location_term = wp_insert_term($itinerary['meetingPointArea'], 'activity_location');
+    }
+    if (!is_wp_error($location_term)) {
+        wp_set_post_terms($post_id, array(intval($location_term['term_id'])), 'activity_location', true);
+    }
+}
                     }
                     update_field('field_webvortex_itineraries', $itineraries, $post_id);
                 }
@@ -316,5 +325,19 @@ function create_activity_category_taxonomy() {
     );
 }
 add_action( 'init', 'create_activity_category_taxonomy' );
+
+
+function create_activity_location_taxonomy() {
+    register_taxonomy(
+        'activity_location',
+        'activity',
+        array(
+            'label' => __( 'Activity Location' ),
+            'rewrite' => array( 'slug' => 'activity-location' ),
+            'hierarchical' => true,
+        )
+    );
+}
+add_action( 'init', 'create_activity_location_taxonomy' );
 
 ?>
