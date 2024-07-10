@@ -3,7 +3,7 @@
 Plugin Name: Unlimited Adrenaline V2
 Plugin URI: https://github.com/webvortexTeam/UA.gr-Plugin-Intergation
 Description: API διασύνδεση με τις δραστηριότητες της Unlimited Andrenaline
-Version: 1.0
+Version: 1.1.1
 Author: WebVortex
 Author URI: https://www.webvortex.org
 Text Domain: unlimited-adrenaline-v2
