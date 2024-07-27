@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const steps = ['step1', 'step2', 'step3', 'step4', 'step5'];
     let currentStep = 0;
-    let personCount = 1;
+    let personCount = 0;
 
     const showStep = (step, itineraryId) => {
         const itineraryContainer = jQuery('.itinerary-container[data-id="' + itineraryId + '"]');
@@ -93,45 +93,52 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     const updatePricing = (itineraryId) => {
-        const itineraryContainer = jQuery('.itinerary-container[data-id="' + itineraryId + '"]');
-        const selectedFacilities = itineraryContainer.find('.facilities-select').val();
-        const selectedDate = itineraryContainer.find('.date-picker-container').find('.flatpickr-input').val();
-        const selectedTimeSlot = itineraryContainer.find('.time-slot-select').val();
-        const personCount = parseInt(itineraryContainer.find('.person-count').text());
-        const step4button = itineraryContainer.find('.nextToStep4');
+    const itineraryContainer = jQuery('.itinerary-container[data-id="' + itineraryId + '"]');
+    const selectedFacilities = itineraryContainer.find('.facilities-select').val();
+    const selectedDate = itineraryContainer.find('.date-picker-container').find('.flatpickr-input').val();
+    const selectedTimeSlot = itineraryContainer.find('.time-slot-select').val();
+    
+    // Explicitly set personCount to 1 if it is not valid
+    let personCount = parseInt(itineraryContainer.find('.person-count').text());
+    if (isNaN(personCount) || personCount <= 0) {
+        personCount = 1;
+    }
 
-        jQuery.ajax({
-            url: '<?php echo admin_url('admin-ajax.php'); ?>',
-            type: 'POST',
-            data: {
-                action: 'get_latest_pricing',
-                itinerary_id: itineraryId,
-                person_count: personCount,
-                facilities: selectedFacilities,
-                date: selectedDate,
-                time_slot: selectedTimeSlot,
-            },
-            success: function (response) {
-                if (response.success) {
-                    const error = response.data.error ?? null;
-                    const price = response.data.totalPrice ? response.data.totalPrice + ' €' : null;
+    const step4button = itineraryContainer.find('.nextToStep4');
 
-                    if(error || !price) {
-                        step4button.attr('disabled', true);
-                    } else {
-                        step4button.attr('disabled', false);
-                    }
+    jQuery.ajax({
+        url: '<?php echo admin_url('admin-ajax.php'); ?>',
+        type: 'POST',
+        data: {
+            action: 'get_latest_pricing',
+            itinerary_id: itineraryId,
+            person_count: personCount,
+            facilities: selectedFacilities,
+            date: selectedDate,
+            time_slot: selectedTimeSlot,
+        },
+        success: function (response) {
+            if (response.success) {
+                const error = response.data.error ?? null;
+                const price = response.data.totalPrice ? response.data.totalPrice + ' €' : null;
 
-                    itineraryContainer.find('.booking-price').text(price ?? error ?? 'Error');
+                if (error || !price) {
+                    step4button.attr('disabled', true);
                 } else {
-                    console.log('Error: ' + response.data);
+                    step4button.attr('disabled', false);
                 }
-            },
-            error: function (error) {
-                console.log('AJAX Error: ', error);
+
+                itineraryContainer.find('.booking-price').text(price ?? error ?? 'Error');
+            } else {
+                console.log('Error: ' + response.data);
             }
-        });
-    };
+        },
+        error: function (error) {
+            console.log('AJAX Error: ', error);
+        }
+    });
+};
+
 
     const checkout = (itineraryId, customerDetails) => {
         const itineraryContainer = jQuery('.itinerary-container[data-id="' + itineraryId + '"]');

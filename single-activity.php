@@ -261,7 +261,7 @@ if ($show_read_more === 'yes') {
                                                 
                                                     <h3 class="text-lg font-semibold mb-4">Είστε 5 βήματα μακριά!</h3>
                                                     <p>Συνολική Τιμή: <span
-                                                            class="booking-price"><?php echo wp_kses_post($itinerary['min_price']); ?></span>
+                                                            class="booking-price"></span>
                                                         </p> <!-- #1 change price as per booking/person -->
                                                         <?php if (!empty($custom_html_inside_booking)) {
                                                             echo wp_kses_post($custom_html_inside_booking);
@@ -300,7 +300,7 @@ if ($show_read_more === 'yes') {
                                                             <div class="flex items-center space-x-4">
                                                                 <button
                                                                     class="decrease-btn bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">-</button>
-                                                                <span class="person-count text-2xl font-semibold">1</span>
+                                                                <span class="person-count text-2xl font-semibold">0</span>
                                                                 <button
                                                                     class="increase-btn bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">+</button>
                                                             </div>
