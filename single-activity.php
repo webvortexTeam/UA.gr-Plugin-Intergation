@@ -7,11 +7,42 @@
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
+function custom_single_activity_enqueue() {
+    if (is_page_template('single-activity.php')) {
+        // Dequeue all styles except those from the 'unlimitedv2' plugin
+        global $wp_styles;
+        $allowed_styles = array();
 
+        foreach ($wp_styles->queue as $handle) {
+            if (strpos($handle, 'unlimitedv2') !== false) {
+                $allowed_styles[] = $handle;
+            }
+        }
+
+        // Dequeue all styles
+        foreach ($wp_styles->queue as $handle) {
+            wp_dequeue_style($handle);
+            wp_deregister_style($handle);
+        }
+
+        // Re-enqueue the allowed styles
+        foreach ($allowed_styles as $handle) {
+            wp_enqueue_style($handle);
+        }
+
+        // Enqueue your specific stylesheet if needed
+    }
+}
+add_action('wp_enqueue_scripts', 'custom_single_activity_enqueue', 100);
+
+$show_headers = get_option('vortex_ua_show_headers', 'yes');
+
+if ($show_headers === 'yes') {
 if (function_exists('elementor_theme_do_location') && elementor_theme_do_location('header')) {
     elementor_theme_do_location('header');
 } else {
     get_header();
+}
 }
 
 if (have_posts()):
@@ -446,6 +477,10 @@ document.addEventListener('DOMContentLoaded', function() {
         <?php
     endwhile;
 endif;
+$show_footer = get_option('vortex_ua_show_headers', 'yes');
 
+if ($show_footer === 'yes') {
 get_footer();
+
+}
 ?>

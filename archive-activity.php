@@ -100,12 +100,12 @@ get_header();
                 $rating = get_field('rating');
                 $min_price = $min_price == PHP_INT_MAX ? 0 : $min_price;
         ?>
-                <div class="activity-card <?php echo $category_slugs; ?> <?php echo $location_slugs; ?> bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300" data-price="<?php echo $min_price; ?>" data-rating="<?php echo $rating; ?>" data-duration="<?php echo $duration; ?>">
+                <div href="<?php the_permalink(); ?>" class="activity-card <?php echo $category_slugs; ?> <?php echo $location_slugs; ?> bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300" data-price="<?php echo $min_price; ?>" data-rating="<?php echo $rating; ?>" data-duration="<?php echo $duration; ?>">
                     <?php if (has_post_thumbnail()) : ?>
-                        <img src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title(); ?>" class="w-full h-48 object-cover rounded-t-lg">
+                      <a href="<?php the_permalink(); ?>">  <img  src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title(); ?>" class="w-full h-48 object-cover rounded-t-lg"></a>
                     <?php endif; ?>
                     <div class="p-4">
-                        <h2 class="text-xl font-bold text-gray-900"><?php the_title(); ?> <p class="text-sm text-gray-700">από <?php echo $min_price; ?>€</p></h2>
+                        <a href="<?php the_permalink(); ?>" ><h2 class="text-xl font-bold text-gray-900"><?php the_title(); ?> <p class="text-sm text-gray-700">από <?php echo $min_price; ?>€</p></h2></a>
                         <div class="flex flex-wrap items-center mt-2 text-gray-700 space-x-2">
                             <div class="flex items-center space-x-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-500" viewBox="0 0 256 256">
