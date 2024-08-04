@@ -1,4 +1,5 @@
 <?php
+ob_start();
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
@@ -471,3 +472,5 @@ jQuery('.bookNowBtn').on('click', (e) => {
 });
 
         </script>
+        <?php
+ob_end_flush(); ?>

@@ -1,4 +1,6 @@
 <?php
+ob_start();
+
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
@@ -82,3 +84,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
+<?php
+ob_end_flush();
+?>

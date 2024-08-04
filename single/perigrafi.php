@@ -2,9 +2,13 @@
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
+
+$locale_activities = get_option('activity_api_locale', 'gr');
 ?>
 <div>
-    <h3 class="sr-only">Περιγραφή</h3>
+    <h3 class="sr-only">
+        <?php echo $locale_activities === 'en' ? 'Description' : 'Περιγραφή'; ?>
+    </h3>
     <div id="vortex-ua-description-container" class="relative max-h-[200px] overflow-hidden">
         <div id="description" class="space-y-6 text-base text-gray-900">
             <?php echo wp_kses_post($description); ?>
@@ -12,7 +16,9 @@ if (!defined('ABSPATH')) {
         <div id="fadeEffect" class="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-white to-transparent"></div>
     </div>
     <div id="readMoreContainer" class="flex justify-center">
-        <a id="vortexReadMoreUA" class="mt-4 underline" style="display: none;">Διαβάστε περισσότερα...</a>
+        <a id="vortexReadMoreUA" class="mt-4 underline" style="display: none;">
+            <?php echo $locale_activities === 'en' ? 'Read more...' : 'Διαβάστε περισσότερα...'; ?>
+        </a>
     </div>
 </div>
 
@@ -52,5 +58,3 @@ if (!defined('ABSPATH')) {
         display: none;
     }
 </style>
-
-

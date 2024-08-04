@@ -9,7 +9,8 @@
     
         $itinerary_id = sanitize_text_field($_POST['itinerary_id']);
         
-        date_default_timezone_set('Europe/Athens'); // Greece
+        // Set default start and end dates
+        date_default_timezone_set('Europe/Athens'); // Set the timezone to Greece
         $current_time = date('H:i');
         $start_date = isset($_POST['start_date']) ? sanitize_text_field($_POST['start_date']) . ' ' . $current_time : date('Y-m-d') . ' ' . $current_time;
         $end_date = isset($_POST['end_date']) ? sanitize_text_field($_POST['end_date']) . ' 23:59' : date('Y-m-d', strtotime('+30 days')) . ' 23:59';

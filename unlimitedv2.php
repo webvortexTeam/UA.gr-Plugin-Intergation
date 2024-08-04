@@ -3,7 +3,7 @@
 Plugin Name: Unlimited Adrenaline V2
 Plugin URI: https://github.com/webvortexTeam/UA.gr-Plugin-Intergation
 Description: API διασύνδεση με τις δραστηριότητες της Unlimited Andrenaline
-Version: 1.1.1
+Version: 1.7
 Author: WebVortex
 Author URI: https://www.webvortex.org
 Text Domain: unlimited-adrenaline-v2
@@ -218,7 +218,27 @@ function unlimited_adrenaline_enqueue_styles_scripts()
 add_action('wp_enqueue_scripts', 'unlimited_adrenaline_enqueue_styles_scripts');
 
 require_once MY_PLUGIN_DIR_PATH . '/includes/unlimitedv2-class-api-calls-structure.php'; // Δομή api call
+function register_custom_elementor_widgets() {
+    // Define the path to the /elementor directory
+    $elementor_widgets_path = plugin_dir_path(__FILE__) . 'elementor/';
 
+    // Include all PHP files in the /elementor directory
+    foreach (glob($elementor_widgets_path . "*.php") as $file) {
+        require_once $file;
+    }
+}
+add_action('elementor/widgets/widgets_registered', 'register_custom_elementor_widgets');
+
+function register_custom_elementor_category($elements_manager) {
+    $elements_manager->add_category(
+        'unlimited_andrenaline',
+        [
+            'title' => __('Unlimited Andrenaline', 'unlimitedv2'),
+            'icon' => 'fa fa-plug',
+        ]
+    );
+}
+add_action('elementor/elements/categories_registered', 'register_custom_elementor_category');
 
 require_once MY_PLUGIN_DIR_PATH . '/includes/unlimitedv2-class-log.php'; // Debug
 
@@ -234,7 +254,7 @@ if( ! class_exists( 'vortexUpdateChecker' ) ) {
 		public function __construct() {
 
 			$this->plugin_slug = plugin_basename( __DIR__ );
-			$this->version = '1.0';
+			$this->version = '1.7';
 			$this->cache_key = '9r3u104910hrj13r1309rh13r490149u12';
 			$this->cache_allowed = false;
 
@@ -430,3 +450,65 @@ function use_custom_activity_template($template) {
     return $template;
 }
 add_filter('archive_template', 'use_custom_activity_template');
+add_action('upgrader_process_complete', 'ua_plugin_update', 10, 2);
+
+function ua_plugin_update($upgrader_object, $options) {
+    if ($options['action'] == 'update' && $options['type'] == 'plugin') {
+        echo 'Plugin update process started.<br>';
+
+        // Path to this plugin's main file
+        $this_plugin = plugin_basename(__FILE__);
+        echo 'This plugin: ' . $this_plugin . '<br>';
+
+        // List of plugins to deactivate/reactivate including this plugin itself
+        $plugins_to_reactivate = array(
+            'advanced-custom-fields-pro/acf.php', // Path to the main plugin file
+            $this_plugin // This plugin itself
+        );
+
+        // Deactivate this plugin first
+        if (is_plugin_active($this_plugin)) {
+            deactivate_plugins($this_plugin);
+            echo 'Deactivated plugin: ' . $this_plugin . '<br>';
+        } else {
+            echo 'Plugin ' . $this_plugin . ' is not active.<br>';
+        }
+
+        // Deactivate other plugins
+        foreach ($plugins_to_reactivate as $plugin) {
+            if ($plugin !== $this_plugin && is_plugin_active($plugin)) {
+                deactivate_plugins($plugin);
+                echo 'Deactivated plugin: ' . $plugin . '<br>';
+            } else {
+                echo 'Plugin ' . $plugin . ' is not active or is this plugin.<br>';
+            }
+        }
+
+        // Reactivate all plugins
+        foreach ($plugins_to_reactivate as $plugin) {
+            if (!is_plugin_active($plugin)) {
+                activate_plugin($plugin);
+                echo 'Reactivated plugin: ' . $plugin . '<br>';
+            } else {
+                echo 'Plugin ' . $plugin . ' is already active.<br>';
+            }
+        }
+
+        // Delete the specific ACF field group
+        if (function_exists('acf_delete_field_group')) {
+            echo 'ACF functions are available.<br>';
+            $field_group = acf_get_field_group('group_webvortex_unlimited_andrenaline');
+            if ($field_group) {
+                acf_delete_field_group($field_group['ID']);
+                echo 'Deleted ACF field group: group_webvortex_unlimited_andrenaline<br>';
+            } else {
+                echo 'ACF field group: group_webvortex_unlimited_andrenaline not found.<br>';
+            }
+        } else {
+            echo 'ACF functions are not available.<br>';
+        }
+
+        echo 'Plugin update process completed.<br>';
+    }
+}
+

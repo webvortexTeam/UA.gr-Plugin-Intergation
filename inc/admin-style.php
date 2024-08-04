@@ -23,7 +23,7 @@ add_action('admin_menu', function() {
 add_action('admin_init', function() {
     $settings = [
         'vortex_ua_show_breadcrumbs', 'vortex_ua_show_logo', 'vortex_ua_custom_html_inside_booking', 'vortex_ua_custom_html_section_1', 'vortex_ua_custom_html_section_2', 'vortex_ua_custom_html_section_3', 'vortex_ua_custom_html_section_4', 'vortex_ua_show_read_more', 'vortex_ua_show_reviews', 'vortex_ua_show_map', 'vortex_ua_logo_url', 
-        'vortex_ua_button_color', 'vortex_ua_itinerary_bg_color'
+        'vortex_ua_button_color',  'vortex_ua_show_headers', 'vortex_ua_selected_header', 'vortex_ua_itinerary_bg_color'
     ];
     foreach ($settings as $setting) {
         register_setting('vortex_ua_styling_settings', $setting);
@@ -42,6 +42,66 @@ add_action('admin_init', function() {
         echo '</div>';
         echo '</div>';
     }, 'vortex_ua_styling_settings', 'vortex_ua_styling_section');
+ add_settings_field('vortex_ua_selected_header', 'Επιλογή Header', function() {
+        $selected_header = get_option('vortex_ua_selected_header');
+
+        // Fetch headers from Elementor
+        $elementor_headers = get_posts(array(
+            'post_type' => 'elementor_library',
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'elementor_library_type',
+                    'field' => 'slug',
+                    'terms' => 'header',
+                ),
+            ),
+        ));
+
+        // Fetch headers from WPBakery
+        $wpbakery_headers = get_posts(array(
+            'post_type' => 'wpb_vc_templates',
+            'meta_query' => array(
+                array(
+                    'key' => '_wpb_vc_js_status',
+                    'value' => 'header',
+                    'compare' => '=',
+                ),
+            ),
+        ));
+
+        // Fetch headers from Beaver Builder
+        $beaver_builder_headers = get_posts(array(
+            'post_type' => 'fl-builder-template',
+            'meta_query' => array(
+                array(
+                    'key' => '_fl_builder_template_type',
+                    'value' => 'header',
+                    'compare' => '=',
+                ),
+            ),
+        ));
+
+        // Combine all headers
+        $all_headers = array_merge($elementor_headers, $wpbakery_headers, $beaver_builder_headers);
+
+        // Display the dropdown
+        echo '<select name="vortex_ua_selected_header" class="regular-text">';
+        foreach ($all_headers as $header) {
+            echo '<option value="' . esc_attr($header->ID) . '" ' . selected($selected_header, $header->ID, false) . '>' . esc_html($header->post_title) . '</option>';
+        }
+        echo '</select>';
+    }, 'vortex_ua_styling_settings', 'vortex_ua_styling_section');
+
+    add_settings_field('vortex_ua_show_headers', 'Εμφάνιση Header & Footer', function() {
+        $value = get_option('vortex_ua_show_headers', 'yes');
+        echo '<div class="flex items-center">';
+        echo '<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">';
+        echo '<input type="checkbox" id="vortex_ua_show_headers" name="vortex_ua_show_headers" value="yes"' . checked('yes', $value, false) . ' class="vortex-toggle-ua-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" />';
+        echo '<label for="vortex_ua_show_headers" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>';
+        echo '</div>';
+        echo '</div>';
+    }, 'vortex_ua_styling_settings', 'vortex_ua_styling_section');
+
 
     add_settings_field('vortex_ua_show_read_more', 'Εμφάνιση Read More Περιγραφής', function() {
         $value = get_option('vortex_ua_show_read_more', 'yes');

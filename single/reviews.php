@@ -2,9 +2,13 @@
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
+
+$locale_activities = get_option('activity_api_locale', 'gr');
 ?>
 <div id="unlimited-a-reviews" class="reviews-section bg-white p-6 rounded-lg">
-    <h2 class="text-2xl font-bold mb-4">Κριτικές</h2>
+    <h2 class="text-2xl font-bold mb-4">
+        <?php echo $locale_activities === 'en' ? 'Reviews' : 'Κριτικές'; ?>
+    </h2>
     <?php if (!empty($all_reviews)): ?>
         <div id="reviews-container-ua" class="space-y-4">
             <?php foreach ($all_reviews as $index => $review): ?>
@@ -21,61 +25,64 @@ if (!defined('ABSPATH')) {
                 </div>
             <?php endforeach; ?>
         </div>
-        <div id="pagination-review-ua" class="mt-4 flex justify-center space-x-2">
-        </div>
+        <div id="pagination-review-ua" class="mt-4 flex justify-center space-x-2"></div>
     <?php else: ?>
-        <p class="text-gray-700">Δεν υπάρχουν κριτικές</p>
+        <p class="text-gray-700">
+            <?php echo $locale_activities === 'en' ? 'No reviews available' : 'Δεν υπάρχουν κριτικές'; ?>
+        </p>
     <?php endif; ?>
 </div>
-<script>document.addEventListener('DOMContentLoaded', function () {
-    const reviewsPerPageUA = 5;
-    const reviewsContainer = document.getElementById('reviews-container-ua');
-    const reviews = reviewsContainer.getElementsByClassName('review-item-ua');
-    const totalPages = Math.ceil(reviews.length / reviewsPerPageUA);
 
-    function showPage(page) {
-        const start = (page - 1) * reviewsPerPageUA;
-        const end = start + reviewsPerPageUA;
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const reviewsPerPageUA = 5;
+        const reviewsContainer = document.getElementById('reviews-container-ua');
+        const reviews = reviewsContainer.getElementsByClassName('review-item-ua');
+        const totalPages = Math.ceil(reviews.length / reviewsPerPageUA);
 
-        for (let i = 0; i < reviews.length; i++) {
-            reviews[i].classList.add('hidden');
+        function showPage(page) {
+            const start = (page - 1) * reviewsPerPageUA;
+            const end = start + reviewsPerPageUA;
+
+            for (let i = 0; i < reviews.length; i++) {
+                reviews[i].classList.add('hidden');
+            }
+
+            for (let i = start; i < end && i < reviews.length; i++) {
+                reviews[i].classList.remove('hidden');
+            }
         }
 
-        for (let i = start; i < end && i < reviews.length; i++) {
-            reviews[i].classList.remove('hidden');
+        function createPagination() {
+            const paginationContainer = document.getElementById('pagination-review-ua');
+
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement('button');
+                button.textContent = i;
+                button.classList.add('pagination-button', 'px-2', 'py-1', 'border', 'rounded');
+                button.addEventListener('click', function () {
+                    showPage(i);
+                    updateActiveButton(i);
+                });
+                paginationContainer.appendChild(button);
+            }
         }
-    }
 
-    function createPagination() {
-        const paginationContainer = document.getElementById('pagination-review-ua');
-
-        for (let i = 1; i <= totalPages; i++) {
-            const button = document.createElement('button');
-            button.textContent = i;
-            button.classList.add('pagination-button', 'px-2', 'py-1', 'border', 'rounded');
-            button.addEventListener('click', function () {
-                showPage(i);
-                updateActiveButton(i);
+        function updateActiveButton(activePage) {
+            const buttons = document.querySelectorAll('.pagination-button');
+            buttons.forEach(button => {
+                button.classList.remove('bg-blue-500', 'text-white');
+                button.classList.add('bg-gray-200', 'text-gray-700');
             });
-            paginationContainer.appendChild(button);
+
+            buttons[activePage - 1].classList.add('bg-blue-500', 'text-white');
+            buttons[activePage - 1].classList.remove('bg-gray-200', 'text-gray-700');
         }
-    }
 
-    function updateActiveButton(activePage) {
-        const buttons = document.querySelectorAll('.pagination-button');
-        buttons.forEach(button => {
-            button.classList.remove('', '');
-            button.classList.add('', '');
-        });
-
-        buttons[activePage - 1].classList.add('', '');
-        buttons[activePage - 1].classList.remove('', '');
-    }
-
-    if (totalPages > 1) {
-        createPagination();
-        showPage(1);  // Show the first page by default
-        updateActiveButton(1);  // Highlight the first page button
-    }
-});
+        if (totalPages > 1) {
+            createPagination();
+            showPage(1);  // Show the first page by default
+            updateActiveButton(1);  // Highlight the first page button
+        }
+    });
 </script>
