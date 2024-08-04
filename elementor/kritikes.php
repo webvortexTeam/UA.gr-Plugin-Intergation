@@ -10,11 +10,11 @@ class Webvortex_Reviews_Widget extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return __('Κριτικές UA', 'webvortex-elementor-widgets');
+        return __('Κριτικές Δραστηριότητας', 'webvortex-elementor-widgets');
     }
 
     public function get_icon() {
-        return 'eicon-star';
+        return 'eicon-review';
     }
 
     public function get_categories() {

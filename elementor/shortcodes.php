@@ -8,11 +8,11 @@ class Webvortex_Activity_Widget extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return __('Πληροφορίες UA', 'webvortex-elementor-widgets');
+        return __('Γενικά Στοιχεία Δραστηριότητας', 'webvortex-elementor-widgets');
     }
 
     public function get_icon() {
-        return 'eicon-post';
+        return 'eicon-integration';
     }
 
     public function get_categories() {

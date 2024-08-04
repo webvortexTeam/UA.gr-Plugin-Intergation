@@ -10,11 +10,11 @@ class Webvortex_Description_Widget extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return __('Description Display', 'webvortex-elementor-widgets');
+        return __('Περιγραφή Δραστηριότητας', 'webvortex-elementor-widgets');
     }
 
     public function get_icon() {
-        return 'eicon-post-list';
+        return 'eicon-bullet-list';
     }
 
     public function get_categories() {

@@ -8,11 +8,11 @@ class Webvortex_Itineraries_Widget extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return __('Itineraries Display', 'webvortex-elementor-widgets');
+        return __('Σύστημα Κρατήσεων', 'webvortex-elementor-widgets');
     }
 
     public function get_icon() {
-        return 'eicon-post-list';
+        return 'eicon-call-to-action';
     }
 
     public function get_categories() {

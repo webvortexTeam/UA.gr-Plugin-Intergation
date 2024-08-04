@@ -8,11 +8,11 @@ class Webvortex_Gallery_Widget extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return __('Γκαλερί UA', 'webvortex-elementor-widgets');
+        return __('Gallery με Tailwind', 'webvortex-elementor-widgets');
     }
 
     public function get_icon() {
-        return 'eicon-gallery-grid';
+        return 'eicon-gallery-masonry';
     }
 
     public function get_categories() {
