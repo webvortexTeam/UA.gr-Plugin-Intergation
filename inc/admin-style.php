@@ -23,7 +23,7 @@ add_action('admin_menu', function() {
 add_action('admin_init', function() {
     $settings = [
         'vortex_ua_show_breadcrumbs', 'vortex_ua_show_logo', 'vortex_ua_custom_html_inside_booking', 'vortex_ua_custom_html_section_1', 'vortex_ua_custom_html_section_2', 'vortex_ua_custom_html_section_3', 'vortex_ua_custom_html_section_4', 'vortex_ua_show_read_more', 'vortex_ua_show_reviews', 'vortex_ua_show_map', 'vortex_ua_logo_url', 
-        'vortex_ua_button_color',  'vortex_ua_show_headers', 'vortex_ua_selected_header', 'vortex_ua_itinerary_bg_color'
+        'vortex_ua_button_color',  'vortex_ua_show_headers', 'vortex_ua_selected_header', 'vortex_ua_walpaper_url', 'vortex_ua_itinerary_bg_color'
     ];
     foreach ($settings as $setting) {
         register_setting('vortex_ua_styling_settings', $setting);
@@ -149,7 +149,12 @@ add_action('admin_init', function() {
         echo '<br><img id="logo_preview" src="' . esc_url($value) . '" style="max-width:150px; margin-top:10px;" />';
         echo '<button id="upload_logo_button" class="button">Ανεβάστε Λογότυπο</button>';
     }, 'vortex_ua_styling_settings', 'vortex_ua_styling_section');
-
+    add_settings_field('vortex_ua_walpaper_url', 'WallPaper', function() {
+        $value = get_option('vortex_ua_walpaper_url', 'https://wallpapercat.com/w/full/4/c/2/17001-3840x2160-desktop-4k-mountain-wallpaper.jpg');
+        echo '<input type="text" id="vortex_ua_walpaper_url" name="vortex_ua_walpaper_url" value="' . esc_attr($value) . '" class="regular-text border rounded p-2" />';
+        echo '<br><img id="logo_preview" src="' . esc_url($value) . '" style="max-width:150px; margin-top:10px;" />';
+        echo '<button id="upload_logo_button" class="button">Ανεβάστε Wallpaper</button>';
+    }, 'vortex_ua_styling_settings', 'vortex_ua_styling_section');
     add_settings_field('vortex_ua_button_color', 'Χρώμα Background Κύριου Κουμπιού', function() {
         $value = get_option('vortex_ua_button_color', '#000000');
         echo '<input type="text" name="vortex_ua_button_color" value="' . esc_attr($value) . '" class="vortex-color-picker-field border rounded p-2" data-coloris />';
