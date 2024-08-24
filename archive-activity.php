@@ -18,14 +18,14 @@ function convertTimeToHours($timeStr) {
         'λεπτά' => 1 / 60,
         'ώρα' => 1,
         'ώρες' => 1,
-        'μέρα' => 24,
-        'μέρες' => 24
+        'ημέρα' => 24,
+        'ημέρες' => 24
     ];
 
     $totalHours = 0;
 
     // Extract time components using regex
-    $timeComponents = $timeStr ? preg_match_all('/(\d+)\s*(min|mins|minute|minutes|hr|hrs|hour|hours|day|days|λεπτό|λεπτά|ώρα|ώρες|μέρα|μέρες)/', $timeStr, $matches, PREG_SET_ORDER) : [];
+    $timeComponents = $timeStr ? preg_match_all('/(\d+)\s*(min|mins|minute|minutes|hr|hrs|hour|hours|day|days|λεπτό|λεπτά|ώρα|ώρες|ημέρα|ημέρες)/', $timeStr, $matches, PREG_SET_ORDER) : [];
 
     if ($timeComponents) {
         foreach ($matches as $component) {
