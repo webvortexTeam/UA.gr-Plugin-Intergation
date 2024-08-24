@@ -2,15 +2,16 @@
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
-
+$button_color = get_option('vortex_ua_button_color', '#FA345B');
 $locale_activities = get_option('activity_api_locale', 'gr');
 ?>
-<div>
-    <h3 class="sr-only">
-        <?php echo $locale_activities === 'en' ? 'Description' : 'Περιγραφή'; ?>
-    </h3>
+<div class="description-container" style="<?php if (wp_is_mobile()) { echo ''; } else { echo 'position: relative; top: -190px;'; } ?>">
+
+            <h2 class="text-2xl text-gray-900" style="display: inline; margin-right: 5px;"><?php echo $locale_activities === 'en' ? 'Activity' : 'Περιγραφή'; ?></h2>
+        <h2 class="text-2xl text-gray-900" style="display: inline; color: <?php echo $button_color;?>; margin-right: 5px;"><?php echo $locale_activities === 'en' ? 'description' : 'δραστηριότητας'; ?></h2>
+
     <div id="vortex-ua-description-container" class="relative max-h-[200px] overflow-hidden">
-        <div id="description" class="space-y-6 text-base text-gray-900">
+        <div id="description" class="text-base text-gray-900">
             <?php echo wp_kses_post($description); ?>
         </div>
         <div id="fadeEffect" class="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-white to-transparent"></div>
@@ -21,6 +22,20 @@ $locale_activities = get_option('activity_api_locale', 'gr');
         </a>
     </div>
 </div>
+
+<style>
+@media (max-width: 1023px) {
+    .description-container {
+        position: relative;
+        top: 0; /* Reset the top value for mobile devices */
+    }
+}
+</style>
+
+
+
+
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -49,7 +64,7 @@ $locale_activities = get_option('activity_api_locale', 'gr');
 
 <style>
     #vortexReadMoreUA:hover {
-        color: #1e40af; /* Tailwind's blue-700 */
+        color: <?php echo $button_color;?>; /* Tailwind's blue-700 */
     }
     #vortex-ua-description-container {
         max-height: 12rem; /* Adjust the height as needed */

@@ -27,18 +27,22 @@ if (!defined('ABSPATH')) {
 }
 
 .ua-fullscreen-modal-content {
+  position: relative;
   margin: auto;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 90%;
-  max-width: 700px;
-  max-height: 90%;
+  max-width: 1000px; /* Increased max-width for larger images */
+  max-height: 80%; /* Ensures the content fits within the viewport */
   animation: zoomIn 0.6s;
 }
-
 .ua-fullscreen-modal-content img {
   width: 100%;
   height: auto;
   border-radius: 10px;
+  max-height: 100vh; /* Ensure image height does not exceed viewport height */
+  object-fit: contain; /* Preserve aspect ratio */
 }
 
 .ua-fullscreen-modal-close {
@@ -56,6 +60,30 @@ if (!defined('ABSPATH')) {
   color: #bbb;
   text-decoration: none;
   cursor: pointer;
+}
+
+.ua-fullscreen-modal-prev,
+.ua-fullscreen-modal-next {
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 3px;
+  transform: translateY(-50%);
+}
+
+.ua-fullscreen-modal-prev {
+  left: 10px;
+}
+
+.ua-fullscreen-modal-next {
+  right: 10px;
 }
 
 @keyframes zoomIn {
@@ -82,43 +110,58 @@ if (!defined('ABSPATH')) {
   }
 }
 
+/* Additional styles for hidden images */
+.hidden-image {
+  display: none;
+}
+
+.show-more-button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #1a202c;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 5px;
+}
 </style>
 
 <!-- Fullscreen Modal -->
-<div id="UAfullscreenModal" class="ua-fullscreen-modal">
-  <span class="ua-fullscreen-modal-close">&times;</span>
-  <div class="ua-fullscreen-modal-content">
-    <img id="fullscreenImage" src="" alt="Fullscreen Image">
-  </div>
-</div>
-
 <!-- Desktop -->
-<div class="hidden lg:grid mx-auto mt-6 max-w-2xl sm:px-6 lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
+<div class="relative hidden lg:flex mx-auto mt-6 w-full h-96"> <!-- Adjusted height here -->
     <?php if (!empty($photos)) : ?>
-        <?php foreach ($photos as $index => $photo) : ?>
-            <?php if ($index === 0) : ?>
-                <div class="aspect-h-4 aspect-w-3 overflow-hidden rounded-lg">
-                    <img src="<?php echo esc_url($photo['full_url'] ?? ''); ?>" alt="<?php echo esc_attr($photo['title'] ?? ''); ?>" class="h-full w-full object-cover object-center clickable-image">
+        <!-- Show only the first image in desktop view -->
+        <div class="w-full h-full overflow-hidden rounded-lg relative">
+            <img src="<?php echo esc_url($photos[0]['full_url'] ?? ''); ?>" alt="<?php echo esc_attr($photos[0]['photo_title'] ?? ''); ?>" class="w-full h-full object-cover object-center clickable-image">
+            <?php if (count($photos) > 1) : ?>
+                <div class="absolute bottom-0 left-0 w-full text-center bg-black bg-opacity-50 text-white py-2 cursor-pointer" onclick="openSlideshow()">
+                    <?php echo $locale_activities === 'en' ? 'See Photos' : 'Δείτε Φωτογραφίες'; ?>
                 </div>
-            <?php elseif ($index === 1 || $index === 2) : ?>
-                <?php if ($index === 1) : ?>
-                    <div class="grid gap-y-8">
-                <?php endif; ?>
-                <div class="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
-                    <img src="<?php echo esc_url($photo['full_url'] ?? ''); ?>" alt="<?php echo esc_attr($photo['title'] ?? ''); ?>" class="h-full w-full object-cover object-center clickable-image">
-                </div>
-                <?php if ($index === 2) : ?>
+                <div id="UAfullscreenModal" class="ua-fullscreen-modal" style="z-index: 99999999;">
+                    <span class="ua-fullscreen-modal-close">&times;</span>
+                    <div class="ua-fullscreen-modal-content">
+                        <div style="text-align: center;">
+                            <img id="fullscreenImage" src="" alt="" style="display: block; margin: 0 auto;">
+                            <span id="photoCaption" style="display: block; margin-top: 10px; font-size: 20px; color: white;">
+                                <?php echo esc_attr($photos[0]['photo_title'] ?? ''); ?>
+                            </span>
+
+                        </div>
+                        <button class="ua-fullscreen-modal-prev">&#10094;</button>
+                        <button class="ua-fullscreen-modal-next">&#10095;</button>
                     </div>
-                <?php endif; ?>
-            <?php else : ?>
-                <div class="aspect-h-5 aspect-w-4 sm:overflow-hidden sm:rounded-lg">
-                    <img src="<?php echo esc_url($photo['full_url'] ?? ''); ?>" alt="<?php echo esc_attr($photo['title'] ?? ''); ?>" class="h-full w-full object-cover object-center clickable-image">
                 </div>
             <?php endif; ?>
-        <?php endforeach; ?>
+        </div>
     <?php else : ?>
-        <div class="aspect-h-4 aspect-w-3 overflow-hidden rounded-lg">
-            <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg" alt="Placeholder image" class="h-full w-full object-cover object-center clickable-image">
+        <div class="w-full h-full overflow-hidden rounded-lg relative">
+            <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg" alt="Placeholder image" class="w-full h-full object-cover object-center clickable-image">
+            <?php if (count($photos) > 1) : ?>
+                <div class="absolute bottom-0 left-0 w-full text-center bg-black bg-opacity-50 text-white py-2 cursor-pointer" onclick="openSlideshow()">
+                    <?php echo $locale_activities === 'en' ? 'See Photos' : 'Δείτε Φωτογραφίες'; ?>
+                </div>
+            <?php endif; ?>
         </div>
     <?php endif; ?>
 </div>
@@ -129,8 +172,9 @@ if (!defined('ABSPATH')) {
         <?php if (!empty($photos)) : ?>
             <?php foreach ($photos as $photo) : ?>
                 <div class="carousel-item h-full">
-                    <img src="<?php echo esc_url($photo['full_url'] ?? ''); ?>" alt="<?php echo esc_attr($photo['title'] ?? ''); ?>" class="h-full w-full object-cover object-center clickable-image">
+                    <img src="<?php echo esc_url($photo['full_url'] ?? ''); ?>" alt="<?php echo esc_attr($photo['photo_title'] ?? ''); ?>" class="h-full w-full object-cover object-center clickable-image">
                 </div>
+                
             <?php endforeach; ?>
         <?php else : ?>
             <div class="carousel-item h-full">
@@ -144,33 +188,64 @@ if (!defined('ABSPATH')) {
 <script src="https://cdn.jsdelivr.net/npm/tw-elements@latest/dist/js/index.min.js"></script>
 
 <script>
-// Get the modal
+// Get the modal and its elements
 var modal = document.getElementById("UAfullscreenModal");
-
-// Get the image and insert it inside the modal - use its "alt" text as a caption
 var modalImg = document.getElementById("fullscreenImage");
 var images = document.querySelectorAll('.clickable-image');
+var currentIndex = 0;
+var caption = document.getElementById("photoCaption");
 
-images.forEach(function(image) {
+// Function to update the modal with the current image
+function updateModal() {
+  if (images.length === 0) return; // Guard against empty image list
+  var currentImage = images[currentIndex];
+  
+  // Set image source and alt text
+  modalImg.src = currentImage.src;
+  modalImg.alt = currentImage.alt; // Fallback if alt is empty
+    caption.textContent = currentImage.alt || '';
+
+}
+
+// Open the slideshow modal
+function openSlideshow() {
+  modal.classList.add('show');
+  currentIndex = 0; // Reset to the first image
+  updateModal();
+}
+
+// Initialize click events for images
+images.forEach(function(image, index) {
   image.onclick = function() {
-    modal.style.display = "block";
+    console.log('Image clicked:', index);
     modal.classList.add('show');
-    modalImg.src = this.src;
+    currentIndex = index;
+    updateModal();
   }
 });
 
-var span = document.getElementsByClassName("ua-fullscreen-modal-close")[0];
-
-span.onclick = function() { 
-  modal.style.display = "none";
+// Close the modal
+var closeModal = document.getElementsByClassName("ua-fullscreen-modal-close")[0];
+closeModal.onclick = function() { 
   modal.classList.remove('show');
 }
 
+// Close the modal if clicking outside the image
 modal.onclick = function(event) {
   if (event.target == modal) {
-    modal.style.display = "none";
     modal.classList.remove('show');
   }
 }
 
+// Show previous image
+document.querySelector('.ua-fullscreen-modal-prev').onclick = function() {
+  currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+  updateModal();
+};
+
+// Show next image
+document.querySelector('.ua-fullscreen-modal-next').onclick = function() {
+  currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+  updateModal();
+};
 </script>

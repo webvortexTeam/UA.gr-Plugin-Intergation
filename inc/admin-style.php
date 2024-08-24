@@ -102,7 +102,6 @@ add_action('admin_init', function() {
         echo '</div>';
     }, 'vortex_ua_styling_settings', 'vortex_ua_styling_section');
 
-
     add_settings_field('vortex_ua_show_read_more', 'Εμφάνιση Read More Περιγραφής', function() {
         $value = get_option('vortex_ua_show_read_more', 'yes');
         echo '<div class="flex items-center">';
@@ -155,8 +154,8 @@ add_action('admin_init', function() {
         echo '<br><img id="logo_preview" src="' . esc_url($value) . '" style="max-width:150px; margin-top:10px;" />';
         echo '<button id="upload_logo_button" class="button">Ανεβάστε Wallpaper</button>';
     }, 'vortex_ua_styling_settings', 'vortex_ua_styling_section');
-    add_settings_field('vortex_ua_button_color', 'Χρώμα Background Κύριου Κουμπιού', function() {
-        $value = get_option('vortex_ua_button_color', '#000000');
+    add_settings_field('vortex_ua_button_color', 'Χρώμα Brand', function() {
+        $value = get_option('vortex_ua_button_color', '#FA345B');
         echo '<input type="text" name="vortex_ua_button_color" value="' . esc_attr($value) . '" class="vortex-color-picker-field border rounded p-2" data-coloris />';
     }, 'vortex_ua_styling_settings', 'vortex_ua_styling_section');
 

@@ -46,74 +46,133 @@
 }
 </style>
 
-<div id="vortex-ua-info-new-modal" class="fixed inset-0 vortex-cancel-new flex items-center justify-center bg-black bg-opacity-50 hidden">
+<div id="vortex-ua-info-new-modal" class="fixed inset-0 vortex-cancel-new flex items-center justify-center bg-black bg-opacity-50 hidden"  style="z-index: 9999 !important;">
     <div class="modal-content">
-        <h3 class="text-lg font-semibold mb-4">Απορίες & FAQ</h3>
-        <div class="new-popup-content text-gray-700">
-<div>
-<div><strong>&Pi;ώ&sigmaf; &mu;&pi;&omicron;&rho;ώ &nu;&alpha; &pi;&lambda;&eta;&rho;ώ&sigma;&omega;;</strong></div>
-<div>&Mu;&pi;&omicron;&rho;&epsilon;ί&tau;&epsilon; &nu;&alpha; &pi;&lambda;&eta;&rho;ώ&sigma;&epsilon;&tau;&epsilon; &mu;&epsilon;:</div>
-<br />
-<div>&Pi;&iota;&sigma;&tau;&omega;&tau;&iota;&kappa;ή &kappa;ά&rho;&tau;&alpha;</div>
-<div>&Chi;&rho;&epsilon;&omega;&sigma;&tau;&iota;&kappa;ή &kappa;ά&rho;&tau;&alpha;</div>
-<div>Google Pay</div>
-<div>Apple Pay</div>
-<div>PayPal</div>
-<div>&Mu;&epsilon; &kappa;&alpha;&tau;ά&theta;&epsilon;&sigma;&eta; &sigma;&epsilon; &tau;&rho;&alpha;&pi;&epsilon;&zeta;&iota;&kappa;ό &lambda;&omicron;&gamma;&alpha;&rho;&iota;&alpha;&sigma;&mu;ό ή &mu;έ&sigma;&omega; ebanking</div>
-<div>&Mu;&epsilon; &mu;&epsilon;&tau;&rho;&eta;&tau;ά &sigma;&tau;&eta;&nu; &epsilon;&pi;&iota;&chi;&epsilon;ί&rho;&eta;&sigma;&eta; (&Pi;&rho;&omicron;&sigma;&omega;&rho;&iota;&nu;ά &mu;&eta; &delta;&iota;&alpha;&theta;έ&sigma;&iota;&mu;&omicron;)</div>
-<div>&Pi;ώ&sigmaf; &theta;&alpha; &epsilon;&nu;&eta;&mu;&epsilon;&rho;&omega;&theta;ώ ό&tau;&iota; &pi;&rho;&alpha;&gamma;&mu;&alpha;&tau;&omicron;&pi;&omicron;&iota;ή&theta;&eta;&kappa;&epsilon; &eta; &kappa;&rho;ά&tau;&eta;&sigma;ή &mu;&omicron;&upsilon;;</div>
-<div>H Unlimited Adrenaline &pi;&alpha;&rho;έ&chi;&epsilon;&iota; real time &delta;&iota;&alpha;&theta;&epsilon;&sigma;&iota;&mu;ό&tau;&eta;&tau;&epsilon;&sigmaf;. &Pi;&alpha;&rho;&rsquo; ό&lambda;&alpha; &alpha;&upsilon;&tau;ά &epsilon;ί&nu;&alpha;&iota; &sigma;&tau;&eta;&nu; &kappa;&rho;ί&sigma;&eta; &tau;&omicron;&upsilon; &sigma;&upsilon;&nu;&epsilon;&rho;&gamma;ά&tau;&eta; &epsilon;ά&nu; &theta;&alpha; &delta;έ&chi;&epsilon;&tau;&alpha;&iota; ά&mu;&epsilon;&sigma;&epsilon;&sigmaf; &kappa;&rho;&alpha;&tau;ή&sigma;&epsilon;&iota;&sigmaf; ή &theta;&alpha; &pi;&rho;έ&pi;&epsilon;&iota; &nu;&alpha; &tau;&iota;&sigmaf; &kappa;ά&nu;&epsilon;&iota; &alpha;&pi;&omicron;&delta;&omicron;&chi;ή &epsilon;&nu;&tau;ό&sigmaf; 48 &omega;&rho;ώ&nu;. &Alpha;&phi;&omicron;ύ &pi;&rho;&omicron;&beta;&epsilon;ί&tau;&epsilon; &sigma;&tau;&eta;&nu; &pi;&lambda;&eta;&rho;&omega;&mu;ή &tau;&eta;&sigmaf; &kappa;&rho;ά&tau;&eta;&sigma;&eta;&sigmaf; &theta;&alpha; &epsilon;&nu;&eta;&mu;&epsilon;&rho;&omega;&theta;&epsilon;ί&tau;&epsilon; &mu;&epsilon; email &epsilon;ά&nu; &pi;&rho;&alpha;&gamma;&mu;&alpha;&tau;&omicron;&pi;&omicron;&iota;ή&theta;&eta;&kappa;&epsilon; &epsilon;&pi;&iota;&tau;&upsilon;&chi;ώ&sigmaf; &eta; &kappa;&rho;ά&tau;&eta;&sigma;&eta; &sigma;&alpha;&sigmaf;. &Kappa;&alpha;&theta;ώ&sigmaf; &epsilon;&pi;ί&sigma;&eta;&sigmaf; &mu;&pi;&omicron;&rho;&epsilon;ί&tau;&epsilon; &nu;&alpha; &pi;&alpha;&rho;&alpha;&kappa;&omicron;&lambda;&omicron;&upsilon;&theta;&epsilon;ί&tau;&epsilon; &tau;&iota;&sigmaf; &kappa;&rho;&alpha;&tau;ή&sigma;&epsilon;&iota;&sigmaf; &sigma;&alpha;&sigmaf; &alpha;&pi;ό &tau;&omicron;&nu; &lambda;&omicron;&gamma;&alpha;&rho;&iota;&alpha;&sigma;&mu;ό &sigma;&alpha;&sigmaf;.</div>
-<br />
-<div><strong>Έ&kappa;&alpha;&nu;&alpha; &kappa;&rho;ά&tau;&eta;&sigma;&eta; &mu;&iota;&alpha;&sigmaf; &delta;&rho;&alpha;&sigma;&tau;&eta;&rho;&iota;ό&tau;&eta;&tau;&alpha;&sigmaf;. &Tau;&iota; &kappa;ά&nu;&omega; &tau;ώ&rho;&alpha;;</strong></div>
-<div>&Epsilon;ά&nu; &pi;&rho;&alpha;&gamma;&mu;&alpha;&tau;&omicron;&pi;&omicron;&iota;ή&sigma;&alpha;&tau;&epsilon; &mu;&iota;&alpha; &kappa;&rho;ά&tau;&eta;&sigma;&eta; &theta;&alpha; &lambda;ά&beta;&epsilon;&tau;&epsilon; email &mu;&epsilon; &alpha;&nu;&alpha;&lambda;&upsilon;&tau;&iota;&kappa;έ&sigmaf; &omicron;&delta;&eta;&gamma;ί&epsilon;&sigmaf; &gamma;&iota;&alpha; &tau;&omicron; &mu;έ&rho;&omicron;&sigmaf; &kappa;&alpha;&iota; &tau;&eta;&nu; ώ&rho;&alpha; &pi;&omicron;&upsilon; &theta;&alpha; &pi;&rho;έ&pi;&epsilon;&iota; &nu;&alpha; &epsilon;ί&sigma;&tau;&epsilon; &sigma;&tau;&eta;&nu; &epsilon;&pi;&iota;&chi;&epsilon;ί&rho;&eta;&sigma;&eta; &kappa;&alpha;&theta;ώ&sigmaf; &epsilon;&pi;ί&sigma;&eta;&sigmaf; &kappa;&alpha;&iota; ά&lambda;&lambda;&epsilon;&sigmaf; &chi;&rho;ή&sigma;&iota;&mu;&epsilon;&sigmaf; &pi;&lambda;&eta;&rho;&omicron;&phi;&omicron;&rho;ί&epsilon;&sigmaf;. &Epsilon;ά&nu; &delta;&epsilon;&nu; &lambda;ά&beta;&alpha;&tau;&epsilon; &tau;&omicron; email &epsilon;&pi;&iota;&kappa;&omicron;&iota;&nu;&omega;&nu;ή&sigma;&tau;&epsilon; &mu;&alpha;&zeta;ί &mu;&alpha;&sigmaf;.</div>
-<br />
-<div><strong>&Chi;&rho;&epsilon;&iota;ά&zeta;&epsilon;&tau;&alpha;&iota; &nu;&alpha; έ&chi;&omega; &epsilon;&kappa;&tau;&upsilon;&pi;&omega;&mu;έ&nu;&omicron; &tau;&omicron; email &epsilon;&pi;&iota;&beta;&epsilon;&beta;&alpha;ί&omega;&sigma;&eta;&sigmaf; ό&tau;&alpha;&nu; &pi;ά&omega; &sigma;&tau;&eta;&nu; &epsilon;&pi;&iota;&chi;&epsilon;ί&rho;&eta;&sigma;&eta;;</strong></div>
-<div>Ό&chi;&iota; &delta;&epsilon;&nu; &epsilon;ί&nu;&alpha;&iota; &alpha;&pi;&alpha;&rho;&alpha;ί&tau;&eta;&tau;&omicron;. &Mu;&pi;&omicron;&rho;&epsilon;ί&tau;&epsilon; &nu;&alpha; &tau;&omicron; &delta;&epsilon;ί&xi;&epsilon;&tau;&epsilon; &sigma;&tau;&omicron;&nu; &sigma;&upsilon;&nu;&epsilon;&rho;&gamma;ά&tau;&eta; &mu;&alpha;&sigmaf; &sigma;&epsilon; &psi;&eta;&phi;&iota;&alpha;&kappa;ή &mu;&omicron;&rho;&phi;ή &alpha;&pi;ό &tau;&omicron; &kappa;&iota;&nu;&eta;&tau;ό &sigma;&alpha;&sigmaf;. &Pi;&alpha;&rho;&rsquo; ό&lambda;&alpha; &alpha;&upsilon;&tau;ά &chi;&rho;&epsilon;&iota;ά&zeta;&epsilon;&tau;&alpha;&iota; &nu;&alpha; &tau;&omicron;&upsilon; &tau;&omicron; &delta;&epsilon;ί&xi;&epsilon;&tau;&epsilon;.</div>
-<br />
-<div><strong>&Pi;&omega;&sigmaf; &mu;&pi;&omicron;&rho;ώ &nu;&alpha; &epsilon;&pi;&iota;&kappa;&omicron;&iota;&nu;&omega;&nu;ή&sigma;&omega; &mu;&epsilon; &tau;&eta;&nu; &epsilon;&pi;&iota;&chi;&epsilon;ί&rho;&eta;&sigma;&eta; &sigma;&tau;&eta;&nu; &omicron;&pi;&omicron;ί&alpha; έ&kappa;&alpha;&nu;&alpha; &kappa;&rho;ά&tau;&eta;&sigma;&eta;;</strong></div>
-<div>&Mu;&epsilon;&tau;ά &tau;&eta;&nu; &delta;&iota;&alpha;&delta;&iota;&kappa;&alpha;&sigma;ί&alpha; &tau;&eta;&sigmaf; &kappa;&rho;ά&tau;&eta;&sigma;&eta;&sigmaf; &theta;&alpha; &lambda;ά&beta;&epsilon;&tau;&epsilon; email &mu;&epsilon; ό&lambda;&alpha; &tau;&alpha; &sigma;&tau;&omicron;&iota;&chi;&epsilon;ί&alpha; &tau;&eta;&sigmaf; &epsilon;&pi;&iota;&chi;&epsilon;ί&rho;&eta;&sigma;&eta;&sigmaf;. &Epsilon;&pi;ί&sigma;&eta;&sigmaf; &mu;&pi;&omicron;&rho;&epsilon;ί&tau;&epsilon; &nu;&alpha; &sigma;&tau;&epsilon;ί&lambda;&epsilon;&tau;&epsilon; &mu;ή&nu;&upsilon;&mu;&alpha; &alpha;&pi;ό &tau;&omicron;&nu; &lambda;&omicron;&gamma;&alpha;&rho;&iota;&alpha;&sigma;&mu;ό &sigma;&alpha;&sigmaf; &sigma;&tau;&eta;&nu; &pi;&lambda;&alpha;&tau;&phi;ό&rho;&mu;&alpha; &mu;&alpha;&sigmaf;. &Pi;&rho;&omicron;&tau;&epsilon;ί&nu;&epsilon;&tau;&alpha;&iota; &pi;ά&nu;&tau;&alpha; &nu;&alpha; &epsilon;&pi;&iota;&kappa;&omicron;&iota;&nu;&omega;&nu;&epsilon;ί&tau;&epsilon; &mu;&epsilon; &tau;&eta;&nu; &epsilon;&pi;&iota;&chi;&epsilon;ί&rho;&eta;&sigma;&eta; &pi;&rho;&iota;&nu; &tau;&eta;&nu; &eta;&mu;έ&rho;&alpha; &tau;&eta;&sigmaf; &kappa;&rho;&alpha;&tau;&eta;&sigma;ή&sigmaf; &sigma;&alpha;&sigmaf;.</div>
-<br />
-<div><strong>&Epsilon;ί&nu;&alpha;&iota; &upsilon;&pi;&omicron;&chi;&rho;&epsilon;&omega;&tau;&iota;&kappa;ό &nu;&alpha; &epsilon;&pi;&iota;&kappa;&omicron;&iota;&nu;&omega;&nu;ή&sigma;&omega; &kappa;&alpha;&iota; &tau;&eta;&lambda;&epsilon;&phi;&omega;&nu;&iota;&kappa;ά &epsilon;ά&nu; έ&chi;&omega; &kappa;ά&nu;&epsilon;&iota; &mu;&iota;&alpha; &kappa;&rho;ά&tau;&eta;&sigma;&eta;;</strong></div>
-<div>Ό&chi;&iota; &delta;&epsilon;&nu; &epsilon;ί&nu;&alpha;&iota; &upsilon;&pi;&omicron;&chi;&rho;&epsilon;&omega;&tau;&iota;&kappa;ό. &Sigma;&epsilon; &omicron;&rho;&iota;&sigma;&mu;έ&nu;&epsilon;&sigmaf; &delta;&rho;&alpha;&sigma;&tau;&eta;&rho;&iota;ό&tau;&eta;&tau;&epsilon;&sigmaf; ό&mu;&omega;&sigmaf; &pi;&omicron;&upsilon; &beta;&alpha;&sigma;ί&zeta;&omicron;&nu;&tau;&alpha;&iota; &sigma;&tau;&iota;&sigmaf; &kappa;&alpha;&iota;&rho;&iota;&kappa;έ&sigmaf; &sigma;&upsilon;&nu;&theta;ή&kappa;&epsilon;&sigmaf; &kappa;&alpha;&lambda;ό &theta;&alpha; &epsilon;ί&nu;&alpha;&iota; &nu;&alpha; έ&chi;&epsilon;&tau;&epsilon; &nbsp;&epsilon;&pi;&iota;&kappa;&omicron;&iota;&nu;&omega;&nu;ί&alpha; &pi;&rho;&iota;&nu; &pi;ά&tau;&epsilon; &sigma;&tau;&eta;&nu; &epsilon;&pi;&iota;&chi;&epsilon;&iota;&rho;ή&sigma;&eta;. &Theta;&alpha; έ&chi;&epsilon;&tau;&epsilon; &alpha;&nu;&alpha;&lambda;&upsilon;&tau;&iota;&kappa;έ&sigmaf; &pi;&lambda;&eta;&rho;&omicron;&phi;&omicron;&rho;ί&epsilon;&sigmaf; &kappa;&alpha;&iota; &sigma;&upsilon;&mu;&beta;&omicron;&upsilon;&lambda;έ&sigmaf; &sigma;&tau;&omicron; email &epsilon;&pi;&iota;&beta;&epsilon;&beta;&alpha;ί&omega;&sigma;&eta;&sigmaf;.</div>
-<br />
-<div><strong>&Delta;&epsilon; &beta;&rho;ί&sigma;&kappa;&omega; &tau;&omicron; email &epsilon;&pi;&iota;&beta;&epsilon;&beta;&alpha;ί&omega;&sigma;&eta;&sigmaf;. &Tau;&iota; &pi;&rho;έ&pi;&epsilon;&iota; &nu;&alpha; &kappa;ά&nu;&omega;;</strong></div>
-<div>&Beta;&epsilon;&beta;&alpha;&iota;&omega;&theta;&epsilon;ί&tau;&epsilon; ό&tau;&iota; έ&chi;&epsilon;&tau;&epsilon; &epsilon;&lambda;έ&gamma;&xi;&epsilon;&iota; &tau;&omicron;&upsilon;&sigmaf; &phi;&alpha;&kappa;έ&lambda;&omicron;&upsilon;&sigmaf; &mu;&epsilon; &tau;&alpha; &Alpha;&nu;&epsilon;&pi;&iota;&theta;ύ&mu;&eta;&tau;&alpha; (spam/junk) &mu;&eta;&nu;ύ&mu;&alpha;&tau;&alpha; &tau;&omicron;&upsilon; email &sigma;&alpha;&sigmaf;. &Epsilon;&pi;&iota;&kappa;&omicron;&iota;&nu;&omega;&nu;ή&sigma;&tau;&epsilon; &mu;&alpha;&zeta;ί &mu;&alpha;&sigmaf; &kappa;&alpha;&iota; &theta;&alpha; &sigma;&alpha;&sigmaf; &tau;&omicron; &xi;&alpha;&nu;&alpha;&sigma;&tau;&epsilon;ί&lambda;&omicron;&upsilon;&mu;&epsilon;.</div>
-<br />
-<div><strong>&Alpha;&kappa;&upsilon;&rho;ώ&sigma;&epsilon;&iota;&sigmaf;</strong></div>
-<div>&Eta; &kappa;&rho;ά&tau;&eta;&sigma;&eta; &mu;&omicron;&upsilon; &alpha;&kappa;&upsilon;&rho;ώ&theta;&eta;&kappa;&epsilon; &alpha;&pi;ό &tau;&eta;&nu; &epsilon;&pi;&iota;&chi;&epsilon;ί&rho;&eta;&sigma;&eta;. &Pi;&omega;&sigmaf; &pi;&alpha;ί&rho;&nu;&omega; &tau;&alpha; &chi;&rho;ή&mu;&alpha;&tau;&alpha; &mu;&omicron;&upsilon; &pi;ί&sigma;&omega;;</div>
-<div>&Epsilon;ά&nu; &gamma;&iota;&alpha; &omicron;&pi;&omicron;&iota;&omicron;&delta;ή&pi;&omicron;&tau;&epsilon; &lambda;ό&gamma;&omicron; &eta; &epsilon;&pi;&iota;&chi;&epsilon;ί&rho;&eta;&sigma;&eta; &alpha;&kappa;ύ&rho;&omega;&sigma;&epsilon; &tau;&eta;&nu; &kappa;&rho;ά&tau;&eta;&sigma;&eta; &sigma;&omicron;&upsilon; , &alpha;&upsilon;&tau;ό&mu;&alpha;&tau;&alpha; &theta;&alpha; &epsilon;&pi;&iota;&sigma;&tau;&rho;&alpha;&phi;&omicron;ύ&nu; &tau;&alpha; &chi;&rho;ή&mu;&alpha;&tau;&alpha; &sigma;&tau;&omicron;&nu; &lambda;&omicron;&gamma;&alpha;&rho;&iota;&alpha;&sigma;&mu;ό &sigma;&omicron;&upsilon;. &Epsilon;ά&nu; έ&chi;&epsilon;&iota; &kappa;&alpha;&theta;&upsilon;&sigma;&tau;&epsilon;&rho;ή&sigma;&epsilon;&iota; &eta; &epsilon;&pi;&iota;&sigma;&tau;&rho;&omicron;&phi;ή &epsilon;&pi;&iota;&kappa;&omicron;&iota;&nu;ώ&nu;&eta;&sigma;&epsilon; &mu;&alpha;&zeta;ί &mu;&alpha;&sigmaf;.</div>
-<br />
-<div><strong>&Pi;&omega;&sigmaf; &mu;&pi;&omicron;&rho;ώ &nu;&alpha; &alpha;&kappa;&upsilon;&rho;ώ&sigma;&omega; &mu;&iota;&alpha; &kappa;&rho;ά&tau;&eta;&sigma;&eta;;</strong></div>
-<div>&Alpha;&pi;ό &tau;&omicron;&nu; &lambda;&omicron;&gamma;&alpha;&rho;&iota;&alpha;&sigma;&mu;ό &sigma;&alpha;&sigmaf; &mu;&pi;&omicron;&rho;&epsilon;ί&tau;&epsilon; &nu;&alpha; &alpha;&kappa;&upsilon;&rho;ώ&sigma;&epsilon;&tau;&epsilon; &tau;&eta;&nu; &kappa;&rho;ά&tau;&eta;&sigma;&eta; &sigma;&alpha;&sigmaf; ό&pi;&omicron;&tau;&epsilon; &epsilon;&pi;&iota;&theta;&upsilon;&mu;&epsilon;ί&tau;&epsilon;. &Pi;&rho;&omicron;&sigma;&omicron;&chi;ή! &Delta;&iota;&alpha;&beta;ά&sigma;&tau;&epsilon; &tau;&eta;&nu; &pi;&omicron;&lambda;&iota;&tau;&iota;&kappa;ή &alpha;&kappa;ύ&rho;&omega;&sigma;&eta;&sigmaf; &pi;&omicron;&upsilon; &alpha;&kappa;&omicron;&lambda;&omicron;&upsilon;&theta;&epsilon;ί &eta; &epsilon;&pi;&iota;&chi;&epsilon;ί&rho;&eta;&sigma;&eta; &gamma;&iota;&alpha; &nu;&alpha; &gamma;&nu;&omega;&rho;ί&zeta;&epsilon;&tau;&epsilon; &tau;&iota; &epsilon;&pi;&iota;&sigma;&tau;&rho;&omicron;&phi;ή &chi;&rho;&eta;&mu;ά&tau;&omega;&nu; &delta;&iota;&kappa;&alpha;&iota;&omicron;ύ&sigma;&tau;&epsilon;. &Epsilon;ά&nu; &delta;&epsilon;&nu; έ&chi;&epsilon;&tau;&epsilon; &kappa;ά&nu;&epsilon;&iota; &lambda;&omicron;&gamma;&alpha;&rho;&iota;&alpha;&sigma;&mu;ό, &theta;&alpha; &upsilon;&pi;ά&rho;&chi;&epsilon;&iota; &sigma;&tau;&omicron; email &sigma;&alpha;&sigmaf; &epsilon;&pi;&iota;&lambda;&omicron;&gamma;ή &gamma;&iota;&alpha; &alpha;&kappa;ύ&rho;&omega;&sigma;&eta; ή &alpha;&lambda;&lambda;&alpha;&gamma;ή &eta;&mu;&epsilon;&rho;&omicron;&mu;&eta;&nu;ί&alpha;&sigmaf;.</div>
-<br />
-<div><strong>&Pi;&omega;&sigmaf; &xi;έ&rho;&omega; ό&tau;&iota; &alpha;&kappa;&upsilon;&rho;ώ&theta;&eta;&kappa;&epsilon; &eta; &kappa;&rho;ά&tau;&eta;&sigma;&eta; &mu;&omicron;&upsilon;;</strong></div>
-<div>&Theta;&alpha; &lambda;ά&beta;&epsilon;&tau;&epsilon; έ&nu;&alpha; email &pi;&omicron;&upsilon; &epsilon;&pi;&iota;&beta;&epsilon;&beta;&alpha;&iota;ώ&nu;&epsilon;&iota; &tau;&eta;&nu; &alpha;&kappa;ύ&rho;&omega;&sigma;&eta;. &Epsilon;&lambda;έ&gamma;&xi;&tau;&epsilon; &tau;&omicron;&upsilon;&sigmaf; &phi;&alpha;&kappa;έ&lambda;&omicron;&upsilon;&sigmaf; &mu;&epsilon; &tau;&alpha; &Epsilon;&iota;&sigma;&epsilon;&rho;&chi;ό&mu;&epsilon;&nu;&alpha; &kappa;&alpha;&iota; &tau;&alpha; &Alpha;&nu;&epsilon;&pi;&iota;&theta;ύ&mu;&eta;&tau;&alpha; (spam/junk) &mu;&eta;&nu;ύ&mu;&alpha;&tau;&alpha; &tau;&omicron;&upsilon; email &sigma;&alpha;&sigmaf;. &Alpha;&nu; &delta;&epsilon; &lambda;ά&beta;&epsilon;&tau;&epsilon; email &sigma;&epsilon; 24 ώ&rho;&epsilon;&sigmaf;, &pi;&alpha;&rho;&alpha;&kappa;&alpha;&lambda;&omicron;ύ&mu;&epsilon; &epsilon;&pi;&iota;&kappa;&omicron;&iota;&nu;&omega;&nu;ή&sigma;&tau;&epsilon; &mu;&alpha;&zeta;ί &mu;&alpha;&sigmaf; &gamma;&iota;&alpha; &nu;&alpha; &epsilon;&pi;&iota;&beta;&epsilon;&beta;&alpha;&iota;ώ&sigma;&epsilon;&tau;&epsilon; &tau;&eta;&nu; &alpha;&kappa;ύ&rho;&omega;&sigma;&eta; &sigma;&alpha;&sigmaf;.</div>
-<br />
-<div><strong>&Pi;&omicron;&iota;έ&sigmaf; &epsilon;ί&nu;&alpha;&iota; &omicron;&iota; &pi;&omicron;&lambda;&iota;&tau;&iota;&kappa;έ&sigmaf; &alpha;&kappa;ύ&rho;&omega;&sigma;&eta;&sigmaf;;</strong></div>
-<div>&Eta; Unlimited Adrenaline &pi;&rho;&omicron;&sigma;&phi;έ&rho;&epsilon;&iota; 8 &delta;&iota;&alpha;&phi;&omicron;&rho;&epsilon;&tau;&iota;&kappa;ά &pi;&alpha;&kappa;έ&tau;&alpha; &pi;&omicron;&lambda;&iota;&tau;&iota;&kappa;ή&sigmaf; &alpha;&kappa;ύ&rho;&omega;&sigma;&eta;&sigmaf;. &Kappa;ά&theta;&epsilon; &sigma;&upsilon;&nu;&epsilon;&rho;&gamma;&alpha;&zeta;ό&mu;&epsilon;&nu;&eta; &epsilon;&pi;&iota;&chi;&epsilon;ί&rho;&eta;&sigma;&eta; έ&chi;&epsilon;&iota; &tau;&omicron; &delta;&iota;&kappa;&alpha;ί&omega;&mu;&alpha; &nu;&alpha; &epsilon;&pi;&iota;&lambda;έ&xi;&epsilon;&iota; &alpha;&nu;ά&mu;&epsilon;&sigma;&alpha; &alpha;&pi;ό 8 &delta;&iota;&alpha;&phi;&omicron;&rho;&epsilon;&tau;&iota;&kappa;έ&sigmaf; &pi;&omicron;&lambda;&iota;&tau;&iota;&kappa;έ&sigmaf; &alpha;&kappa;ύ&rho;&omega;&sigma;&eta;&sigmaf;. &Epsilon;&nu;&eta;&mu;&epsilon;&rho;&omega;&theta;&epsilon;ί&tau;&epsilon; &pi;&epsilon;&rho;&iota;&sigma;&sigma;ό&tau;&epsilon;&rho;&omicron; &gamma;&iota;&alpha; &tau;&alpha; &pi;&alpha;&kappa;έ&tau;&alpha; &pi;&omicron;&lambda;&iota;&tau;&iota;&kappa;ή&sigmaf; &alpha;&kappa;ύ&rho;&omega;&sigma;&eta;&sigmaf; &epsilon;&delta;ώ.</div>
-<br />
-<h2><strong>&Epsilon;&kappa;&pi;&tau;ώ&sigma;&epsilon;&iota;&sigmaf; - &Kappa;&omicron;&upsilon;&pi;ό&nu;&iota;&alpha;</strong></h2>
-<div><strong>&Tau;&iota; &epsilon;ί&delta;&omicron;&upsilon;&sigmaf; &kappa;&omicron;&upsilon;&pi;&omicron;&nu;&iota;ώ&nu; &delta;ώ&rho;&omicron;&upsilon; έ&chi;&epsilon;&tau;&epsilon;;</strong></div>
-<div>&Upsilon;&pi;ά&rho;&chi;&omicron;&upsilon;&nu; &delta;ύ&omicron; &epsilon;ί&delta;&eta; &kappa;&omicron;&upsilon;&pi;&omicron;&nu;&iota;ώ&nu; &delta;ώ&rho;&omicron;&upsilon;. &Tau;&omicron; &lsquo;&rsquo;&kappa;&omicron;&upsilon;&pi;ό&nu;&iota; &delta;ώ&rho;&omicron;&upsilon;&rsquo;&rsquo; &kappa;&alpha;&iota; &eta; &lsquo;&rsquo;&delta;&omega;&rho;&omicron;&kappa;ά&rho;&tau;&alpha;&rsquo;&rsquo; :</div>
-<br />
-<div>&Tau;&omicron; &lsquo;&rsquo;&kappa;&omicron;&upsilon;&pi;ό&nu;&iota; &delta;ώ&rho;&omicron;&upsilon;&rsquo;&rsquo; &alpha;&phi;&omicron;&rho;ά &mu;ί&alpha; &sigma;&upsilon;&gamma;&kappa;&epsilon;&kappa;&rho;&iota;&mu;έ&nu;&eta; &delta;&rho;&alpha;&sigma;&tau;&eta;&rho;&iota;ό&tau;&eta;&tau;&alpha; &pi;&omicron;&upsilon; &theta;&alpha; &epsilon;&pi;&iota;&lambda;έ&xi;&epsilon;&tau;&epsilon;. &Epsilon;ί&nu;&alpha;&iota; &sigma;&epsilon; &mu;&omicron;&rho;&phi;ή &kappa;&omega;&delta;&iota;&kappa;&omicron;ύ &omicron; &omicron;&pi;&omicron;ί&omicron;&sigmaf; &alpha;&pi;&omicron;&sigma;&tau;έ&lambda;&lambda;&epsilon;&tau;&alpha;&iota; &sigma;&epsilon; PDF &mu;έ&sigma;&omega; email. &Omicron; &pi;&alpha;&rho;&alpha;&lambda;ή&pi;&tau;&eta;&sigmaf; &tau;&omicron;&upsilon; &delta;ώ&rho;&omicron;&upsilon; &pi;&rho;έ&pi;&epsilon;&iota; &nu;&alpha; &delta;&eta;&mu;&iota;&omicron;&upsilon;&rho;&gamma;ή&sigma;&epsilon;&iota; &lambda;&omicron;&gamma;&alpha;&rho;&iota;&alpha;&sigma;&mu;ό &kappa;&alpha;&iota; &nu;&alpha; &epsilon;&iota;&sigma;ά&gamma;&epsilon;&iota; &tau;&omicron;&nu; &kappa;&omega;&delta;&iota;&kappa;ό ώ&sigma;&tau;&epsilon; &nu;&alpha; &epsilon;&pi;&iota;&lambda;έ&xi;&epsilon;&iota; &sigma;&upsilon;&gamma;&kappa;&epsilon;&kappa;&rho;&iota;&mu;έ&nu;&epsilon;&sigmaf; &eta;&mu;&epsilon;&rho;&omicron;&mu;&eta;&nu;ί&epsilon;&sigmaf; &kappa;&alpha;&iota; &nu;&alpha; &sigma;&upsilon;&nu;&epsilon;&chi;ί&sigma;&epsilon;&iota; &tau;&eta;&nu; &delta;&iota;&alpha;&delta;&iota;&kappa;&alpha;&sigma;ί&alpha; &kappa;&rho;ά&tau;&eta;&sigma;&eta;&sigmaf;.</div>
-<br />
-<div>&Eta; &lsquo;&rsquo;&delta;&omega;&rho;&omicron;&kappa;ά&rho;&tau;&alpha;&rsquo;&rsquo; &epsilon;ί&nu;&alpha;&iota; &sigma;&epsilon; &mu;&omicron;&rho;&phi;ή &kappa;&omega;&delta;&iota;&kappa;&omicron;ύ &pi;&omicron;&upsilon; &alpha;&pi;&omicron;&sigma;&tau;έ&lambda;&epsilon;&tau;&alpha;&iota; &sigma;&epsilon; PDF &mu;έ&sigma;&omega; email. M&pi;&omicron;&rho;&epsilon;ί &nu;&alpha; &alpha;&gamma;&omicron;&rho;&alpha;&sigma;&tau;&epsilon;ί &kappa;&alpha;&iota; &alpha;&phi;&omicron;&rho;ά &pi;&omicron;&sigma;ά 20,50,100,200,500 &kappa;&alpha;&iota; 1000. &Mu;&pi;&omicron;&rho;&epsilon;ί &nu;&alpha; &epsilon;&xi;&alpha;&rho;&gamma;&upsilon;&rho;&omega;&theta;&epsilon;ί &sigma;&epsilon; &omicron;&pi;&omicron;&iota;&alpha;&delta;ή&pi;&omicron;&tau;&epsilon; &delta;&rho;&alpha;&sigma;&tau;&eta;&rho;&iota;ό&tau;&eta;&tau;&alpha;. &Omicron; &pi;&alpha;&rho;&alpha;&lambda;ή&pi;&tau;&eta;&sigmaf; &tau;&eta;&sigmaf; &lsquo;&rsquo;&delta;&omega;&rho;&omicron;&kappa;ά&rho;&tau;&alpha;&sigmaf;&rsquo;&rsquo; &theta;&alpha; &epsilon;&pi;&iota;&lambda;έ&xi;&epsilon;&iota; &tau;&eta;&nu;/&tau;&iota;&sigmaf; &delta;&rho;&alpha;&sigma;&tau;&eta;&rho;&iota;ό&tau;&eta;&tau;&epsilon;&sigmaf; &pi;&omicron;&upsilon; &epsilon;&pi;&iota;&theta;&upsilon;&mu;&epsilon;ί,&theta;&alpha; &epsilon;&iota;&sigma;ά&gamma;&epsilon;&iota; &tau;&omicron;&nu; &kappa;&omega;&delta;&iota;&kappa;ό &kappa;&alpha;&iota; &theta;&alpha; &sigma;&upsilon;&nu;&epsilon;&chi;ί&sigma;&epsilon;&iota; &kappa;&alpha;&nu;&omicron;&nu;&iota;&kappa;ά &tau;&eta;&nu; &delta;&iota;&alpha;&delta;&iota;&kappa;&alpha;&sigma;ί&alpha; &kappa;&rho;ά&tau;&eta;&sigma;&eta;&sigmaf;. &Tau;&omicron; &upsilon;&pi;ό&lambda;&omicron;&iota;&pi;&omicron; &pi;&omicron;&sigma;ό &tau;&eta;&sigmaf; &lsquo;&rsquo;&delta;&omega;&rho;&omicron;&kappa;ά&rho;&tau;&alpha;&sigmaf;&rsquo;&rsquo; &pi;&omicron;&upsilon; &delta;&epsilon; &chi;&rho;&eta;&sigma;&iota;&mu;&omicron;&pi;&omicron;&iota;ή&theta;&eta;&kappa;&epsilon; &theta;&alpha; &alpha;&pi;&omicron;&theta;&eta;&kappa;&epsilon;&upsilon;&tau;&epsilon;ί &sigma;&tau;&omicron; &lambda;&omicron;&gamma;&alpha;&rho;&iota;&alpha;&sigma;&mu;ό &tau;&omicron;&upsilon; &chi;&rho;ή&sigma;&tau;&eta; &omega;&sigmaf; &lsquo;&rsquo;&upsilon;&pi;ό&lambda;&omicron;&iota;&pi;&omicron;&rsquo;&rsquo; &gamma;&iota;&alpha; &mu;&epsilon;&lambda;&lambda;&omicron;&nu;&tau;&iota;&kappa;έ&sigmaf; &kappa;&rho;&alpha;&tau;ή&sigma;&epsilon;&iota;&sigmaf;.</div>
-<br />
-<div>&Pi;ό&sigma;&omicron; &chi;&rho;ό&nu;&omicron; έ&chi;&omicron;&upsilon;&nu; &iota;&sigma;&chi;ύ &tau;&alpha; &lsquo;&rsquo;&kappa;&omicron;&upsilon;&pi;ό&nu;&iota;&alpha; &delta;ώ&rho;&omicron;&upsilon;&rsquo;&rsquo; &kappa;&alpha;&iota; &omicron;&iota; &lsquo;&rsquo;&delta;&omega;&rho;&omicron;&kappa;ά&rho;&tau;&epsilon;&sigmaf;&rsquo;&rsquo;;</div>
-<div>&Tau;&omicron; &lsquo;&rsquo;&kappa;&omicron;&upsilon;&pi;ό&nu;&iota; &delta;ώ&rho;&omicron;&upsilon;&rsquo;&rsquo; &kappa;&alpha;&iota; &eta; &lsquo;&rsquo;&delta;&omega;&rho;&omicron;&kappa;ά&rho;&tau;&alpha;&rsquo;&rsquo; έ&chi;&omicron;&upsilon;&nu; &iota;&sigma;&chi;ύ έ&nu;&alpha;&nu; (1) &chi;&rho;ό&nu;&omicron; &alpha;&pi;ό &tau;&eta;&nu; &alpha;&gamma;&omicron;&rho;ά &tau;&omicron;&upsilon;. &Eta; &epsilon;&xi;&alpha;&rho;&gamma;ύ&rho;&omega;&sigma;&eta; &tau;&omicron;&upsilon;&sigmaf; &theta;&alpha; &pi;&rho;έ&pi;&epsilon;&iota; &nu;&alpha; &gamma;ί&nu;&epsilon;&iota; &sigma;&epsilon; &delta;&rho;&alpha;&sigma;&tau;&eta;&rho;&iota;ό&tau;&eta;&tau;&epsilon;&sigmaf; &omicron;&iota; &omicron;&pi;&omicron;ί&epsilon;&sigmaf; &theta;&alpha; &pi;&rho;&alpha;&gamma;&mu;&alpha;&tau;&omicron;&pi;&omicron;&iota;&eta;&theta;&omicron;ύ&nu; &mu;έ&sigma;&alpha; &sigma;&epsilon; &alpha;&upsilon;&tau;ό &tau;&omicron; &delta;&iota;ά&sigma;&tau;&eta;&mu;&alpha;.</div>
-<br />
-<h2><strong>&Lambda;&omicron;&gamma;&alpha;&rho;&iota;&alpha;&sigma;&mu;ό&sigmaf;</strong></h2>
-<div><strong>&Gamma;&iota;&alpha; &pi;&omicron;&iota;ό&nu; &lambda;ό&gamma;&omicron; &nu;&alpha; &delta;&eta;&mu;&iota;&omicron;&upsilon;&rho;&gamma;ή&sigma;&omega; &lambda;&omicron;&gamma;&alpha;&rho;&iota;&alpha;&sigma;&mu;ό;</strong></div>
-<div>&Sigma;&alpha;&sigmaf; &pi;&rho;&omicron;&tau;&epsilon;ί&nu;&omicron;&upsilon;&mu;&epsilon; &nu;&alpha; &delta;&eta;&mu;&iota;&omicron;&upsilon;&rho;&gamma;ή&sigma;&epsilon;&tau;&epsilon; &lambda;&omicron;&gamma;&alpha;&rho;&iota;&alpha;&sigma;&mu;ό &gamma;&iota;&alpha; &nu;&alpha; &mu;&pi;&omicron;&rho;&epsilon;ί&tau;&epsilon; &nu;&alpha; &delta;&iota;&alpha;&chi;&epsilon;&iota;&rho;ί&zeta;&epsilon;&sigma;&tau;&epsilon; &kappa;&alpha;&iota; &nu;&alpha; &pi;&alpha;&rho;&alpha;&kappa;&omicron;&lambda;&omicron;&upsilon;&theta;&epsilon;ί&tau;&epsilon; &tau;&iota;&sigmaf; &kappa;&rho;&alpha;&tau;ή&sigma;&epsilon;&iota;&sigmaf; &sigma;&alpha;&sigmaf;, &nu;&alpha; &epsilon;&pi;&iota;&kappa;&omicron;&iota;&nu;&omega;&nu;&epsilon;ί&tau;&epsilon; &mu;&epsilon;&sigma;&omega; &mu;&eta;&nu;&upsilon;&mu;ά&tau;&omega;&nu; &mu;&epsilon; &tau;&iota;&sigmaf; &epsilon;&pi;&iota;&chi;&epsilon;&iota;&rho;ή&sigma;&epsilon;&iota;&sigmaf; &pi;&omicron;&upsilon; &kappa;ά&nu;&alpha;&tau;&epsilon; &kappa;&rho;ά&tau;&eta;&sigma;&eta;, &nu;&alpha; &delta;&iota;&alpha;&tau;&eta;&rho;ή&sigma;&epsilon;&tau;&epsilon; &tau;&alpha; &sigma;&tau;&omicron;&iota;&chi;&epsilon;ί&alpha; &sigma;&alpha;&sigmaf; &gamma;&iota;&alpha; &mu;&epsilon;&lambda;&lambda;&omicron;&nu;&tau;&iota;&kappa;έ&sigmaf; &kappa;&rho;&alpha;&tau;ή&sigma;&epsilon;&iota;&sigmaf; &kappa;&alpha;&iota; &nu;&alpha; &delta;&iota;&epsilon;&kappa;&delta;&iota;&kappa;ή&sigma;&epsilon;&tau;&epsilon; &mu;&pi;ό&nu;&omicron;&upsilon;&sigmaf; &kappa;&rho;&alpha;&tau;ή&sigma;&epsilon;&omega;&nu;.</div>
-<br />
-<div><strong>&Delta;&epsilon; &delta;έ&chi;&epsilon;&tau;&alpha;&iota; &tau;&eta;&nu; &kappa;ά&rho;&tau;&alpha; &mu;&omicron;&upsilon; / &delta;&epsilon; &mu;&pi;&omicron;&rho;ώ &nu;&alpha; &omicron;&lambda;&omicron;&kappa;&lambda;&eta;&rho;ώ&sigma;&omega; &tau;&eta;&nu; &pi;&lambda;&eta;&rho;&omega;&mu;ή.</strong></div>
-<div>&Gamma;&iota;&alpha; &omicron;&pi;&omicron;&iota;&omicron;&delta;ή&pi;&omicron;&tau;&epsilon; &pi;&rho;ό&beta;&lambda;&eta;&mu;&alpha; &alpha;&nu;&tau;&iota;&mu;&epsilon;&tau;&omega;&pi;ί&zeta;&epsilon;&tau;&epsilon; &kappa;&alpha;&tau;ά &tau;&eta;&nu; &delta;&iota;&alpha;&delta;&iota;&kappa;&alpha;&sigma;ί&alpha; &kappa;&rho;ά&tau;&eta;&sigma;&eta;&sigmaf; &epsilon;&pi;&iota;&kappa;&omicron;&iota;&nu;&omega;&nu;ή&sigma;&tau;&epsilon; &mu;&alpha;&zeta;ί &mu;&alpha;&sigmaf; &gamma;&iota;&alpha; &nu;&alpha; &sigma;&alpha;&sigmaf; &beta;&omicron;&eta;&theta;ή&sigma;&omicron;&upsilon;&mu;&epsilon;.</div>
+         <?php if ($locale_activities === 'en') {
+    ?>
+
+        <h3 class="text-lg font-semibold mb-4">FAQ</h3>
+         <a id="close-vortex-ua-info-new-btn" class="mt-4 px-4 py-2 bg-black rounded" style="color: white;">Close</a>
+
+            <div class="new-popup-content text-gray-700">
+                <div class="col-lg-9">
+					
+						<div id="tabPage_1" class="blockbox" data-target-active-submenu-down="tabPage_1">
+
+							<div class="pt-4 pl-4 pr-4"><h3 class="mb-2">How can I pay?</h3><div class="pb-4"><p>You can pay by:</p>
+<ul>
+<li>Credit card</li>
+<li>Debit Card</li>
+<li>Google Pay</li>
+<li>Apple Pay</li>
+<li>PayPal</li>
+<li>By deposit in a bank account or via ebanking</li>
+<li>Cash in business (Temporarily unavailable)</li>
+</ul></div><h3 class="mb-2">How will I be informed that my reservation has been made?</h3><div class="pb-4"><p>Unlimited Adrenaline provides real time availability. However, it is up to the partner to decide whether to accept direct bookings or to accept them within 48 hours. After making the booking payment you will be notified by email if your booking has been successful. You can also track your bookings from your account.</p></div><h3 class="mb-2">I booked an activity. What am I doing now;</h3><div class="pb-4"><p>If you make a reservation you will receive an email with detailed instructions on where and when you should be in business as well as other useful information. If you did not receive the email contact us.</p></div><h3 class="mb-2">Do I need to have a confirmation email printed when I go to business?</h3><div class="pb-4"><p>No, it is not necessary. You can show it to our partner in digital form from your mobile phone. However you need to show him.</p></div><h3 class="mb-2">How do I get in touch with the business I booked with?</h3><div class="pb-4"><p>After the booking process you will receive an email with all business details. You can also send a message from your account to our platform. It is always recommended that you contact the business prior to the day of your booking.</p></div><h3 class="mb-2">Is it obligatory to contact me by phone if I have made a reservation?</h3><div class="pb-4"><p>No it's not mandatory. However, in some weather-based activities it is advisable to keep in touch before going into business. You will have detailed information and tips in the confirmation email.</p></div><h3 class="mb-2">I can't find the confirmation email. What should I do;</h3><div class="pb-4"><p>Make sure you check your spam / junk folders with your email. Contact us and we'll get back to you.</p></div>
+							</div>
+							<div class="cleafix"></div>
+						</div>
+						<div class="cleafix"></div>
+						<div class="gap-50"></div>
+						<div id="tabPage_5" class="blockbox" data-target-active-submenu-down="tabPage_5" data-target-active-submenu-up="tabPage_1">
+							<div class="blockboxTitle p-3 p-md-4">
+								<h2 class="m-0">Cancellations</h2>
+							</div>
+							<div class="pt-4 pl-4 pr-4"><h3 class="mb-2">My booking was canceled by the business. How do I get a refund?</h3><div class="pb-4"><p>If for any reason the business canceled your booking, the money will be automatically refunded to your account. If return is delayed contact us.</p></div><h3 class="mb-2">How can I cancel a booking?</h3><div class="pb-4"><p>From your account you can cancel your booking at any time. Caution! Read our cancellation policy to know what your refund is. If you do not have an account, your email will have the option to cancel or change your date.</p></div><h3 class="mb-2">How do I know that my booking has been canceled?</h3><div class="pb-4"><p>You will receive an email confirming the cancellation. Check your Inbox and Spam / junk folders for your email. If you do not receive email within 24 hours, please contact us to confirm your cancellation.</p></div><h3 class="mb-2">What's the cancellation policy?</h3><div class="pb-4"><p>Unlimited Adrenaline offers 8 different cancellation policies. Each provider has the right to choose any of the 8 differente cancellation policies he wishes. Find out more about our cancellation policies <a href="./terms-of-use/en">here</a>.</p></div>
+							</div>
+							<div class="cleafix"></div>
+						</div>
+						<div class="cleafix"></div>
+						<div class="gap-50"></div>
+						<div id="tabPage_7" class="blockbox" data-target-active-submenu-down="tabPage_7" data-target-active-submenu-up="tabPage_5">
+							<div class="blockboxTitle p-3 p-md-4">
+								<h2 class="m-0">Discounts - Coupons</h2>
+							</div>
+							<div class="pt-4 pl-4 pr-4"><h3 class="mb-2">What kind of gift vouchers do you have?</h3><div class="pb-4"><p>There are two types of gift coupon. The 'Gift Voucher' and the 'Gift Card':</p>
+<p>The 'Gift Coupon' refers to a specific activity you choose. It is in code format which is sent to PDF via email. The recipient of the gift must create an account and enter the code to select specific dates and continue the booking process.</p>
+<p>The Gift Card is in the form of a code format sent to PDF via email. It can be purchased for amounts of 20,50,100,200,500 and 1000. It can be redeemed in any activity. The recipient of the 'Gift Card' will select the activity (s) he / she wishes, enter the code and continue the booking process normally. The remaining unused gift card will be saved to the user's account as a 'balance' for future bookings.</p></div><h3 class="mb-2">How long are 'Gift Coupons' and 'Gift Cards' valid?</h3><div class="pb-4"><p>The "gift voucher" and "gift card" are valid for one (1) year from the date of purchase. They should be redeemed for activities that will take place within this period.</p></div>
+							</div>
+							<div class="cleafix"></div>
+						</div>
+						<div class="cleafix"></div>
+						<div class="gap-50"></div>
+						<div id="tabPage_8" class="blockbox" data-target-active-submenu-down="tabPage_8" data-target-active-submenu-up="tabPage_7">
+							<div class="blockboxTitle p-3 p-md-4">
+								<h2 class="m-0">Account</h2>
+							</div>
+							<div class="pt-4 pl-4 pr-4"><h3 class="mb-2">Why to create an account?</h3><div class="pb-4"><p>We recommend setting up an account so you can manage and track your bookings, communicate with the business you booked, keep your details for future bookings, and claim a booking bonus.</p></div><h3 class="mb-2">It doesn't accept my card / I can't complete the payment.</h3><div class="pb-4"><p>For any problem you face during the booking process, contact us to help you.</p></div>
+							</div>
+							<div class="cleafix"></div>
+						</div>
+						<div class="cleafix"></div>
+						<div class="gap-50"></div>				</div>
+            </div>
+    <?php
+} else {
+    ?>
+
+        <h3 class="text-lg font-semibold mb-4">Συχνές Ερωτήσεις</h3>
+         <a id="close-vortex-ua-info-new-btn" class="mt-4 px-4 py-2 bg-black rounded" style="color: white;">Κλείσιμο</a>
+
+            <div class="new-popup-content text-gray-700">
+                <div class="col-lg-9">
+					
+						<div id="tabPage_1" class="blockbox" data-target-active-submenu-down="tabPage_1">
+
+							<div class="pt-4 pl-4 pr-4"><h3 class="mb-2">Πώς μπορώ να πληρώσω;</h3><div class="pb-4"><p>Μπορείτε να πληρώσετε με:</p>
+<ul>
+<li>Πιστωτική κάρτα</li>
+<li>Χρεωστική κάρτα</li>
+<li>Google Pay</li>
+<li>Apple Pay</li>
+<li>PayPal</li>
+<li>Με κατάθεση σε τραπεζικό λογαριασμό ή μέσω ebanking</li>
+<li>Με μετρητά στην επιχείρηση (Προσωρινά μη διαθέσιμο)</li>
+</ul></div><h3 class="mb-2">Πώς θα ενημερωθώ ότι πραγματοποιήθηκε η κράτησή μου;</h3><div class="pb-4"><p>H Unlimited Adrenaline παρέχει real time διαθεσιμότητες. Παρ’ όλα αυτά είναι στην κρίση του συνεργάτη εάν θα δέχεται άμεσες κρατήσεις ή θα πρέπει να τις κάνει αποδοχή εντός 48 ωρών. Αφού προβείτε στην πληρωμή της κράτησης θα ενημερωθείτε με email εάν πραγματοποιήθηκε επιτυχώς η κράτηση σας. Καθώς επίσης μπορείτε να παρακολουθείτε τις κρατήσεις σας από τον λογαριασμό σας.</p></div><h3 class="mb-2">Έκανα κράτηση μιας δραστηριότητας. Τι κάνω τώρα;</h3><div class="pb-4"><p>Εάν πραγματοποιήσατε μια κράτηση θα λάβετε email με αναλυτικές οδηγίες για το μέρος και την ώρα που θα πρέπει να είστε στην επιχείρηση καθώς επίσης και άλλες χρήσιμες πληροφορίες. Εάν δεν λάβατε το email επικοινωνήστε μαζί μας.</p></div><h3 class="mb-2">Χρειάζεται να έχω εκτυπωμένο το email επιβεβαίωσης όταν πάω στην επιχείρηση;</h3><div class="pb-4"><p>Όχι δεν είναι απαραίτητο. Μπορείτε να το δείξετε στον συνεργάτη μας σε ψηφιακή μορφή από το κινητό σας. Παρ’ όλα αυτά χρειάζεται να του το δείξετε.</p></div><h3 class="mb-2">Πως μπορώ να επικοινωνήσω με την επιχείρηση στην οποία έκανα κράτηση;</h3><div class="pb-4"><p>Μετά την διαδικασία της κράτησης θα λάβετε email με όλα τα στοιχεία της επιχείρησης. Επίσης μπορείτε να στείλετε μήνυμα από τον λογαριασμό σας στην πλατφόρμα μας. Προτείνεται πάντα να επικοινωνείτε με την επιχείρηση πριν την ημέρα της κρατησής σας.</p></div><h3 class="mb-2">Είναι υποχρεωτικό να επικοινωνήσω και τηλεφωνικά εάν έχω κάνει μια κράτηση;</h3><div class="pb-4"><p>Όχι δεν είναι υποχρεωτικό. Σε ορισμένες δραστηριότητες όμως που βασίζονται στις καιρικές συνθήκες καλό θα είναι να έχετε&nbsp; επικοινωνία πριν πάτε στην επιχειρήση. Θα έχετε αναλυτικές πληροφορίες και συμβουλές στο email επιβεβαίωσης.</p></div><h3 class="mb-2">Δε βρίσκω το email επιβεβαίωσης. Τι πρέπει να κάνω;</h3><div class="pb-4"><p>Βεβαιωθείτε ότι έχετε ελέγξει τους φακέλους με τα Ανεπιθύμητα (spam/junk) μηνύματα του email σας. Επικοινωνήστε μαζί μας και θα σας το ξαναστείλουμε.</p></div>
+							</div>
+							<div class="cleafix"></div>
+						</div>
+						<div class="cleafix"></div>
+						<div class="gap-50"></div>
+						<div id="tabPage_5" class="blockbox" data-target-active-submenu-down="tabPage_5" data-target-active-submenu-up="tabPage_1">
+							<div class="blockboxTitle p-3 p-md-4">
+								<h2 class="m-0">Ακυρώσεις</h2>
+							</div>
+							<div class="pt-4 pl-4 pr-4"><h3 class="mb-2">Η κράτηση μου ακυρώθηκε από την επιχείρηση. Πως παίρνω τα χρήματα μου πίσω;</h3><div class="pb-4"><p>Εάν για οποιοδήποτε λόγο η επιχείρηση ακύρωσε την κράτηση σου , αυτόματα θα επιστραφούν τα χρήματα στον λογαριασμό σου. Εάν έχει καθυστερήσει η επιστροφή επικοινώνησε μαζί μας.</p></div><h3 class="mb-2">Πως μπορώ να ακυρώσω μια κράτηση;</h3><div class="pb-4"><p>Από τον λογαριασμό σας μπορείτε να ακυρώσετε την κράτηση σας όποτε επιθυμείτε. Προσοχή! Διαβάστε την πολιτική ακύρωσης που ακολουθεί η επιχείρηση για να γνωρίζετε τι επιστροφή χρημάτων δικαιούστε. Εάν δεν έχετε κάνει λογαριασμό, θα υπάρχει στο email σας επιλογή για ακύρωση ή αλλαγή ημερομηνίας.</p></div><h3 class="mb-2">Πως ξέρω ότι ακυρώθηκε η κράτηση μου;</h3><div class="pb-4"><p>Θα λάβετε ένα email που επιβεβαιώνει την ακύρωση. Ελέγξτε τους φακέλους με τα Εισερχόμενα και τα Ανεπιθύμητα (spam/junk) μηνύματα του email σας. Αν δε λάβετε email σε 24 ώρες, παρακαλούμε επικοινωνήστε μαζί μας για να επιβεβαιώσετε την ακύρωση σας.</p></div><h3 class="mb-2">Ποιές είναι οι πολιτικές ακύρωσης;</h3><div class="pb-4"><p>Η Unlimited Adrenaline προσφέρει 8 διαφορετικά πακέτα πολιτικής ακύρωσης. Κάθε συνεργαζόμενη επιχείρηση έχει το δικαίωμα να επιλέξει ανάμεσα από 8 διαφορετικές πολιτικές ακύρωσης. Ενημερωθείτε περισσότερο για τα πακέτα πολιτικής ακύρωσης <a href="./terms-of-use">εδώ</a>.</p></div>
+							</div>
+							<div class="cleafix"></div>
+						</div>
+						<div class="cleafix"></div>
+						<div class="gap-50"></div>
+						<div id="tabPage_7" class="blockbox" data-target-active-submenu-down="tabPage_7" data-target-active-submenu-up="tabPage_5">
+							<div class="blockboxTitle p-3 p-md-4">
+								<h2 class="m-0">Εκπτώσεις - Κουπόνια</h2>
+							</div>
+							<div class="pt-4 pl-4 pr-4"><h3 class="mb-2">Τι είδους κουπονιών δώρου έχετε;</h3><div class="pb-4"><p>Υπάρχουν δύο είδη κουπονιών δώρου. Το ‘’κουπόνι δώρου’’ και η ‘’δωροκάρτα’’ :</p>
+<p>Το ‘’κουπόνι δώρου’’ αφορά μία συγκεκριμένη δραστηριότητα που θα επιλέξετε. Είναι σε μορφή κωδικού ο οποίος αποστέλλεται σε PDF μέσω email. Ο παραλήπτης του δώρου πρέπει να δημιουργήσει λογαριασμό και να εισάγει τον κωδικό ώστε να επιλέξει συγκεκριμένες ημερομηνίες και να συνεχίσει την διαδικασία κράτησης.</p>
+<p>Η ‘’δωροκάρτα’’ είναι σε μορφή κωδικού που αποστέλεται σε PDF μέσω email. Mπορεί να αγοραστεί και αφορά ποσά 20,50,100,200,500 και 1000. Μπορεί να εξαργυρωθεί σε οποιαδήποτε δραστηριότητα. Ο παραλήπτης της ‘’δωροκάρτας’’ θα επιλέξει την/τις δραστηριότητες που επιθυμεί,θα εισάγει τον κωδικό και θα συνεχίσει κανονικά την διαδικασία κράτησης. Το υπόλοιπο ποσό της ‘’δωροκάρτας’’ που δε χρησιμοποιήθηκε θα αποθηκευτεί στο λογαριασμό του χρήστη ως ‘’υπόλοιπο’’ για μελλοντικές κρατήσεις.</p></div><h3 class="mb-2">Πόσο χρόνο έχουν ισχύ τα ‘’κουπόνια δώρου’’ και οι ‘’δωροκάρτες’’;</h3><div class="pb-4"><p>Το ‘’κουπόνι δώρου’’ και η ‘’δωροκάρτα’’ έχουν ισχύ έναν (1) χρόνο από την αγορά του. Η εξαργύρωση τους θα πρέπει να γίνει σε δραστηριότητες οι οποίες θα&nbsp;πραγματοποιηθούν μέσα σε αυτό το διάστημα.</p></div>
+							</div>
+							<div class="cleafix"></div>
+						</div>
+						<div class="cleafix"></div>
+						<div class="gap-50"></div>
+						<div id="tabPage_8" class="blockbox" data-target-active-submenu-down="tabPage_8" data-target-active-submenu-up="tabPage_7">
+							<div class="blockboxTitle p-3 p-md-4">
+								<h2 class="m-0">Λογαριασμός</h2>
+							</div>
+							<div class="pt-4 pl-4 pr-4"><h3 class="mb-2">Για ποιόν λόγο να δημιουργήσω λογαριασμό;</h3><div class="pb-4"><p>Σας προτείνουμε να δημιουργήσετε λογαριασμό για να μπορείτε να διαχειρίζεστε και να παρακολουθείτε τις κρατήσεις σας, να επικοινωνείτε μεσω μηνυμάτων με τις επιχειρήσεις που κάνατε κράτηση, να διατηρήσετε τα στοιχεία σας για μελλοντικές κρατήσεις και να διεκδικήσετε μπόνους κρατήσεων.</p></div><h3 class="mb-2">Δε δέχεται την κάρτα μου / δε μπορώ να ολοκληρώσω την πληρωμή.</h3><div class="pb-4"><p>Για οποιοδήποτε πρόβλημα αντιμετωπίζετε κατά την διαδικασία κράτησης επικοινωνήστε μαζί μας για να σας βοηθήσουμε.</p></div>
+							</div>
+							<div class="cleafix"></div>
+						</div>
+						<div class="cleafix"></div>
+						<div class="gap-50"></div>				</div>
+            </div>
+
+
+
+    <?php } ?>
+    </div>
 </div>
-                                </div>
-                                <a id="close-vortex-ua-info-new-btn" class="mt-4 px-4 py-2 rounded">Κλείσιμο</a>
-                            </div>
-                        </div>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const newPopupBtn = document.getElementById('vortex-ua-info-new-btn');

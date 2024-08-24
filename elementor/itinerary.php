@@ -324,7 +324,7 @@ $this->add_control(
                     include plugin_dir_path(__FILE__) . '../single/map.php';
                 }
 
-                echo '<button data-id="' . esc_attr($itinerary['itinerary_id']) . '" class="bookNowBtn mt-4 px-4 py-2 vortex-ua-button text-white rounded" style="background-color: ' . esc_attr($settings['button_color']) . '; color: ' . esc_attr($settings['button_text_color']) . ';">' . ($locale_activities === 'en' ? 'Book Now' : 'Κράτηση τώρα') . '</button>';
+                echo '<button data-id="' . esc_attr($itinerary['itinerary_id']) . '" class="bookNowBtn mt-4 px-4 py-2 vortex-ua-button text-white rounded" style="background-color: ' . esc_attr($settings['button_color']) . '; color: ' . esc_attr($settings['button_text_color']) . ';">' . ($locale_activities === 'en' ? 'Book' : 'Κράτηση') . '</button>';
                 echo '<div class="bookingModal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">';
                 echo '<div class="bg-white p-6 rounded-lg shadow-lg w-full h-full md:w-1/2 md:h-auto relative">';
                 echo '<h3 class="text-lg font-semibold mb-4">' . ($locale_activities === 'en' ? 'You are 5 steps away!' : 'Είστε 5 βήματα μακριά!') . '</h3>';

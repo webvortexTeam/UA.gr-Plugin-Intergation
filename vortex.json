@@ -401,6 +401,7 @@
                             "id": ""
                         },
                         "layout": "block",
+                        "parent_repeater": "field_webvortex_itineraries",
                         "sub_fields": [
                             {
                                 "key": "field_webvortex_itinerary_included",
@@ -536,8 +537,7 @@
                                     }
                                 ]
                             }
-                        ],
-                        "parent_repeater": "field_webvortex_itineraries"
+                        ]
                     },
                     {
                         "key": "field_webvortex_itinerary_ratings",
@@ -559,6 +559,7 @@
                         "layout": "table",
                         "button_label": "Add Rating",
                         "rows_per_page": 20,
+                        "parent_repeater": "field_webvortex_itineraries",
                         "sub_fields": [
                             {
                                 "key": "field_webvortex_rating_score",
@@ -625,8 +626,7 @@
                                 "maxlength": "",
                                 "parent_repeater": "field_webvortex_itinerary_ratings"
                             }
-                        ],
-                        "parent_repeater": "field_webvortex_itineraries"
+                        ]
                     },
                     {
                         "key": "field_webvortex_itinerary_min_age",
@@ -671,6 +671,7 @@
                         "layout": "table",
                         "button_label": "Add Language",
                         "rows_per_page": 20,
+                        "parent_repeater": "field_webvortex_itineraries",
                         "sub_fields": [
                             {
                                 "key": "field_webvortex_language_id",
@@ -737,8 +738,7 @@
                                 "maxlength": "",
                                 "parent_repeater": "field_webvortex_itinerary_spoken_languages"
                             }
-                        ],
-                        "parent_repeater": "field_webvortex_itineraries"
+                        ]
                     },
                     {
                         "key": "field_webvortex_itinerary_booking_type",
@@ -885,6 +885,7 @@
                             "id": ""
                         },
                         "layout": "block",
+                        "parent_repeater": "field_webvortex_itineraries",
                         "sub_fields": [
                             {
                                 "key": "field_webvortex_policy_id",
@@ -1014,8 +1015,7 @@
                                 "rows": "",
                                 "new_lines": ""
                             }
-                        ],
-                        "parent_repeater": "field_webvortex_itineraries"
+                        ]
                     },
                     {
                         "key": "field_webvortex_itinerary_activity_id",
@@ -1143,6 +1143,90 @@
                         "prepend": "",
                         "append": "",
                         "maxlength": "",
+                        "parent_repeater": "field_webvortex_itineraries"
+                    },
+                    {
+                        "key": "field_66c7960045f00",
+                        "label": "meetingPointArea",
+                        "name": "meetingPointArea",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "maxlength": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_webvortex_itineraries"
+                    },
+                    {
+                        "key": "field_66c7960e45f01",
+                        "label": "meetingPointAdress",
+                        "name": "meetingPointAdress",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "maxlength": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_webvortex_itineraries"
+                    },
+                    {
+                        "key": "field_66c7961e45f02",
+                        "label": "notes",
+                        "name": "notes",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "maxlength": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_webvortex_itineraries"
+                    },
+                    {
+                        "key": "field_66c7962745f03",
+                        "label": "activityArea",
+                        "name": "activityArea",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "maxlength": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
                         "parent_repeater": "field_webvortex_itineraries"
                     }
                 ]

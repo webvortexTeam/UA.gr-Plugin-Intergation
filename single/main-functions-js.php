@@ -4,6 +4,7 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 ?>
+
 <script>
          document.addEventListener('DOMContentLoaded', function () {
                 const showMoreBtn = document.getElementById('show-more-btn');
@@ -95,10 +96,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const updatePricing = (itineraryId) => {
     const itineraryContainer = jQuery('.itinerary-container[data-id="' + itineraryId + '"]');
-    const selectedFacilities = itineraryContainer.find('.facilities-select').val();
+    //const selectedFacilities = itineraryContainer.find('.facilities-select').val();
     const selectedDate = itineraryContainer.find('.date-picker-container').find('.flatpickr-input').val();
     const selectedTimeSlot = itineraryContainer.find('.time-slot-select').val();
-    
+        const selectedFacilities = itineraryContainer.find('.facility-checkbox:checked').map(function() {
+        return jQuery(this).val();
+    }).get();
     // Explicitly set personCount to 1 if it is not valid
     let personCount = parseInt(itineraryContainer.find('.person-count').text());
     if (isNaN(personCount) || personCount <= 0) {
@@ -143,7 +146,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const checkout = (itineraryId, customerDetails) => {
         const itineraryContainer = jQuery('.itinerary-container[data-id="' + itineraryId + '"]');
-        const selectedFacilities = itineraryContainer.find('.facilities-select').val();
+        const selectedFacilities = itineraryContainer.find('.facility-checkbox:checked').map(function() {
+            return jQuery(this).val();
+        }).get();
         const selectedDate = itineraryContainer.find('.date-picker-container').find('.flatpickr-input').val();
         const selectedTimeSlot = itineraryContainer.find('.time-slot-select').val();
         const personCount = parseInt(itineraryContainer.find('.person-count').text());
@@ -210,8 +215,11 @@ const fetchAvailability = (itineraryId, startDate, endDate, calendarInstance) =>
                 calendarInstance.config.onChange.push(function(selectedDates, dateStr, instance) {
                     const timeSlotSelect = jQuery(instance.element).closest('.itinerary-container').find('.time-slot-select');
                     if (timeSlots[dateStr]) {
-                        timeSlotSelect.html('<option value="">Επιλέξτε ώρα</option>');
-                        timeSlots[dateStr].forEach(function (slot) {
+                            var selectTimeText = localeActivities === 'en' ? 'Select Time' : 'Επιλέξτε ώρα';
+
+    // Set the HTML of the select element
+                             timeSlotSelect.html('<option value="">' + selectTimeText + '</option>');
+                            timeSlots[dateStr].forEach(function (slot) {
                             timeSlotSelect.append('<option value="' + slot.timeId + '">' + slot.startTime + '</option>');
                         });
                         timeSlotSelect.closest('.time-slot-container').removeClass('hidden');
@@ -275,8 +283,10 @@ jQuery('.bookNowBtn').on('click', (e) => {
     enable: availableDates,
     onChange: function(selectedDates, dateStr, instance) {
         const timeSlotSelect = jQuery(instance.element).closest('.itinerary-container').find('.time-slot-select');
+                                    var selectTimeText2 = localeActivities === 'en' ? 'Select Time' : 'Επιλέξτε ώρα';
+
         if (timeSlots[dateStr]) {
-            timeSlotSelect.html('<option value="">Επιλέξτε ώρα</option>');
+            timeSlotSelect.html('<option value="">' + selectTimeText2 + '</option>');
             timeSlots[dateStr].forEach(function (slot) {
                 timeSlotSelect.append('<option value="' + slot.timeId + '">' + slot.startTime + '</option>');
             });
@@ -303,16 +313,37 @@ jQuery('.bookNowBtn').on('click', (e) => {
 
 
                 datePickerContainer.removeClass('hidden');
-
+// Assuming facilitiesContainer is a jQuery object for the container where checkboxes are to be added
                 facilities.forEach(function (facility) {
-                    facilitiesContainer.find('.facilities-select').append('<option value="' + facility.id + '">' + facility.title + '</option>');
+facilitiesContainer.append(
+    '<div class="facility-item mt-2" style="border: 1px solid #ddd; border-radius: 4px; padding: 8px; margin-bottom: 8px; background-color: #fff;">' +
+        '<div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.875rem; color: #333;">' +
+            '<div style="display: flex; align-items: center;">' +
+                '<input type="checkbox" id="facility-' + facility.id + '" name="facility[]" value="' + facility.id + '" class="facility-checkbox p-2 border rounded" style="margin-right: 8px;">' +
+                '<label for="facility-' + facility.id + '" style="margin-right: 8px;">' + facility.title + '</label>' +
+            '</div>' +
+            '<div class="facility-details" style="display: flex; align-items: center; font-size: 0.75rem; color: #666;">' +
+                '<p class="facility-price text-bold" style="margin: 0; margin-right: 4px;">' + facility.price + '€ / </p>' +
+                '<p class="facility-price-type text-bold" style="margin: 0;">' + (facility.price_type === 'perBooking' ? 'Booking' : 'Person') + '</p>' +
+            '</div>' +
+        '</div>' +
+        '<p class="facility-description" style="margin-top: 6px; color: #555; font-size: 0.75rem;">' + facility.description + '</p>' +
+    '</div>'
+);
+
+
+
+
                 });
 
                 facilitiesContainer.removeClass('hidden');
 
-                facilitiesContainer.find('.facilities-select').on('change', function () {
+                // Trigger the updatePricing function when any checkbox is changed
+                facilitiesContainer.find('.facility-checkbox').on('change', function () {
                     updatePricing(itineraryId);
                 });
+
+
             } else {
                 console.log('Error: ', response.data);
             }
@@ -326,9 +357,31 @@ jQuery('.bookNowBtn').on('click', (e) => {
     showStep(0, itineraryId);
 });
 
+    var localeActivities = "<?php echo $locale_activities; ?>";
 
     jQuery('.closeBookingModalBtn').on('click', (e) => {
-        jQuery(e.target).closest('.bookingModal').addClass('hidden');
+        const bookingModal = jQuery(e.target).closest('.bookingModal');
+        
+        // Reset booking form fields
+        const itineraryContainer = bookingModal.closest('.itinerary-container');
+        
+        // Reset date picker
+        itineraryContainer.find('.flatpickr-input').val('');
+        
+        // Reset time slot
+        itineraryContainer.find('.time-slot-select').val('');
+        itineraryContainer.find('.time-slot-container').addClass('hidden');
+        
+        // Reset facilities
+        itineraryContainer.find('.facility-checkbox').prop('checked', false);
+        itineraryContainer.find('.facilities-container').empty(); // Clear facilities container
+        
+        // Reset person count
+        personCount = 1; // or set to initial value
+        itineraryContainer.find('.person-count').text(personCount);
+        
+        // Hide the modal
+        bookingModal.addClass('hidden');
     });
 
     jQuery('.nextToStep2').on('click', (e) => {
@@ -338,8 +391,13 @@ jQuery('.bookNowBtn').on('click', (e) => {
         const selectedDate = itineraryContainer.find('.flatpickr-input').val();
 
         if (!selectedDate) {
-            alert('Παρακαλώ επιλέξτε μια ημερομηνία ή επιστρέψτε πίσω.');
-            return;
+var alertMessageDate = localeActivities === 'en' 
+            ? 'Please select a date or go back.' 
+            : 'Παρακαλώ επιλέξτε μια ημερομηνία ή επιστρέψτε πίσω.';
+
+        // Display the alert
+        alert(alertMessageDate);       
+             return;
         }
 
         currentStep = 1;
@@ -353,7 +411,12 @@ jQuery('.bookNowBtn').on('click', (e) => {
         const selectedTimeSlot = itineraryContainer.find('.time-slot-select').val();
 
         if (!selectedTimeSlot) {
-            alert('Παρακαλώ επιλέξτε ώρα ή επιστρέψτε πίσω.');
+            var alertMessageDateTime = localeActivities === 'en' 
+            ? 'Please select a timeframe or go back.' 
+            : 'Παρακαλώ επιλέξτε ώρα ή επιστρέψτε πίσω.';
+
+        // Display the alert
+        alert(alertMessageDateTime); 
             return;
         }
 
@@ -364,45 +427,70 @@ jQuery('.bookNowBtn').on('click', (e) => {
     jQuery('.nextToStep4').on('click', (e) => {
         const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
         const itineraryId = itineraryContainer.data('id');
+        
+        // Check person count before proceeding
+        let personCount = parseInt(itineraryContainer.find('.person-count').text());
 
+        if (isNaN(personCount) || personCount <= 0) {
+                       var alertMessageDateTimePeopleCount = localeActivities === 'en' 
+            ? 'Person count cannot be zero or less. Please add at least one person.' 
+            : 'Επιλέξτε παραπάνω απο ένα άτομο';
+
+        // Display the alert
+        alert(alertMessageDateTimePeopleCount); 
+            return; // Prevent continuation if person count is invalid
+        }
+
+        // Proceed if person count is valid
         currentStep = 3;
         showStep(currentStep, itineraryId);
     });
 
-    jQuery('.nextToStep5').on('click', (e) => {
-       const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
-        const itineraryId = itineraryContainer.data('id');
 
-        // Fetch and display summary details
-        const selectedDate = itineraryContainer.find('.flatpickr-input').val();
-        const selectedTimeSlot = itineraryContainer.find('.time-slot-select option:selected').text();
-        const personCount = itineraryContainer.find('.person-count').text();
-        const selectedFacilities = itineraryContainer.find('.facilities-select option:selected').map(function() {
-            return jQuery(this).text();
-        }).get().join(', ');
+jQuery('.nextToStep5').on('click', (e) => {
+    const itineraryContainer = jQuery(e.target).closest('.itinerary-container');
+    const itineraryId = itineraryContainer.data('id');
 
-        const customerName = itineraryContainer.find('input[name="customer_name"]').val();
-        const customerSurname = itineraryContainer.find('input[name="customer_surname"]').val();
-        const customerEmail = itineraryContainer.find('input[name="customer_email"]').val();
-        const customerPhone = itineraryContainer.find('input[name="customer_phone"]').val();
+    const selectedDate = itineraryContainer.find('.flatpickr-input').val();
+    const selectedTimeSlot = itineraryContainer.find('.time-slot-select option:selected').text();
+    const personCount = itineraryContainer.find('.person-count').text();
+    const selectedFacilities = jQuery('.facility-checkbox:checked').map(function() {
+        return jQuery('label[for="' + jQuery(this).attr('id') + '"]').text();
+    }).get();
 
-        jQuery('#summary-date').text(selectedDate);
-        jQuery('#summary-time').text(selectedTimeSlot);
-        jQuery('#summary-persons').text(personCount);
-        jQuery('#summary-facilities').text(selectedFacilities || 'Καμία');
-        jQuery('#summary-name').text(customerName);
-        jQuery('#summary-surname').text(customerSurname);
-        jQuery('#summary-email').text(customerEmail);
-        jQuery('#summary-phone').text(customerPhone);
+    const customerName = itineraryContainer.find('input[name="customer_name"]').val();
+    const customerSurname = itineraryContainer.find('input[name="customer_surname"]').val();
+    const customerEmail = itineraryContainer.find('input[name="customer_email"]').val();
+    const customerPhone = itineraryContainer.find('input[name="customer_phone"]').val();
 
-        if (!customerName || !customerSurname || !customerEmail || !customerPhone) {
-            alert('Παρακαλώ συμπληρώστε όλα τα στοιχεία σας');
-            return;
-        }
+    // Directly insert the values into the HTML elements
+    document.querySelector('#summary-date').innerText = selectedDate;
+    document.querySelector('#summary-time').innerText = selectedTimeSlot;
+    document.querySelector('#summary-persons').innerText = personCount;
+    document.querySelector('#summary-facilities').innerText = selectedFacilities.join(', ');
+    document.querySelector('#summary-name').innerText = customerName;
+    document.querySelector('#summary-surname').innerText = customerSurname;
+    document.querySelector('#summary-email').innerText = customerEmail;
+    document.querySelector('#summary-phone').innerText = customerPhone;
 
-        currentStep = 4;
-        showStep(currentStep, itineraryId);
-    });
+    // Show the summary section
+    jQuery('.step5.booking-step').removeClass('hidden');
+
+    if (!customerName || !customerSurname || !customerEmail || !customerPhone) {
+        var alertMessage = localeActivities === 'en' 
+            ? 'Please fill all your information' 
+            : 'Παρακαλώ συμπληρώστε όλα τα στοιχεία σας';
+
+        alert(alertMessage);
+        return;
+    }
+
+    currentStep = 4;
+    showStep(currentStep, itineraryId);
+});
+
+
+
 
     jQuery('.backToStep1').on('click', (e) => {
         const itineraryId = jQuery(e.target).closest('.itinerary-container').data('id');
