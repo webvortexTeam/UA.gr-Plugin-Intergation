@@ -365,9 +365,8 @@ style="color: #FFFFFF; background-color: <?php echo $button_color;?>; border-rad
                                                 <div class="step2 booking-step hidden">
                                                     <h4 class="text-lg font-semibold"><?php echo $locale_activities === 'en' ? 'Select Time' : 'Επιλέξτε ώρα'; ?></h4>
                                                     <div class="time-slot-container mb-4 hidden">
-                                                        <select id="timeslot-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itine<?php echo $locale_activities === 'en' ? 'Select' : 'Επιλέξτε'; ?>rary['itinerary_id']); ?>" class="time-slot-select mt-2 p-2 border rounded w-full">
-                                                            <option value=""></option>
-                                                        </select>
+                                                    <select id="timeslot-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>" class="time-slot-select mt-2 p-2 border rounded w-full">
+                                                    <option value=""><?php echo $locale_activities === 'en' ? 'Select' : 'Επιλέξτε'; ?></option>
                                                     </div>
                                                     <button class="backToStep1 mt-4 px-4 py-2 bg-gray-500 text-white rounded" style="color: #FFFFFF; background-color: black; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; width: 100%; text-align: center;"><?php echo $locale_activities === 'en' ? 'Back' : 'Πίσω'; ?></button>
                                                     <button class="nextToStep3 mt-4 px-4 py-2 vortex-ua-button text-white rounded" style="color: #FFFFFF; background-color: <?php echo $button_color;?>; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; width: 100%; text-align: center;"><?php echo $locale_activities === 'en' ? 'Next' : 'Επόμενο'; ?></button>
