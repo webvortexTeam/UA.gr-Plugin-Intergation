@@ -405,14 +405,10 @@ style="color: #FFFFFF; background-color: <?php echo $button_color;?>; border-rad
     <script>document.addEventListener("DOMContentLoaded", function () {
     const nextToStep4Button = document.querySelector(".nextToStep4");
     const summaryDate = document.getElementById("summary-date");
-    const summaryTime = document.getElementById("summary-time");
-    const summaryActivity = document.getElementById("summary-activity");
     const summaryPersons = document.getElementById("summary-persons");
 
     nextToStep4Button.addEventListener("click", function () {
         const chosenDate = document.getElementById("datetime-<?php echo esc_attr($itinerary['itinerary_id']); ?>").value;
-        const chosenTime = document.getElementById("timeslot-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>").value;
-        const chosenActivity = document.getElementById("timeslot-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>").value; // Adjust if needed
         const personCount = document.querySelector(".person-count").textContent;
 
         // Update summary

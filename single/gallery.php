@@ -129,11 +129,20 @@ if (!defined('ABSPATH')) {
 
 <!-- Fullscreen Modal -->
 <!-- Desktop -->
-<div class="relative hidden lg:flex mx-auto mt-6 w-full h-96"> <!-- Adjusted height here -->
+<div class="relative mx-auto mt-6 w-full h-96">
     <?php if (!empty($photos)) : ?>
-        <!-- Show only the first image in desktop view -->
         <div class="w-full h-full overflow-hidden rounded-lg relative">
-            <img src="<?php echo esc_url($photos[0]['full_url'] ?? ''); ?>" alt="<?php echo esc_attr($photos[0]['photo_title'] ?? ''); ?>" class="w-full h-full object-cover object-center clickable-image">
+            <!-- Carousel -->
+            <div class="carousel rounded-box h-full">
+                <?php foreach ($photos as $photo) : ?>
+                    <div class="carousel-item h-full">
+                        <img src="<?php echo esc_url($photo['full_url'] ?? ''); ?>" 
+                             alt="<?php echo esc_attr($photo['photo_title'] ?? ''); ?>" 
+                             class="w-full h-full object-cover object-center clickable-image">
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <!-- End Carousel -->
             <?php if (count($photos) > 1) : ?>
                 <div class="absolute bottom-0 left-0 w-full text-center bg-black bg-opacity-50 text-white py-2 cursor-pointer" onclick="openSlideshow()">
                     <?php echo $locale_activities === 'en' ? 'See Photos' : 'Δείτε Φωτογραφίες'; ?>
@@ -146,7 +155,6 @@ if (!defined('ABSPATH')) {
                             <span id="photoCaption" style="display: block; margin-top: 10px; font-size: 20px; color: white;">
                                 <?php echo esc_attr($photos[0]['photo_title'] ?? ''); ?>
                             </span>
-
                         </div>
                         <button class="ua-fullscreen-modal-prev">&#10094;</button>
                         <button class="ua-fullscreen-modal-next">&#10095;</button>
@@ -157,32 +165,10 @@ if (!defined('ABSPATH')) {
     <?php else : ?>
         <div class="w-full h-full overflow-hidden rounded-lg relative">
             <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg" alt="Placeholder image" class="w-full h-full object-cover object-center clickable-image">
-            <?php if (count($photos) > 1) : ?>
-                <div class="absolute bottom-0 left-0 w-full text-center bg-black bg-opacity-50 text-white py-2 cursor-pointer" onclick="openSlideshow()">
-                    <?php echo $locale_activities === 'en' ? 'See Photos' : 'Δείτε Φωτογραφίες'; ?>
-                </div>
-            <?php endif; ?>
         </div>
     <?php endif; ?>
 </div>
 
-<!-- Mobile -->
-<div class="block lg:hidden">
-    <div class="carousel carousel-vertical rounded-box h-96">
-        <?php if (!empty($photos)) : ?>
-            <?php foreach ($photos as $photo) : ?>
-                <div class="carousel-item h-full">
-                    <img src="<?php echo esc_url($photo['full_url'] ?? ''); ?>" alt="<?php echo esc_attr($photo['photo_title'] ?? ''); ?>" class="h-full w-full object-cover object-center clickable-image">
-                </div>
-                
-            <?php endforeach; ?>
-        <?php else : ?>
-            <div class="carousel-item h-full">
-                <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg" alt="Placeholder image" class="h-full w-full object-cover object-center clickable-image">
-            </div>
-        <?php endif; ?>
-    </div>
-</div>
 
 <!-- Include DaisyUI JS for Carousel Functionality -->
 <script src="https://cdn.jsdelivr.net/npm/tw-elements@latest/dist/js/index.min.js"></script>
