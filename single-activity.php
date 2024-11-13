@@ -401,8 +401,6 @@ style="color: #FFFFFF; background-color: <?php echo $button_color;?>; border-rad
                                                     <div id="summary-container" class="mt-4 p-4 border rounded bg-gray-100">
     <h4 class="text-lg font-semibold"><?php echo $locale_activities === 'en' ? 'Summary' : 'Σύνοψη'; ?></h4>
     <p><strong><?php echo $locale_activities === 'en' ? 'Date:' : 'Ημερομηνία:'; ?></strong> <span id="summary-date"></span></p>
-    <p><strong><?php echo $locale_activities === 'en' ? 'Time:' : 'Ώρα:'; ?></strong> <span id="summary-time"></span></p>
-    <p><strong><?php echo $locale_activities === 'en' ? 'Activity:' : 'Δραστηριότητα:'; ?></strong> <span id="summary-activity"></span></p>
     <p><strong><?php echo $locale_activities === 'en' ? 'Persons:' : 'Άτομα:'; ?></strong> <span id="summary-persons"></span></p>
     <script>document.addEventListener("DOMContentLoaded", function () {
     const nextToStep4Button = document.querySelector(".nextToStep4");
