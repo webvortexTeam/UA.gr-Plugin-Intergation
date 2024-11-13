@@ -36,9 +36,9 @@ function unlimited_andrenaline_import_activities_cron() {
 }
 
 // Settings Page
-add_action('admin_menu', function() {
-    add_submenu_page('activity_settings', 'Αυτοματοποίηση', 'Αυτοματοποίηση', 'manage_options', 'cron-activities', 'uac_cron_settings_page');
-});
+//add_action('admin_menu', function() {
+  //  add_submenu_page('activity_settings', 'Αυτοματοποίηση', 'Αυτοματοποίηση', 'manage_options', 'cron-activities', 'uac_cron_settings_page');
+//});
 
 function uac_cron_settings_page() {
     ?>

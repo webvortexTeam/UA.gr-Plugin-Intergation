@@ -52,7 +52,6 @@ function activity_settings_page()
                  <p class="text-gray-600 font-bold">Quicklinks</p>
                 <a class="text-red-600" href="/wp-admin/admin.php?page=import-activities">😊Εισαγωγή δραστηριοτήτων </a>
                 <a class="text-red-600" href="/wp-admin/admin.php?page=styling_settings">🎨Διαμόρφωση styling </a>
-                <a class="text-red-600" href="/wp-admin/admin.php?page=cron-activities">⏰ Αυτοματοποίηση / CRON </a>
 
                 <a class="text-red-600" href="https://webvortexteam.github.io/UA.gr-Plugin-Intergation/">📄Documenation </a>
                 <a class="text-red-600" href="https://www.webvortex.org/contact">🛠️Υποστήριξη </a>
@@ -62,10 +61,10 @@ function activity_settings_page()
             <div class="space-y-4">
             <?php
      $max_execution_time = ini_get('max_execution_time');
-    if ($max_execution_time !== false && $max_execution_time < 280) {
+    if ($max_execution_time !== false && $max_execution_time < 30) {
 ?>
 
-<p class="bg-gray-500 text-white">❌Προσοχή: Το max_execution_time είναι λιγότερο του 80, εάν έχετε πολλές δραστηριότητες ή αδύναμο διακομιστή τότε ίσως αντιμετωπίσετε προβλήματα κατά την εισαγωγή.</p>
+<p class="bg-gray-500 text-white">❌Προσοχή: Το max_execution_time είναι λιγότερο του 30, εάν έχετε πολλές δραστηριότητες ή αδύναμο διακομιστή τότε ίσως αντιμετωπίσετε προβλήματα κατά την εισαγωγή.</p>
 
 <?php
 
@@ -218,22 +217,9 @@ function activity_settings_page()
         <?php
             } else {
                             ?>
-                                          <form method="post" action="" class="flex flex-col">
-                        <input type="hidden" name="unlimited_andrenaline_import_activities" value="1">
-                        
-                        <button type="submit" class="py-2 px-4 bg-red-500 hover:bg-red-600 rounded-lg text-white font-semibold transition-colors duration-300">ΕΙΣΑΓΩΓΗ / ΑΝΑΝΕΩΣΗ</button>
-                    </form>
-                    <?php
-                    if (isset($_POST['unlimited_andrenaline_import_activities'])) {
-                        unlimited_andrenaline_import_activities();
-                    }
-                    ?>
-                    <div id="import-progress" class="mt-6">
-                        <p class="text-lg"><strong>Δραστηριότητες που βρέθηκαν:</strong> <span id="activities-found" class="text-red-500"><?php echo get_option('activities_found', 0); ?></span></p>
-                        <p> Αποθηκεύστε μια φορά τα permanlinks σας εδώ <a href="/wp-admin/options-permalink.php">/wp-admin/options-permalink.php</a> </p>
-                    </div>
-                    <span class="inline-blocktext-white text-sm px-2 py-1 rounded-full">✅</span>
-
+                                          
+                                <span class="inline-blocktext-white text-sm px-2 py-1 rounded-full">✅</span>
+                                <p>Μπορείτε να ξεκινήσετε την <a class="bg-red-500 text-white py-3 px-6 rounded-md hover:bg-red-600 transition duration-200 ease-in-out" href="/wp-admin/admin.php?page=import-activities">Εισαγωγή</a></p>
                             
                             <?php
 

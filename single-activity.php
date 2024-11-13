@@ -365,8 +365,8 @@ style="color: #FFFFFF; background-color: <?php echo $button_color;?>; border-rad
                                                 <div class="step2 booking-step hidden">
                                                     <h4 class="text-lg font-semibold"><?php echo $locale_activities === 'en' ? 'Select Time' : 'Επιλέξτε ώρα'; ?></h4>
                                                     <div class="time-slot-container mb-4 hidden">
-                                                        <select id="timeslot-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>" class="time-slot-select mt-2 p-2 border rounded w-full">
-                                                            <option value=""><?php echo $locale_activities === 'en' ? 'Select' : 'Επιλέξτε'; ?></option>
+                                                        <select id="timeslot-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itine<?php echo $locale_activities === 'en' ? 'Select' : 'Επιλέξτε'; ?>rary['itinerary_id']); ?>" class="time-slot-select mt-2 p-2 border rounded w-full">
+                                                            <option value=""></option>
                                                         </select>
                                                     </div>
                                                     <button class="backToStep1 mt-4 px-4 py-2 bg-gray-500 text-white rounded" style="color: #FFFFFF; background-color: black; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; width: 100%; text-align: center;"><?php echo $locale_activities === 'en' ? 'Back' : 'Πίσω'; ?></button>
@@ -397,6 +397,36 @@ style="color: #FFFFFF; background-color: <?php echo $button_color;?>; border-rad
                                                     <input type="text" placeholder="<?php echo $locale_activities === 'en' ? 'Last Name' : 'Επίθετο'; ?>" name="customer_surname" id="customer_surname-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>" class="mt-2 p-2 border rounded w-full" />
                                                     <input type="email" placeholder="Email" name="customer_email" id="customer_email-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>" class="mt-2 p-2 border rounded w-full" />
                                                     <input type="number" placeholder="<?php echo $locale_activities === 'en' ? 'Phone' : 'Τηλέφωνο'; ?>" name="customer_phone" id="customer_phone-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>" class="mt-2 p-2 border rounded w-full" />
+                                                    <div id="summary-container" class="mt-4 p-4 border rounded bg-gray-100">
+    <h4 class="text-lg font-semibold"><?php echo $locale_activities === 'en' ? 'Summary' : 'Σύνοψη'; ?></h4>
+    <p><strong><?php echo $locale_activities === 'en' ? 'Date:' : 'Ημερομηνία:'; ?></strong> <span id="summary-date"></span></p>
+    <p><strong><?php echo $locale_activities === 'en' ? 'Time:' : 'Ώρα:'; ?></strong> <span id="summary-time"></span></p>
+    <p><strong><?php echo $locale_activities === 'en' ? 'Activity:' : 'Δραστηριότητα:'; ?></strong> <span id="summary-activity"></span></p>
+    <p><strong><?php echo $locale_activities === 'en' ? 'Persons:' : 'Άτομα:'; ?></strong> <span id="summary-persons"></span></p>
+    <script>document.addEventListener("DOMContentLoaded", function () {
+    const nextToStep4Button = document.querySelector(".nextToStep4");
+    const summaryDate = document.getElementById("summary-date");
+    const summaryTime = document.getElementById("summary-time");
+    const summaryActivity = document.getElementById("summary-activity");
+    const summaryPersons = document.getElementById("summary-persons");
+
+    nextToStep4Button.addEventListener("click", function () {
+        const chosenDate = document.getElementById("datetime-<?php echo esc_attr($itinerary['itinerary_id']); ?>").value;
+        const chosenTime = document.getElementById("timeslot-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>").value;
+        const chosenActivity = document.getElementById("timeslot-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>").value; // Adjust if needed
+        const personCount = document.querySelector(".person-count").textContent;
+
+        // Update summary
+        summaryDate.textContent = chosenDate || "<?php echo $locale_activities === 'en' ? 'Not Selected' : 'Δεν Επιλέχθηκε'; ?>";
+        summaryTime.textContent = chosenTime || "<?php echo $locale_activities === 'en' ? 'Not Selected' : 'Δεν Επιλέχθηκε'; ?>";
+        summaryActivity.textContent = chosenActivity || "<?php echo $locale_activities === 'en' ? 'Not Selected' : 'Δεν Επιλέχθηκε'; ?>";
+        summaryPersons.textContent = personCount || "0";
+    });
+});
+
+</script>
+</div>
+
                                                     <button class="backToStep3 mt-4 px-4 py-2 bg-gray-500 text-white rounded" style="color: #FFFFFF; background-color: black; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; width: 100%; text-align: center;"><?php echo $locale_activities === 'en' ? 'Back' : 'Πίσω'; ?></button>
                                                     <button class="confirmBooking mt-4 px-4 py-2 vortex-ua-button text-white rounded" style="color: #FFFFFF; background-color: <?php echo $button_color;?>; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; width: 100%; text-align: center;" id="confirmBookingButton"><?php echo $locale_activities === 'en' ? 'Confirm Booking' : 'Πληρωμή Κράτησης'; ?></button>
                                                 </div>
