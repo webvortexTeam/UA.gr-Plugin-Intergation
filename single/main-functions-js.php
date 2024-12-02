@@ -454,7 +454,7 @@ jQuery('.nextToStep5').on('click', (e) => {
     const selectedDate = itineraryContainer.find('.flatpickr-input').val();
     const selectedTimeSlot = itineraryContainer.find('.time-slot-select option:selected').text();
     const personCount = itineraryContainer.find('.person-count').text();
-    const selectedFacilities = jQuery('.facility-checkbox:checked').map(function() {
+    const selectedFacilities = itineraryContainer.find('.facility-checkbox:checked').map(function() {
         return jQuery('label[for="' + jQuery(this).attr('id') + '"]').text();
     }).get();
 
@@ -463,32 +463,34 @@ jQuery('.nextToStep5').on('click', (e) => {
     const customerEmail = itineraryContainer.find('input[name="customer_email"]').val();
     const customerPhone = itineraryContainer.find('input[name="customer_phone"]').val();
 
-    // Directly insert the values into the HTML elements
-    document.querySelector('#summary-date').innerText = selectedDate;
-    document.querySelector('#summary-time').innerText = selectedTimeSlot;
-    document.querySelector('#summary-persons').innerText = personCount;
-    document.querySelector('#summary-facilities').innerText = selectedFacilities.join(', ');
-    document.querySelector('#summary-name').innerText = customerName;
-    document.querySelector('#summary-surname').innerText = customerSurname;
-    document.querySelector('#summary-email').innerText = customerEmail;
-    document.querySelector('#summary-phone').innerText = customerPhone;
-
-    // Show the summary section
-    jQuery('.step5.booking-step').removeClass('hidden');
-
     if (!customerName || !customerSurname || !customerEmail || !customerPhone) {
         var alertMessage = localeActivities === 'en' 
             ? 'Please fill all your information' 
             : 'Παρακαλώ συμπληρώστε όλα τα στοιχεία σας';
-
         alert(alertMessage);
         return;
     }
 
+    // Find the correct summary container for this itinerary
+    const summaryContainer = itineraryContainer.find('.step5 .summary-container');
+
+    // Update the summary section within the current itinerary
+    summaryContainer.find('#summary-date').text(selectedDate);
+    summaryContainer.find('#summary-time').text(selectedTimeSlot);
+    summaryContainer.find('#summary-persons').text(personCount);
+    summaryContainer.find('#summary-facilities').text(selectedFacilities.join(', '));
+    summaryContainer.find('#summary-name').text(customerName);
+    summaryContainer.find('#summary-surname').text(customerSurname);
+    summaryContainer.find('#summary-email').text(customerEmail);
+    summaryContainer.find('#summary-phone').text(customerPhone);
+
+    // Show the summary step for the current itinerary
+    itineraryContainer.find('.step5.booking-step').removeClass('hidden');
+
+    // Set the current step and show the correct step for this itinerary
     currentStep = 4;
     showStep(currentStep, itineraryId);
 });
-
 
 
 

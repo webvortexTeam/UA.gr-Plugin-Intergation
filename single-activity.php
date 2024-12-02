@@ -238,7 +238,6 @@ document.addEventListener('DOMContentLoaded', function() {
         useFullInfoPopUp.classList.add('hidden');
     });
 
-    // Close the popup if clicking outside of it
     window.addEventListener('click', function(event) {
         if (event.target === useFullInfoPopUp) {
             useFullInfoPopUp.classList.add('hidden');
@@ -347,9 +346,9 @@ style="color: #FFFFFF; background-color: <?php echo $button_color;?>; border-rad
                                             <button class="closeModalBtn mt-4 px-4 py-2 bg-black text-white rounded"><?php echo $locale_activities === 'en' ? 'Close' : 'Κλείσιμο'; ?></button>
                                         </div>
                                     </div>
- <div class="bookingModal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden" 
-                style="z-index: 9999;" data-id="<?php echo esc_attr($itinerary['itinerary_id']); ?>">
-                                                        <div class="bg-white p-6 rounded-lg shadow-lg w-full h-full md:w-1/2 md:h-auto relative">
+                                            <div class="bookingModal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden" 
+                                                            style="z-index: 9999;" data-id="<?php echo esc_attr($itinerary['itinerary_id']); ?>">
+                                                 <div class="bg-white p-6 rounded-lg shadow-lg w-full h-full md:w-1/2 md:h-auto relative">
                                             <h3 class="text-lg font-semibold mb-4"><?php echo $locale_activities === 'en' ? 'You are a few steps away!' : 'Είστε λίγα βήματα μακριά!'; ?></h3>
 
                                             <p><?php echo $locale_activities === 'en' ? 'Total Price:' : 'Συνολική Τιμή:'; ?> <span class="booking-price"></span></p>
@@ -366,9 +365,8 @@ style="color: #FFFFFF; background-color: <?php echo $button_color;?>; border-rad
                                                     <h4 class="text-lg font-semibold"><?php echo $locale_activities === 'en' ? 'Select Time' : 'Επιλέξτε ώρα'; ?></h4>
                                                     <div class="time-slot-container mb-4 hidden">
                                                     <select id="timeslot-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>" class="time-slot-select mt-2 p-2 border rounded w-full">
-    <option value=""><?php echo $locale_activities === 'en' ? 'Select' : 'Επιλέξτε'; ?></option>
-</select>
-
+                                                        <option value=""><?php echo $locale_activities === 'en' ? 'Select' : 'Επιλέξτε'; ?></option>
+                                                    </select>
                                                     </div>
                                                     <button class="backToStep1 mt-4 px-4 py-2 bg-gray-500 text-white rounded" style="color: #FFFFFF; background-color: black; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; width: 100%; text-align: center;"><?php echo $locale_activities === 'en' ? 'Back' : 'Πίσω'; ?></button>
                                                     <button class="nextToStep3 mt-4 px-4 py-2 vortex-ua-button text-white rounded" style="color: #FFFFFF; background-color: <?php echo $button_color;?>; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; width: 100%; text-align: center;"><?php echo $locale_activities === 'en' ? 'Next' : 'Επόμενο'; ?></button>
@@ -398,34 +396,24 @@ style="color: #FFFFFF; background-color: <?php echo $button_color;?>; border-rad
                                                     <input type="text" placeholder="<?php echo $locale_activities === 'en' ? 'Last Name' : 'Επίθετο'; ?>" name="customer_surname" id="customer_surname-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>" class="mt-2 p-2 border rounded w-full" />
                                                     <input type="email" placeholder="Email" name="customer_email" id="customer_email-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>" class="mt-2 p-2 border rounded w-full" />
                                                     <input type="number" placeholder="<?php echo $locale_activities === 'en' ? 'Phone' : 'Τηλέφωνο'; ?>" name="customer_phone" id="customer_phone-<?php echo esc_attr($activity_id); ?>-<?php echo esc_attr($itinerary['itinerary_id']); ?>" class="mt-2 p-2 border rounded w-full" />
-                                                    <div id="summary-container" class="mt-4 p-4 border rounded bg-gray-100">
-    <h4 class="text-lg font-semibold"><?php echo $locale_activities === 'en' ? 'Summary' : 'Σύνοψη'; ?></h4>
-    <p><strong><?php echo $locale_activities === 'en' ? 'Date:' : 'Ημερομηνία:'; ?></strong> <span id="summary-date"></span></p>
-    <p><strong><?php echo $locale_activities === 'en' ? 'Persons:' : 'Άτομα:'; ?></strong> <span id="summary-persons"></span></p>
-    <script>document.addEventListener("DOMContentLoaded", function () {
-    const nextToStep4Button = document.querySelector(".nextToStep4");
-    const summaryDate = document.getElementById("summary-date");
-    const summaryPersons = document.getElementById("summary-persons");
-
-    nextToStep4Button.addEventListener("click", function () {
-        const chosenDate = document.getElementById("datetime-<?php echo esc_attr($itinerary['itinerary_id']); ?>").value;
-        const personCount = document.querySelector(".person-count").textContent;
-
-        // Update summary
-        summaryDate.textContent = chosenDate || "<?php echo $locale_activities === 'en' ? 'Not Selected' : 'Δεν Επιλέχθηκε'; ?>";
-        summaryTime.textContent = chosenTime || "<?php echo $locale_activities === 'en' ? 'Not Selected' : 'Δεν Επιλέχθηκε'; ?>";
-        summaryActivity.textContent = chosenActivity || "<?php echo $locale_activities === 'en' ? 'Not Selected' : 'Δεν Επιλέχθηκε'; ?>";
-        summaryPersons.textContent = personCount || "0";
-    });
-});
-
-</script>
-</div>
-
                                                     <button class="backToStep3 mt-4 px-4 py-2 bg-gray-500 text-white rounded" style="color: #FFFFFF; background-color: black; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; width: 100%; text-align: center;"><?php echo $locale_activities === 'en' ? 'Back' : 'Πίσω'; ?></button>
-                                                    <button class="confirmBooking mt-4 px-4 py-2 vortex-ua-button text-white rounded" style="color: #FFFFFF; background-color: <?php echo $button_color;?>; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; width: 100%; text-align: center;" id="confirmBookingButton"><?php echo $locale_activities === 'en' ? 'Confirm Booking' : 'Πληρωμή Κράτησης'; ?></button>
+                                                    <button class="nextToStep5 mt-4 px-4 py-2 vortex-ua-button text-white rounded" style="color: #FFFFFF; background-color: <?php echo $button_color;?>; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; width: 100%; text-align: center;"><?php echo $locale_activities === 'en' ? 'Next' : 'Επόμενο'; ?></button>
                                                 </div>
-
+                                                <div class="step5 booking-step hidden data-index="<?php echo esc_attr($index); ?>"">
+                                                    <h4 class="text-lg font-semibold"><?php echo $locale_activities === 'en' ? 'Summary' : 'Σύνοψη'; ?></h4>
+                                                    <div class="summary-container">
+                                                        <p><strong><?php echo $locale_activities === 'en' ? 'Date:' : 'Ημερομηνία:'; ?></strong> <span id="summary-date"></span></p>
+                                                        <p><strong><?php echo $locale_activities === 'en' ? 'Time:' : 'Ώρα:'; ?></strong> <span id="summary-time"></span></p>
+                                                        <p><strong><?php echo $locale_activities === 'en' ? 'Persons:' : 'Άτομα:'; ?></strong> <span id="summary-persons"></span></p>
+                                                        <p><strong><?php echo $locale_activities === 'en' ? 'Facilities:' : 'Παροχές:'; ?></strong> <span id="summary-facilities"></span></p>
+                                                        <p><strong><?php echo $locale_activities === 'en' ? 'Name:' : 'Όνομα:'; ?></strong> <span id="summary-name"></span></p>
+                                                        <p><strong><?php echo $locale_activities === 'en' ? 'Surname:' : 'Επώνυμο:'; ?></strong> <span id="summary-surname"></span></p>
+                                                        <p><strong><?php echo $locale_activities === 'en' ? 'Email:' : 'Ηλεκτρονικό Ταχυδρομείο:'; ?></strong> <span id="summary-email"></span></p>
+                                                        <p><strong><?php echo $locale_activities === 'en' ? 'Phone:' : 'Τηλέφωνο:'; ?></strong> <span id="summary-phone"></span></p>
+                                                    </div>
+                                                    <button class="backToStep4 mt-4 px-4 py-2 bg-gray-500 text-white rounded"><?php echo $locale_activities === 'en' ? 'Back' : 'Πίσω'; ?></button>
+                                                    <button class="confirmBooking mt-4 px-4 py-2 vortex-ua-button text-white rounded"><?php echo $locale_activities === 'en' ? 'Confirm Booking' : 'Πληρωμή Κράτησης'; ?></button>
+                                                </div>
 
                                                 <?php echo wp_kses_post(get_option('vortex_ua_custom_html_section_1', '')); ?>
                                             </div>
@@ -441,51 +429,49 @@ style="color: #FFFFFF; background-color: <?php echo $button_color;?>; border-rad
                         </div>
                     </div>
                     <a id="vortex-ua-info-new-btn" class="mt-4 px-4 py-2" style="color: #FFFFFF; background-color: <?php echo $button_color;?>; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; width: 100%; text-align: center;"><?php echo $locale_activities === 'en' ? ' FAQ’s↗' : 'Συχνές Ερωτήσεις↗'; ?></a><br>
-<!-- Link to open the new popup -->
-<a href="#" id="openPolicyTermsUABtn" class="mt-4 px-4 py-2" style="color: #FFFFFF; background-color: <?php echo $button_color;?>; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; width: 100%; text-align: center;">
-    <?php echo $locale_activities === 'en' ? 'Terms of Use' : 'Όροι Χρήσης'; ?> ↗
-</a>
+                        <a href="#" id="openPolicyTermsUABtn" class="mt-4 px-4 py-2" style="color: #FFFFFF; background-color: <?php echo $button_color;?>; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; width: 100%; text-align: center;">
+                            <?php echo $locale_activities === 'en' ? 'Terms of Use' : 'Όροι Χρήσης'; ?> ↗
+                        </a>
 
-<!-- New Popup -->
-<div id="PolicyTermsUAPopup" class="policyTermsUAModal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden" style="z-index: 9999 !important;">
-    <div class="bg-white p-6 rounded-lg shadow-lg">
-        <h3 class="text-lg font-semibold mb-4">
-            <?php echo $locale_activities === 'en' ? 'Terms of Use' : 'Όροι Χρήσης'; ?>
-        </h3>
-        <div class="policyTermsUAContent text-gray-700">
-            <!-- Insert the content for the Terms of Use here -->
-            <p class="text-sm">   <?php include plugin_dir_path(__FILE__) . 'single/terms.php'; ?>
-</p>
-        </div>
-        <button id="closePolicyTermsUABtn" class="mt-4 px-4 py-2 bg-black text-white rounded">
-            <?php echo $locale_activities === 'en' ? 'Close' : 'Κλείσιμο'; ?>
-        </button>
-    </div>
-</div>
+                        <!-- New Popup -->
+                        <div id="PolicyTermsUAPopup" class="policyTermsUAModal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden" style="z-index: 9999 !important;">
+                            <div class="bg-white p-6 rounded-lg shadow-lg">
+                                <h3 class="text-lg font-semibold mb-4">
+                                    <?php echo $locale_activities === 'en' ? 'Terms of Use' : 'Όροι Χρήσης'; ?>
+                                </h3>
+                                <div class="policyTermsUAContent text-gray-700">
+                                    <p class="text-sm">   <?php include plugin_dir_path(__FILE__) . 'single/terms.php'; ?>
+                        </p>
+                                </div>
+                                <button id="closePolicyTermsUABtn" class="mt-4 px-4 py-2 bg-black text-white rounded">
+                                    <?php echo $locale_activities === 'en' ? 'Close' : 'Κλείσιμο'; ?>
+                                </button>
+                            </div>
+                        </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const openPolicyTermsUABtn = document.getElementById('openPolicyTermsUABtn');
-    const closePolicyTermsUABtn = document.getElementById('closePolicyTermsUABtn');
-    const policyTermsUAPopup = document.getElementById('PolicyTermsUAPopup');
+                        <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const openPolicyTermsUABtn = document.getElementById('openPolicyTermsUABtn');
+                            const closePolicyTermsUABtn = document.getElementById('closePolicyTermsUABtn');
+                            const policyTermsUAPopup = document.getElementById('PolicyTermsUAPopup');
 
-    openPolicyTermsUABtn.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent the default action of the anchor tag
-        policyTermsUAPopup.classList.remove('hidden');
-    });
+                            openPolicyTermsUABtn.addEventListener('click', function(event) {
+                                event.preventDefault(); // Prevent the default action of the anchor tag
+                                policyTermsUAPopup.classList.remove('hidden');
+                            });
 
-    closePolicyTermsUABtn.addEventListener('click', function() {
-        policyTermsUAPopup.classList.add('hidden');
-    });
+                            closePolicyTermsUABtn.addEventListener('click', function() {
+                                policyTermsUAPopup.classList.add('hidden');
+                            });
 
-    // Close the popup if clicking outside of it
-    window.addEventListener('click', function(event) {
-        if (event.target === policyTermsUAPopup) {
-            policyTermsUAPopup.classList.add('hidden');
-        }
-    });
-});
-</script>
+                            // Close the popup if clicking outside of it
+                            window.addEventListener('click', function(event) {
+                                if (event.target === policyTermsUAPopup) {
+                                    policyTermsUAPopup.classList.add('hidden');
+                                }
+                            });
+                        });
+                        </script>
                     <?php echo wp_kses_post(get_option('vortex_ua_custom_html_section_4', '')); ?>
                     <?php endif; ?>
                     <?php if (get_option('vortex_ua_show_reviews', 'yes') === 'yes')     include plugin_dir_path(__FILE__) . 'single/reviews.php'; ?>
