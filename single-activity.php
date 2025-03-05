@@ -133,6 +133,21 @@ $term_links[] = esc_html($term->name);
                 </div>
 
 <div class="container" style="display: flex; flex-direction: column; align-items: center; position: sticky; top: 40px; z-index: 9999 !important;">
+
+    <script>
+    function updateContainerPosition() {
+        const container = document.querySelector('.container');
+        if (window.innerWidth <= 768) { // Adjust breakpoint if needed
+        container.style.position = 'static';
+        } else {
+        container.style.position = 'sticky';
+        container.style.top = '40px';
+        }
+    }
+
+    window.addEventListener('resize', updateContainerPosition);
+    window.addEventListener('load', updateContainerPosition);
+    </script>
     <div class="mt-2 lg:row-span-3 lg:mt-0" style="background-color: #EEEEEE; border-radius: 25px; padding: 20px; width: 100%; max-width: 412px; height: auto; margin-top: 10px;">
         <!-- First div content -->
         <?php if (!empty($min_price)): ?>

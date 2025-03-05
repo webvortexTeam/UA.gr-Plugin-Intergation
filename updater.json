@@ -1,9 +1,9 @@
 {
     "name": "Unlimited Andrenaline V2",
     "slug": "unlimited-andrenaline-v2",
-    "author": "<a href='https://www.webvortex.org'>WebVortex</a>",
+    "author": "<a href='https://www.unlimited-adrenaline.gr/en'>Unlimited Andrenaline/a>",
     "author_profile": "",
-    "version": "2.5",
+    "version": "2.6",
     "download_url": "https://github.com/webvortexTeam/UA.gr-Plugin-Intergation/raw/main/unlimitedv2.zip",
     "requires": "6.0",
     "tested": "5.8",
